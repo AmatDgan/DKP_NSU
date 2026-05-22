@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --brand: #A21D33;
+  --ink: #11161E;
+  --ink-2: #3C4655;
+  --ink-3: #6B7280;
+  --bg: #FAFAF7;
+  --line: #E5E1D8;
+}
+
+html, body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, sans-serif;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'PT Serif', Georgia, serif;
+}
+
+.btn-primary {
+  background: var(--brand);
+  color: #fff;
+  padding: 0.625rem 1.25rem;
+  border-radius: 6px;
+  font-weight: 500;
+  display: inline-block;
+  transition: opacity 0.15s;
+}
+.btn-primary:hover { opacity: 0.9; }
+.btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.btn-secondary {
+  background: #fff;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  padding: 0.5rem 1.125rem;
+  border-radius: 6px;
+  font-weight: 500;
+  display: inline-block;
+}
+.btn-secondary:hover { background: #f5f3ee; }
+
+.card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 1.5rem;
+}
+
+.input {
+  width: 100%;
+  border: 1px solid var(--line);
+  background: #fff;
+  border-radius: 6px;
+  padding: 0.625rem 0.875rem;
+  font-size: 0.95rem;
+  outline: none;
+}
+.input:focus { border-color: var(--brand); box-shadow: 0 0 0 3px rgba(162,29,51,0.10); }
+
+.label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--ink-2);
+  margin-bottom: 0.375rem;
+}
+
+.error {
+  color: var(--brand);
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}

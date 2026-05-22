@@ -1,0 +1,1355 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Программа повышения квалификации — ДКП: базовые знания и образовательные практики | СГУ Банка России × НГУ</title>
+<meta name="description" content="Программа повышения квалификации для преподавателей вузов «Денежно-кредитная политика: базовые знания и образовательные практики в подготовке специалистов социально-экономического профиля». 30 сентября — 1 октября 2026, НГУ, Новосибирск." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --bg:#FAFAF7;
+  --bg-card:#FFFFFF;
+  --ink:#11161E;
+  --ink-2:#3C4655;
+  --ink-3:#6B7280;
+  --line:#E5E1D8;
+  --line-2:#D1CCC0;
+  --accent:#A21D33;
+  --accent-dark:#7E1626;
+  --accent-soft:#FBEEF1;
+  --nsu:#003E7E;
+  --nsu-soft:#E8EEF7;
+  --gold:#B8945F;
+  --ok:#1F7A4D;
+  --error:#B5273A;
+  --shadow:0 1px 2px rgba(17,22,30,.04), 0 6px 24px rgba(17,22,30,.06);
+  --shadow-lg:0 8px 16px rgba(17,22,30,.06), 0 24px 60px rgba(17,22,30,.12);
+  --radius:14px;
+  --radius-sm:8px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:var(--nsu);text-decoration:none;transition:color .15s ease}
+a:hover{color:var(--accent)}
+h1,h2,h3,h4{font-family:'PT Serif',Georgia,serif;color:var(--ink);letter-spacing:-.01em;line-height:1.2}
+img{max-width:100%;display:block}
+button{font-family:inherit;cursor:pointer;border:0;background:transparent}
+
+/* Layout */
+.container{max-width:1180px;margin:0 auto;padding:0 28px}
+.container-narrow{max-width:880px;margin:0 auto;padding:0 28px}
+
+/* Top bar */
+.topbar{background:#FFFFFF;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50;backdrop-filter:blur(8px)}
+.topbar-inner{display:flex;align-items:center;justify-content:space-between;height:72px}
+.brand{display:flex;align-items:center;gap:18px}
+.brand-mark{display:flex;align-items:center;gap:14px}
+.brand-mark .logo{display:flex;align-items:center;gap:10px;font-weight:600;color:var(--ink);font-size:14px;letter-spacing:.02em}
+.brand-mark .logo .badge{width:34px;height:34px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'PT Serif',serif;font-weight:700;font-size:16px;color:#fff}
+.badge-cbr{background:var(--accent)}
+.badge-nsu{background:var(--nsu)}
+.brand-sep{width:1px;height:24px;background:var(--line)}
+.nav{display:flex;align-items:center;gap:26px}
+.nav a{color:var(--ink-2);font-size:14px;font-weight:500}
+.nav a:hover{color:var(--accent)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 22px;border-radius:8px;font-weight:600;font-size:14px;transition:all .15s ease;cursor:pointer;border:1px solid transparent;white-space:nowrap}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:var(--accent-dark);color:#fff;transform:translateY(-1px);box-shadow:0 4px 14px rgba(162,29,51,.3)}
+.btn-ghost{background:#fff;color:var(--ink);border-color:var(--line-2)}
+.btn-ghost:hover{border-color:var(--ink);color:var(--ink)}
+.btn-text{background:transparent;color:var(--accent);padding:8px 0}
+.btn-text:hover{color:var(--accent-dark)}
+
+/* Hero */
+.hero{position:relative;padding:80px 0 96px;overflow:hidden;background:
+  radial-gradient(1100px 380px at 80% -10%, rgba(0,62,126,.06), transparent 60%),
+  radial-gradient(900px 320px at 10% 110%, rgba(162,29,51,.05), transparent 60%),
+  linear-gradient(180deg,#FFFFFF 0%,#FAFAF7 100%);
+  border-bottom:1px solid var(--line)}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);color:var(--ink-2);padding:8px 14px;border-radius:99px;font-size:13px;font-weight:500;margin-bottom:24px}
+.hero-eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.hero h1{font-size:clamp(32px,5vw,52px);font-weight:700;letter-spacing:-.02em;max-width:920px;margin-bottom:18px}
+.hero h1 em{font-style:normal;color:var(--accent);position:relative;white-space:nowrap}
+.hero-lead{font-size:clamp(17px,2vw,20px);color:var(--ink-2);max-width:780px;margin-bottom:36px;line-height:1.55}
+.hero-meta{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;margin-bottom:40px;max-width:920px}
+.hero-meta-item{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px}
+.hero-meta-item .label{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3);margin-bottom:8px;font-weight:600}
+.hero-meta-item .value{font-family:'PT Serif',serif;font-size:18px;color:var(--ink);font-weight:700;line-height:1.3}
+.hero-meta-item .sub{font-size:13px;color:var(--ink-3);margin-top:2px}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.hero-trust{display:flex;align-items:center;gap:10px;color:var(--ink-3);font-size:13px;margin-left:8px}
+.hero-trust svg{flex-shrink:0}
+
+/* Sections */
+section{padding:84px 0;border-bottom:1px solid var(--line)}
+.section-eyebrow{display:flex;align-items:center;gap:12px;color:var(--accent);font-weight:600;font-size:13px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px}
+.section-eyebrow .line{width:28px;height:1px;background:var(--accent)}
+.section-head{margin-bottom:48px;max-width:760px}
+.section-head h2{font-size:clamp(28px,4vw,40px);margin-bottom:14px}
+.section-head p{color:var(--ink-2);font-size:17px}
+
+/* About */
+.about-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:start}
+.about-text p{margin-bottom:14px;color:var(--ink-2)}
+.about-bullets{display:flex;flex-direction:column;gap:12px;margin-top:24px}
+.about-bullet{display:flex;gap:14px;padding:16px;background:#fff;border:1px solid var(--line);border-radius:var(--radius-sm)}
+.about-bullet .icon{width:36px;height:36px;border-radius:8px;background:var(--accent-soft);color:var(--accent);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.about-bullet .ttl{font-weight:600;color:var(--ink);margin-bottom:2px;font-size:15px}
+.about-bullet .desc{font-size:14px;color:var(--ink-3)}
+.about-side{position:sticky;top:96px}
+.about-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px;box-shadow:var(--shadow)}
+.about-card h4{font-size:18px;margin-bottom:16px}
+.about-card .info-row{display:flex;justify-content:space-between;padding:10px 0;border-top:1px solid var(--line);font-size:14px}
+.about-card .info-row:first-of-type{border-top:0}
+.about-card .info-row .k{color:var(--ink-3)}
+.about-card .info-row .v{font-weight:500;color:var(--ink);text-align:right}
+
+/* Program */
+.day-tabs{display:flex;gap:6px;margin-bottom:32px;border:1px solid var(--line);background:#fff;padding:6px;border-radius:12px;width:fit-content}
+.day-tab{padding:12px 22px;border-radius:8px;font-weight:600;font-size:14px;color:var(--ink-3);transition:all .15s ease;cursor:pointer}
+.day-tab.active{background:var(--ink);color:#fff}
+.day-tab:not(.active):hover{color:var(--ink)}
+.day-tab .date{font-family:'PT Serif',serif;display:block;font-size:11px;font-weight:400;color:inherit;opacity:.75;margin-top:2px}
+.timeline{position:relative;display:flex;flex-direction:column;gap:14px}
+.tl-item{display:grid;grid-template-columns:140px 1fr;gap:24px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px 26px;transition:all .15s ease}
+.tl-item:hover{border-color:var(--line-2);box-shadow:var(--shadow)}
+.tl-item .tl-time{font-family:'PT Serif',serif;font-weight:700;color:var(--accent);font-size:15px;letter-spacing:.01em;line-height:1.4;white-space:nowrap}
+.tl-item .tl-kind{display:inline-block;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3);font-weight:600;margin-bottom:6px}
+.tl-item .tl-title{font-family:'PT Serif',serif;font-size:18px;color:var(--ink);font-weight:700;margin-bottom:8px;line-height:1.35}
+.tl-item .tl-desc{color:var(--ink-2);font-size:14px;line-height:1.55;margin-bottom:10px}
+.tl-speakers{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.speaker-chip{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:99px;background:#F3EFE6;border:1px solid var(--line-2);font-size:13px;color:var(--ink);font-weight:500;cursor:pointer;transition:all .15s ease}
+.speaker-chip:hover{background:var(--accent);color:#fff;border-color:var(--accent);transform:translateY(-1px)}
+.speaker-chip .role{font-size:11px;color:var(--ink-3);font-weight:400}
+.speaker-chip:hover .role{color:rgba(255,255,255,.85)}
+.tl-item.break{background:#FAFAF7;border-style:dashed}
+.tl-item.break .tl-title{color:var(--ink-3);font-size:15px;font-weight:400;font-family:'Inter',sans-serif;font-style:italic}
+
+/* Speakers */
+.speakers-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px}
+.speaker-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px;transition:all .2s ease;cursor:pointer;display:flex;flex-direction:column;gap:12px;position:relative}
+.speaker-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg);border-color:var(--ink)}
+.speaker-card .org-mark{display:inline-block;font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;padding:4px 8px;border-radius:4px;width:fit-content}
+.org-cbr{background:var(--accent-soft);color:var(--accent)}
+.org-nsu{background:var(--nsu-soft);color:var(--nsu)}
+.speaker-card .name{font-family:'PT Serif',serif;font-size:19px;font-weight:700;color:var(--ink);line-height:1.3}
+.speaker-card .position{font-size:13px;color:var(--ink-2);line-height:1.5}
+.speaker-card .more{font-size:13px;color:var(--accent);font-weight:600;display:flex;align-items:center;gap:6px;margin-top:auto;padding-top:12px;border-top:1px solid var(--line)}
+.speaker-card .more svg{transition:transform .15s ease}
+.speaker-card:hover .more svg{transform:translateX(3px)}
+
+/* Sections */
+.sections-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:18px}
+.section-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px;display:flex;flex-direction:column;gap:14px;transition:all .15s ease;position:relative}
+.section-card:hover{box-shadow:var(--shadow);border-color:var(--line-2)}
+.section-card .sec-num{font-family:'PT Serif',serif;font-size:14px;font-weight:700;color:var(--accent);letter-spacing:.04em}
+.section-card .sec-title{font-family:'PT Serif',serif;font-size:18px;color:var(--ink);font-weight:700;line-height:1.35}
+.section-card .moderators{display:flex;flex-wrap:wrap;gap:6px}
+.section-card .mod-label{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3);font-weight:600;width:100%;margin-bottom:2px}
+.section-card .pick-info{font-size:13px;color:var(--ink-3);background:#FAFAF7;padding:10px 14px;border-radius:8px;border:1px dashed var(--line-2);margin-top:auto}
+
+/* Cultural */
+.cultural-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.cultural-item{background:#fff;border:1px solid var(--line);border-radius:var(--radius-sm);padding:20px;font-size:14px}
+.cultural-item .ico{font-size:24px;margin-bottom:10px;display:block}
+.cultural-item .ttl{font-weight:600;color:var(--ink);margin-bottom:4px;font-family:'PT Serif',serif;font-size:16px}
+
+/* Registration */
+#register{background:linear-gradient(180deg,#FAFAF7 0%,#F1EDE3 100%)}
+.reg-shell{background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow-lg);overflow:hidden}
+.reg-progress{padding:24px 32px;background:#fff;border-bottom:1px solid var(--line)}
+.reg-progress-bar{height:4px;background:var(--line);border-radius:99px;overflow:hidden;margin-bottom:14px}
+.reg-progress-fill{height:100%;background:linear-gradient(90deg,var(--accent),#D63B53);transition:width .4s cubic-bezier(.4,0,.2,1);width:12%}
+.reg-progress-info{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--ink-3);font-weight:500}
+.reg-progress-info .step-name{color:var(--ink);font-weight:600}
+.reg-body{padding:36px 40px 32px}
+.step{display:none;animation:fadeIn .35s ease}
+.step.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.step h3{font-size:24px;margin-bottom:8px}
+.step .lead{color:var(--ink-2);margin-bottom:28px;font-size:15px;line-height:1.6}
+.form-row{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-bottom:18px}
+.form-row.single{grid-template-columns:1fr}
+.field{display:flex;flex-direction:column;gap:8px}
+.field label{font-size:13px;font-weight:600;color:var(--ink-2);letter-spacing:.01em}
+.field label .req{color:var(--accent);margin-left:3px}
+.field input,.field select,.field textarea{font-family:inherit;font-size:15px;padding:13px 14px;border:1px solid var(--line-2);border-radius:8px;background:#fff;transition:all .15s ease;color:var(--ink);width:100%}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(162,29,51,.12)}
+.field textarea{resize:vertical;min-height:96px}
+.field .hint{font-size:12px;color:var(--ink-3)}
+.field.error input,.field.error select,.field.error textarea{border-color:var(--error);box-shadow:0 0 0 3px rgba(181,39,58,.1)}
+.field .err-msg{font-size:12px;color:var(--error);display:none;margin-top:2px;font-weight:500}
+.field.error .err-msg{display:block}
+.lecture-list{display:flex;flex-direction:column;gap:10px}
+.lec-row{display:grid;grid-template-columns:1fr auto;gap:16px;background:#FAFAF7;border:1px solid var(--line);border-radius:10px;padding:16px 18px;align-items:center}
+.lec-row .lec-info .day{font-size:11px;color:var(--accent);text-transform:uppercase;letter-spacing:.05em;font-weight:700;margin-bottom:4px}
+.lec-row .lec-info .ttl{font-family:'PT Serif',serif;font-weight:700;color:var(--ink);font-size:15px;line-height:1.35;margin-bottom:4px}
+.lec-row .lec-info .who{font-size:13px;color:var(--ink-3);display:inline-flex;align-items:center;gap:6px;cursor:pointer}
+.lec-row .lec-info .who:hover{color:var(--accent)}
+.choice-group{display:flex;gap:6px;background:#fff;padding:4px;border:1px solid var(--line);border-radius:99px;flex-shrink:0}
+.choice-group input{display:none}
+.choice-group label{padding:6px 12px;border-radius:99px;font-size:12px;font-weight:600;color:var(--ink-3);cursor:pointer;transition:all .15s ease;white-space:nowrap}
+.choice-group input:checked + label{background:var(--ink);color:#fff}
+.choice-group input[value="yes"]:checked + label{background:var(--ok);color:#fff}
+.choice-group input[value="no"]:checked + label{background:#9AA0A6;color:#fff}
+.choice-group input[value="maybe"]:checked + label{background:var(--gold);color:#fff}
+.section-pick-list{display:flex;flex-direction:column;gap:10px}
+.sec-pick{display:flex;justify-content:space-between;gap:16px;background:#fff;border:1px solid var(--line-2);border-radius:10px;padding:18px;cursor:pointer;transition:all .15s ease;align-items:center}
+.sec-pick:hover{border-color:var(--accent)}
+.sec-pick.selected-primary{background:var(--accent-soft);border-color:var(--accent);border-width:2px;padding:17px}
+.sec-pick.selected-secondary{background:#FFF7E6;border-color:var(--gold);border-width:2px;padding:17px}
+.sec-pick .num{font-family:'PT Serif',serif;font-size:13px;color:var(--accent);font-weight:700}
+.sec-pick .ttl{font-weight:600;color:var(--ink);font-size:14px;line-height:1.4;margin:4px 0}
+.sec-pick .mods{font-size:12px;color:var(--ink-3)}
+.sec-pick .pick-actions{display:flex;gap:6px;flex-shrink:0}
+.pill-btn{padding:7px 12px;font-size:12px;font-weight:600;border-radius:99px;border:1px solid var(--line-2);background:#fff;cursor:pointer;transition:all .15s ease;color:var(--ink-2)}
+.pill-btn:hover{border-color:var(--ink-2)}
+.pill-btn.primary-on{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pill-btn.secondary-on{background:var(--gold);color:#fff;border-color:var(--gold)}
+.radio-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.radio-card{position:relative;cursor:pointer}
+.radio-card input{position:absolute;opacity:0;pointer-events:none}
+.radio-card .rc-body{padding:18px;border:1px solid var(--line-2);border-radius:10px;background:#fff;transition:all .15s ease;height:100%}
+.radio-card input:checked + .rc-body{border-color:var(--accent);background:var(--accent-soft);box-shadow:0 0 0 2px var(--accent) inset}
+.radio-card .rc-body .ttl{font-weight:600;color:var(--ink);margin-bottom:4px;font-size:15px}
+.radio-card .rc-body .desc{font-size:13px;color:var(--ink-3)}
+.upload{border:1px dashed var(--line-2);border-radius:10px;padding:24px;text-align:center;background:#FAFAF7;transition:all .15s ease;cursor:pointer}
+.upload:hover{border-color:var(--accent);background:var(--accent-soft)}
+.upload input{display:none}
+.upload .ico{font-size:28px;margin-bottom:8px;color:var(--ink-3)}
+.upload .txt{font-size:14px;color:var(--ink-2);font-weight:500}
+.upload .sub{font-size:12px;color:var(--ink-3);margin-top:4px}
+.upload.has-file{border-style:solid;border-color:var(--ok);background:#EFF7F1;color:var(--ok)}
+.checkbox-row{display:flex;flex-direction:column;gap:8px}
+.check-item{display:flex;gap:10px;padding:14px 16px;background:#fff;border:1px solid var(--line);border-radius:10px;cursor:pointer;transition:all .15s ease;align-items:flex-start}
+.check-item:hover{border-color:var(--line-2)}
+.check-item input{accent-color:var(--accent);margin-top:3px;cursor:pointer;width:18px;height:18px}
+.check-item .label{font-size:14px;color:var(--ink);flex:1}
+.check-item .sub{font-size:12px;color:var(--ink-3);margin-top:2px;display:block}
+.privacy-note{background:#FFF;border:1px solid var(--line);border-left:3px solid var(--accent);padding:18px 22px;border-radius:10px;display:flex;gap:14px;align-items:flex-start;margin-bottom:20px}
+.privacy-note .ico{flex-shrink:0;color:var(--accent)}
+.privacy-note .txt{font-size:13px;color:var(--ink-2);line-height:1.55}
+.privacy-note .txt strong{color:var(--ink)}
+.reg-actions{display:flex;justify-content:space-between;align-items:center;padding:24px 40px;background:#FAFAF7;border-top:1px solid var(--line);gap:14px}
+.step-counter{font-size:13px;color:var(--ink-3);font-weight:500}
+.action-group{display:flex;gap:10px}
+
+/* Success */
+.success-state{text-align:center;padding:40px 20px}
+.success-state .check{width:80px;height:80px;border-radius:50%;background:#EFF7F1;color:var(--ok);display:flex;align-items:center;justify-content:center;margin:0 auto 24px}
+.success-state h3{font-size:28px;margin-bottom:14px}
+.success-state p{color:var(--ink-2);max-width:560px;margin:0 auto 12px}
+.summary-box{background:#FAFAF7;border:1px solid var(--line);border-radius:12px;padding:24px;margin:32px auto 0;max-width:560px;text-align:left}
+.summary-box h4{font-size:14px;text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px;color:var(--ink-3);font-family:'Inter',sans-serif;font-weight:700}
+.summary-box .sm-row{display:flex;justify-content:space-between;padding:10px 0;border-top:1px solid var(--line);font-size:13px}
+.summary-box .sm-row:first-of-type{border-top:0}
+.summary-box .sm-row .k{color:var(--ink-3)}
+.summary-box .sm-row .v{color:var(--ink);font-weight:500;text-align:right;max-width:60%}
+
+/* Modal */
+.modal-backdrop{position:fixed;inset:0;background:rgba(17,22,30,.5);backdrop-filter:blur(4px);z-index:100;display:none;align-items:center;justify-content:center;padding:24px;animation:fadeIn .2s ease}
+.modal-backdrop.open{display:flex}
+.modal{background:#fff;border-radius:18px;max-width:560px;width:100%;max-height:88vh;overflow-y:auto;box-shadow:var(--shadow-lg);position:relative;animation:modalIn .25s cubic-bezier(.4,0,.2,1)}
+@keyframes modalIn{from{transform:translateY(20px) scale(.97);opacity:0}to{transform:none;opacity:1}}
+.modal-close{position:absolute;top:18px;right:18px;width:36px;height:36px;border-radius:50%;background:#FAFAF7;color:var(--ink-2);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .15s ease;z-index:2}
+.modal-close:hover{background:var(--ink);color:#fff}
+.modal-header{padding:32px 36px 22px;border-bottom:1px solid var(--line)}
+.modal-header .org-mark{margin-bottom:10px}
+.modal-header h3{font-size:24px;line-height:1.25;margin-bottom:10px}
+.modal-header .pos{font-size:14px;color:var(--ink-2);line-height:1.55}
+.modal-body{padding:24px 36px 32px}
+.modal-body .bio{color:var(--ink-2);font-size:14.5px;line-height:1.65;margin-bottom:20px}
+.modal-body h4{font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3);font-family:'Inter',sans-serif;font-weight:700;margin-bottom:10px}
+.modal-body .interests{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px}
+.modal-body .interest{padding:6px 12px;background:#FAFAF7;border:1px solid var(--line);border-radius:99px;font-size:12px;color:var(--ink-2)}
+.modal-actions{display:flex;gap:10px;padding-top:20px;border-top:1px solid var(--line)}
+.modal-actions .btn{flex:1}
+
+/* Footer */
+footer{padding:48px 0;background:#FFFFFF;border-top:1px solid var(--line)}
+.foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:40px;margin-bottom:32px}
+.foot-grid h5{font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3);font-weight:700;margin-bottom:14px;font-family:'Inter',sans-serif}
+.foot-grid p,.foot-grid a{font-size:14px;color:var(--ink-2);line-height:1.7;display:block}
+.foot-bottom{padding-top:24px;border-top:1px solid var(--line);font-size:13px;color:var(--ink-3);display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px}
+
+/* Toast */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--ink);color:#fff;padding:14px 22px;border-radius:99px;font-size:14px;font-weight:500;box-shadow:var(--shadow-lg);transition:transform .3s cubic-bezier(.4,0,.2,1);z-index:200;display:flex;align-items:center;gap:10px}
+.toast.show{transform:translateX(-50%) translateY(0)}
+
+/* Responsive */
+@media (max-width: 920px){
+  .about-grid{grid-template-columns:1fr}
+  .about-side{position:static}
+  .hero-meta{grid-template-columns:repeat(2,1fr)}
+  .tl-item{grid-template-columns:1fr;gap:8px}
+  .form-row{grid-template-columns:1fr}
+  .radio-cards{grid-template-columns:1fr}
+  .nav{display:none}
+  .reg-body{padding:28px 22px}
+  .reg-actions{padding:18px 22px}
+  .modal-header,.modal-body{padding-left:22px;padding-right:22px}
+  .foot-grid{grid-template-columns:1fr}
+  section{padding:60px 0}
+  .hero{padding:60px 0 70px}
+  .sec-pick{flex-direction:column;align-items:flex-start}
+  .lec-row{grid-template-columns:1fr;gap:12px}
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<header class="topbar">
+  <div class="container topbar-inner">
+    <div class="brand">
+      <div class="brand-mark">
+        <div class="logo"><span class="badge badge-cbr">Б</span> Сибирское ГУ Банка России</div>
+      </div>
+      <div class="brand-sep"></div>
+      <div class="brand-mark">
+        <div class="logo"><span class="badge badge-nsu">Н</span> НГУ · Экономический факультет</div>
+      </div>
+    </div>
+    <nav class="nav">
+      <a href="#about">О программе</a>
+      <a href="#program">Программа</a>
+      <a href="#speakers">Спикеры</a>
+      <a href="#sections">Секции</a>
+      <a href="#register" class="btn btn-primary">Регистрация</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" style="border-bottom:none">
+  <div class="container">
+    <div class="hero-eyebrow"><span class="dot"></span> Программа повышения квалификации · 2026</div>
+    <h1>Денежно-кредитная политика: <em>базовые знания</em> и образовательные практики в подготовке специалистов социально-экономического профиля</h1>
+    <p class="hero-lead">Двухдневная очная программа Сибирского главного управления Банка России и Новосибирского национального исследовательского государственного университета для преподавателей вузов России.</p>
+
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <div class="label">Даты</div>
+        <div class="value">30 сентября — 1 октября</div>
+        <div class="sub">2026 года, среда — четверг</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="label">Место</div>
+        <div class="value">НГУ, г. Новосибирск</div>
+        <div class="sub">ул. Пирогова, 1</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="label">Формат</div>
+        <div class="value">Очный</div>
+        <div class="sub">Лекции, дискуссии, секции</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="label">Документ</div>
+        <div class="value">Удостоверение</div>
+        <div class="sub">О повышении квалификации</div>
+      </div>
+    </div>
+
+    <div class="hero-actions">
+      <a href="#register" class="btn btn-primary">Зарегистрироваться
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#program" class="btn btn-ghost">Программа двух дней</a>
+      <div class="hero-trust">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Защищённая обработка персональных данных
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="section-eyebrow"><span class="line"></span> О программе</div>
+    <div class="about-grid">
+      <div class="about-text">
+        <div class="section-head" style="margin-bottom:24px">
+          <h2>Современная ДКП и её место в образовательном процессе</h2>
+        </div>
+        <p>Программа объединяет на одной площадке экспертов Банка России и преподавателей экономического факультета НГУ. Цель — передать преподавателям вузов актуальные знания о современной денежно-кредитной политике и инструментах её реализации, а также обсудить, как академические исследования встраиваются в подготовку специалистов социально-экономического профиля.</p>
+        <p>В первый день — открытые лекции спикеров Банка России и панельная дискуссия об образовательном процессе на ЭФ НГУ. Второй день посвящён практикам преподавания и научной работе в параллельных тематических секциях, организованных преподавателями ЭФ НГУ.</p>
+
+        <div class="about-bullets">
+          <div class="about-bullet">
+            <div class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2zM22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+            <div><div class="ttl">Лекции Банка России</div><div class="desc">Семь лекций от ведущих экспертов ЦБ — от макропрогнозов до коммуникации ДКП</div></div>
+          </div>
+          <div class="about-bullet">
+            <div class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+            <div><div class="ttl">Панельная дискуссия</div><div class="desc">Образовательный процесс, исследования и практикоориентированность подготовки</div></div>
+          </div>
+          <div class="about-bullet">
+            <div class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+            <div><div class="ttl">Семь тематических секций</div><div class="desc">Слушатель выбирает основную и резервную секцию ещё на этапе регистрации</div></div>
+          </div>
+          <div class="about-bullet">
+            <div class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14l-5-4.87 6.91-1.01z"/></svg></div>
+            <div><div class="ttl">Культурная программа</div><div class="desc">«Эволюция Земли», музей истории НГУ, архив древних книг, купол ректорского корпуса</div></div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="about-side">
+        <div class="about-card">
+          <h4>Кратко о Программе</h4>
+          <div class="info-row"><span class="k">Целевая аудитория</span><span class="v">Преподаватели вузов</span></div>
+          <div class="info-row"><span class="k">Продолжительность</span><span class="v">2 дня</span></div>
+          <div class="info-row"><span class="k">Формат</span><span class="v">Очный</span></div>
+          <div class="info-row"><span class="k">Стоимость</span><span class="v">По договору с ИППК НГУ</span></div>
+          <div class="info-row"><span class="k">Документ</span><span class="v">Удостоверение о&nbsp;ПК</span></div>
+          <div class="info-row"><span class="k">Организаторы</span><span class="v">СГУ Банка России,<br/>ЭФ НГУ</span></div>
+          <div style="margin-top:18px;padding-top:18px;border-top:1px solid var(--line);font-size:13px;color:var(--ink-3);line-height:1.6">После регистрации с Вами свяжется куратор программы для оформления договора об обучении и удостоверения.</div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAM -->
+<section id="program">
+  <div class="container">
+    <div class="section-eyebrow"><span class="line"></span> Программа</div>
+    <div class="section-head">
+      <h2>Расписание двух дней</h2>
+      <p>Кликните по имени спикера или модератора, чтобы открыть его карточку с биографией и ссылками на персональную страницу НГУ или Банка России.</p>
+    </div>
+
+    <div class="day-tabs" role="tablist">
+      <button class="day-tab active" data-day="1" role="tab">День 1 <span class="date">30 сентября, среда</span></button>
+      <button class="day-tab" data-day="2" role="tab">День 2 <span class="date">1 октября, четверг</span></button>
+    </div>
+
+    <div class="timeline" id="day-1">
+      <div class="tl-item">
+        <div class="tl-time">10:00 — 10:45</div>
+        <div>
+          <span class="tl-kind">Регистрация</span>
+          <div class="tl-title">Регистрация участников. Приветственный кофе</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">10:50 — 11:15</div>
+        <div>
+          <span class="tl-kind">Открытие</span>
+          <div class="tl-title">Вступительное слово начальника Сибирского ГУ Банка России. Приветствие ректора НГУ</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">11:15 — 12:25</div>
+        <div>
+          <span class="tl-kind">Открытая лекция</span>
+          <div class="tl-title">Экономика в цифрах: почему важно управлять инфляцией</div>
+          <div class="tl-desc">Открытая лекция для преподавателей — участников Программы и студентов НГУ.</div>
+          <div class="tl-speakers"><button class="speaker-chip" data-speaker="tremasov">Тремасов Кирилл Викторович <span class="role">· Банк России</span></button></div>
+        </div>
+      </div>
+      <div class="tl-item break">
+        <div class="tl-time">12:30 — 14:00</div>
+        <div><div class="tl-title">Обед</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">14:00 — 15:30</div>
+        <div>
+          <span class="tl-kind">Панельная дискуссия</span>
+          <div class="tl-title">Подготовка специалистов социально-экономического профиля: образовательный процесс, включённость в исследования, практикоориентированность</div>
+          <div class="tl-speakers">
+            <button class="speaker-chip" data-speaker="afonin">Афонин Андрей</button>
+            <button class="speaker-chip" data-speaker="khatskevich">Хацкевич Евгений</button>
+            <button class="speaker-chip" data-speaker="ibragimov">Ибрагимов Наимджон Мулабоевич</button>
+            <button class="speaker-chip" data-speaker="gilmundinov">Гильмундинов Вадим Манавирович</button>
+            <button class="speaker-chip" data-speaker="cherkashina">Черкашина Татьяна Юрьевна</button>
+            <button class="speaker-chip" data-speaker="bekareva">Бекарева Светлана Викторовна</button>
+            <button class="speaker-chip" data-speaker="bogomolova"><strong>Модератор:</strong>&nbsp;Богомолова Татьяна Юрьевна</button>
+          </div>
+        </div>
+      </div>
+      <div class="tl-item break">
+        <div class="tl-time">15:30 — 15:45</div>
+        <div><div class="tl-title">Перерыв</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">15:45 — 16:40</div>
+        <div>
+          <span class="tl-kind">Лекция</span>
+          <div class="tl-title">Решения на основе макроэкономических прогнозов: модельный аппарат Банка России</div>
+          <div class="tl-speakers"><button class="speaker-chip" data-speaker="korshunov">Коршунов Дмитрий <span class="role">· Банк России</span></button></div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">16:40 — 17:35</div>
+        <div>
+          <span class="tl-kind">Лекция</span>
+          <div class="tl-title">Актуальные направления исследований в области денежно-кредитной политики (ДКП)</div>
+          <div class="tl-speakers"><button class="speaker-chip" data-speaker="ponomarenko">Пономаренко Алексей Алексеевич <span class="role">· Банк России</span></button></div>
+        </div>
+      </div>
+      <div class="tl-item break">
+        <div class="tl-time">17:35 — 17:45</div>
+        <div><div class="tl-title">Перерыв</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">17:45 — 18:40</div>
+        <div>
+          <span class="tl-kind">Лекция</span>
+          <div class="tl-title">Коммуникация по денежно-кредитной политике</div>
+          <div class="tl-speakers"><button class="speaker-chip" data-speaker="evstigneeva">Евстигнеева Алина <span class="role">· Банк России</span></button></div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">18:40 — 19:10</div>
+        <div>
+          <span class="tl-kind">Q&amp;A · Обратная связь</span>
+          <div class="tl-title">Сессия вопросов и ответов. Постановка задач на второй день</div>
+          <div class="tl-desc">Распределение слушателей по секциям панельной дискуссии «Опыт преподавания финансовых и связанных со сферой финансов дисциплин». Обратная связь по темам первого дня.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline" id="day-2" style="display:none">
+      <div class="tl-item">
+        <div class="tl-time">10:00 — 10:55</div>
+        <div>
+          <span class="tl-kind">Лекция</span>
+          <div class="tl-title">Работа трансмиссионного механизма ДКП Банка России и анализ инфляции в условиях региональной неоднородности</div>
+          <div class="tl-speakers"><button class="speaker-chip" data-speaker="zvereva">Зверева Валерия Андреевна <span class="role">· Банк России</span></button></div>
+        </div>
+      </div>
+      <div class="tl-item break">
+        <div class="tl-time">10:55 — 11:10</div>
+        <div><div class="tl-title">Кофе-брейк</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">11:10 — 12:05</div>
+        <div>
+          <span class="tl-kind">Лекция</span>
+          <div class="tl-title">Откуда берутся деньги</div>
+          <div class="tl-speakers"><button class="speaker-chip" data-speaker="ponomarenko">Пономаренко Алексей Алексеевич <span class="role">· Банк России</span></button></div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">12:05 — 13:00</div>
+        <div>
+          <span class="tl-kind">Лекция</span>
+          <div class="tl-title">Как центральные банки управляют процентными ставками. Ликвидность банковского сектора и операционная процедура Банка России</div>
+          <div class="tl-speakers"><button class="speaker-chip" data-speaker="yatsyk">Яцык Ольга <span class="role">· Банк России</span></button></div>
+        </div>
+      </div>
+      <div class="tl-item break">
+        <div class="tl-time">13:00 — 15:00</div>
+        <div>
+          <div class="tl-title">Обед и культурная программа</div>
+          <div class="tl-desc">Посещение историко-просветительских подразделений НГУ на выбор: НОЦ «Эволюция Земли», музей истории НГУ, архив древних книг, купол ректорского корпуса.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">15:00 — 16:30</div>
+        <div>
+          <span class="tl-kind">Параллельные секции</span>
+          <div class="tl-title">Параллельные тематические секции с преподавателями ЭФ НГУ</div>
+          <div class="tl-desc">Общая тема дискуссий: «Опыт преподавания финансовых и связанных со сферой финансов дисциплин: форматы задействования научных исследований при подготовке специалистов социально-экономического профиля». Модераторы — преподаватели ЭФ НГУ.</div>
+          <a href="#sections" class="btn-text" style="font-size:13px;font-weight:600">Темы секций ниже →</a>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">16:30 — 17:00</div>
+        <div>
+          <span class="tl-kind">Закрытие</span>
+          <div class="tl-title">Заключительное слово организаторов. Вручение удостоверений о повышении квалификации</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPEAKERS -->
+<section id="speakers">
+  <div class="container">
+    <div class="section-eyebrow"><span class="line"></span> Спикеры</div>
+    <div class="section-head">
+      <h2>Эксперты Банка России и преподаватели ЭФ НГУ</h2>
+      <p>Карточки спикеров содержат проверенные открытые данные. Каждая карточка ведёт на персональную страницу на сайте НГУ или официальные источники Банка России.</p>
+    </div>
+
+    <h3 style="font-size:18px;margin:0 0 16px 0;color:var(--ink-3);font-family:'Inter',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.06em">Лекторы Банка России</h3>
+    <div class="speakers-grid" id="speakers-cbr"></div>
+
+    <h3 style="font-size:18px;margin:48px 0 16px 0;color:var(--ink-3);font-family:'Inter',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.06em">Преподаватели ЭФ НГУ</h3>
+    <div class="speakers-grid" id="speakers-nsu"></div>
+  </div>
+</section>
+
+<!-- SECTIONS -->
+<section id="sections">
+  <div class="container">
+    <div class="section-eyebrow"><span class="line"></span> Тематические секции</div>
+    <div class="section-head">
+      <h2>Секции второго дня</h2>
+      <p>Общая тема дискуссии — «Опыт преподавания финансовых и связанных со сферой финансов дисциплин: форматы задействования научных исследований при подготовке специалистов социально-экономического профиля».</p>
+      <p style="margin-top:8px;font-size:14px;color:var(--ink-3)">При регистрации Вы выбираете основную секцию и резервную — резервная будет предложена при малом интересе к первой выбранной.</p>
+    </div>
+    <div class="sections-grid" id="sections-grid"></div>
+  </div>
+</section>
+
+<!-- CULTURAL -->
+<section style="background:#fff">
+  <div class="container">
+    <div class="section-eyebrow"><span class="line"></span> Культурная программа</div>
+    <div class="section-head"><h2>1 октября, 13:00 — 15:00</h2><p>На выбор слушателя — по одному из четырёх направлений (или участие не обязательно).</p></div>
+    <div class="cultural-grid">
+      <div class="cultural-item"><span class="ico">🌍</span><div class="ttl">«Эволюция Земли»</div>Научно-образовательный центр НГУ</div>
+      <div class="cultural-item"><span class="ico">🏛</span><div class="ttl">Музей истории НГУ</div>Постоянная экспозиция</div>
+      <div class="cultural-item"><span class="ico">📜</span><div class="ttl">Архив древних книг НГУ</div>Уникальные издания</div>
+      <div class="cultural-item"><span class="ico">🔭</span><div class="ttl">Купол ректорского корпуса</div>Обзорная экскурсия</div>
+    </div>
+  </div>
+</section>
+
+<!-- REGISTRATION -->
+<section id="register">
+  <div class="container-narrow">
+    <div class="section-eyebrow" style="justify-content:center"><span class="line"></span> Регистрация</div>
+    <div class="section-head" style="text-align:center;margin:0 auto 36px">
+      <h2>Регистрация на Программу</h2>
+      <p>Пожалуйста, заполните анкету — это займёт около 5–7 минут. Все поля помечены, обязательные отмечены <span style="color:var(--accent)">*</span>.</p>
+    </div>
+
+    <form class="reg-shell" id="regForm" autocomplete="off" novalidate>
+      <div class="reg-progress">
+        <div class="reg-progress-bar"><div class="reg-progress-fill" id="progFill"></div></div>
+        <div class="reg-progress-info">
+          <span class="step-name" id="stepName">Шаг 1 · Введение</span>
+          <span>Шаг <span id="stepIdx">1</span> из 8</span>
+        </div>
+      </div>
+
+      <div class="reg-body">
+
+        <!-- STEP 1: INTRO -->
+        <div class="step active" data-step="1">
+          <h3>Добро пожаловать</h3>
+          <p class="lead">Вы регистрируетесь на <strong>Программу повышения квалификации для преподавателей вузов</strong> «Денежно-кредитная политика: базовые знания и образовательные практики в подготовке специалистов социально-экономического профиля».</p>
+          <div class="privacy-note">
+            <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <div class="txt"><strong>Конфиденциальность.</strong> Данные передаются по защищённому каналу и используются исключительно для целей оформления участия в Программе. Доступ к данным имеют только уполномоченные сотрудники СГУ Банка России и ИППК НГУ.</div>
+          </div>
+          <div style="background:#fff;border:1px solid var(--line);border-radius:10px;padding:18px 22px;margin-bottom:16px">
+            <div style="font-weight:600;color:var(--ink);margin-bottom:8px;font-size:14px">Что понадобится после закрытия регистрации:</div>
+            <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px">
+              <li style="display:flex;gap:8px;font-size:13px;color:var(--ink-2)"><span style="color:var(--accent);font-weight:700">·</span> Копия паспорта (страницы с фото и регистрацией)</li>
+              <li style="display:flex;gap:8px;font-size:13px;color:var(--ink-2)"><span style="color:var(--accent);font-weight:700">·</span> Копия диплома о высшем образовании</li>
+              <li style="display:flex;gap:8px;font-size:13px;color:var(--ink-2)"><span style="color:var(--accent);font-weight:700">·</span> Согласие на обработку персональных данных (подписывается на этапе оформления)</li>
+            </ul>
+            <div style="font-size:12px;color:var(--ink-3);margin-top:10px">Сейчас прикреплять документы не нужно — куратор Программы свяжется с Вами после закрытия регистрации.</div>
+          </div>
+        </div>
+
+        <!-- STEP 2: PERSONAL DATA -->
+        <div class="step" data-step="2">
+          <h3>Сведения об участнике</h3>
+          <p class="lead">Заполните, пожалуйста, основные сведения о себе. Все поля обязательны.</p>
+
+          <div class="form-row single">
+            <div class="field"><label>Фамилия, имя, отчество (полностью)<span class="req">*</span></label><input type="text" name="fio" required autocomplete="off" placeholder="Иванов Иван Иванович"/><span class="err-msg">Укажите ФИО полностью</span></div>
+          </div>
+
+          <div class="form-row">
+            <div class="field"><label>Высшее учебное заведение<span class="req">*</span></label><input type="text" name="vuz" required placeholder="Например: МГУ им. М.В. Ломоносова"/><span class="err-msg">Укажите название вуза</span></div>
+            <div class="field"><label>Город<span class="req">*</span></label><input type="text" name="city" required placeholder="Например: Москва"/><span class="err-msg">Укажите город</span></div>
+          </div>
+
+          <div class="form-row">
+            <div class="field"><label>Подразделение (институт / факультет)<span class="req">*</span></label><input type="text" name="dept" required placeholder="Например: Экономический факультет"/><span class="err-msg">Укажите подразделение</span></div>
+            <div class="field"><label>Должность<span class="req">*</span></label><input type="text" name="position" required placeholder="Доцент / профессор / старший преподаватель"/><span class="err-msg">Укажите должность</span></div>
+          </div>
+
+          <div class="form-row">
+            <div class="field"><label>Контактный телефон<span class="req">*</span></label><input type="tel" name="phone" required placeholder="+7 (___) ___-__-__"/><span class="err-msg">Укажите корректный номер</span></div>
+            <div class="field"><label>E-mail<span class="req">*</span></label><input type="email" name="email" required placeholder="name@example.ru"/><span class="err-msg">Укажите корректный e-mail</span></div>
+          </div>
+        </div>
+
+        <!-- STEP 3: LECTURES -->
+        <div class="step" data-step="3">
+          <h3>Лекции Банка России</h3>
+          <p class="lead">Отметьте, какие лекции Вы планируете посетить. Этот раздел заполняется по желанию — выбор поможет организаторам подготовить аудитории.</p>
+          <div class="lecture-list" id="lecturesList"></div>
+        </div>
+
+        <!-- STEP 4: SECTION -->
+        <div class="step" data-step="4">
+          <h3>Выбор тематической секции</h3>
+          <p class="lead">Все слушатели участвуют в работе одной из секций второго дня. Выберите <strong>основную</strong> секцию и при желании — <strong>резервную</strong>. Резервная будет предложена в случае малого интереса к первой выбранной.</p>
+          <div style="display:flex;gap:8px;margin-bottom:18px;font-size:12px;color:var(--ink-3);flex-wrap:wrap">
+            <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:10px;height:10px;border-radius:50%;background:var(--accent)"></span>Основная</span>
+            <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:10px;height:10px;border-radius:50%;background:var(--gold)"></span>Резервная</span>
+          </div>
+          <div class="section-pick-list" id="sectionPickList"></div>
+          <span class="err-msg" id="sectionErr" style="display:none;color:var(--error);font-size:13px;margin-top:10px;font-weight:500">Выберите основную секцию</span>
+        </div>
+
+        <!-- STEP 5: PARTICIPATION FORMAT -->
+        <div class="step" data-step="5">
+          <h3>Форма участия в секции</h3>
+          <p class="lead">Выберите, в каком формате Вы планируете участвовать в работе выбранной секции.</p>
+          <div class="radio-cards">
+            <label class="radio-card"><input type="radio" name="part" value="listener" required><div class="rc-body"><div class="ttl">Слушатель</div><div class="desc">Присутствие, без выступления</div></div></label>
+            <label class="radio-card"><input type="radio" name="part" value="discussant"><div class="rc-body"><div class="ttl">Дискуссант</div><div class="desc">Активное участие в обсуждении</div></div></label>
+            <label class="radio-card"><input type="radio" name="part" value="brief"><div class="rc-body"><div class="ttl">Короткое сообщение</div><div class="desc">Выступление до 5 минут</div></div></label>
+            <label class="radio-card"><input type="radio" name="part" value="report"><div class="rc-body"><div class="ttl">Доклад</div><div class="desc">До 10 минут с тезисами</div></div></label>
+          </div>
+          <span class="err-msg" id="partErr" style="display:none;color:var(--error);font-size:13px;margin-top:14px;font-weight:500">Выберите форму участия</span>
+        </div>
+
+        <!-- STEP 6: ABSTRACT -->
+        <div class="step" data-step="6">
+          <h3>Тезисы доклада <span style="font-weight:400;color:var(--ink-3);font-size:16px">(если применимо)</span></h3>
+          <p class="lead">Если Вы выбрали участие с докладом или коротким сообщением, можете загрузить или ввести тезисы (до 200 слов).</p>
+          <div class="form-row single">
+            <div class="field">
+              <label>Тезисы выступления</label>
+              <textarea name="abstract" maxlength="2000" rows="6" placeholder="Тема, цель, основные результаты — до 200 слов"></textarea>
+              <span class="hint" id="wordCount">0 / 200 слов</span>
+            </div>
+          </div>
+          <label class="upload" id="abstractUpload">
+            <input type="file" id="abstractFile" accept=".doc,.docx,.pdf,.txt">
+            <div class="ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg></div>
+            <div class="txt" id="uploadText">Прикрепить файл с тезисами</div>
+            <div class="sub">PDF, DOCX, TXT · до 5 МБ</div>
+          </label>
+        </div>
+
+        <!-- STEP 7: CULTURAL -->
+        <div class="step" data-step="7">
+          <h3>Культурная программа</h3>
+          <p class="lead">1 октября 2026 г., 13:00 — 15:00. Вы можете посетить одно из историко-просветительских подразделений НГУ. Раздел опционален.</p>
+          <div class="radio-cards" style="grid-template-columns:1fr 1fr">
+            <label class="radio-card"><input type="radio" name="culture" value="evolution"><div class="rc-body"><div class="ttl">🌍 «Эволюция Земли»</div><div class="desc">Научно-образовательный центр НГУ</div></div></label>
+            <label class="radio-card"><input type="radio" name="culture" value="museum"><div class="rc-body"><div class="ttl">🏛 Музей истории НГУ</div><div class="desc">Постоянная экспозиция</div></div></label>
+            <label class="radio-card"><input type="radio" name="culture" value="books"><div class="rc-body"><div class="ttl">📜 Архив древних книг НГУ</div><div class="desc">Уникальные издания</div></div></label>
+            <label class="radio-card"><input type="radio" name="culture" value="dome"><div class="rc-body"><div class="ttl">🔭 Купол ректорского корпуса</div><div class="desc">Обзорная экскурсия</div></div></label>
+            <label class="radio-card" style="grid-column:1/-1"><input type="radio" name="culture" value="none"><div class="rc-body"><div class="ttl">Не планирую участвовать</div><div class="desc">Пропустить культурную программу</div></div></label>
+          </div>
+        </div>
+
+        <!-- STEP 8: FINAL -->
+        <div class="step" data-step="8">
+          <h3>Завершение регистрации</h3>
+          <p class="lead">Остался последний шаг — подтверждение согласия на обработку персональных данных и Ваши вопросы организаторам.</p>
+
+          <div class="form-row single">
+            <div class="field"><label>Вопросы и пожелания организаторам</label><textarea name="comments" placeholder="Если у Вас остались вопросы — напишите их здесь" rows="3"></textarea></div>
+          </div>
+
+          <div class="checkbox-row" style="margin-top:14px">
+            <label class="check-item">
+              <input type="checkbox" name="consent" id="consent" required>
+              <div class="label">Я даю согласие на обработку моих персональных данных<span class="sub">В соответствии с Федеральным законом № 152-ФЗ «О персональных данных». Данные используются исключительно для оформления участия в Программе.</span></div>
+            </label>
+            <label class="check-item">
+              <input type="checkbox" name="agree" id="agree" required>
+              <div class="label">Я подтверждаю достоверность предоставленных сведений<span class="sub">И понимаю, что после закрытия регистрации со мной свяжется куратор Программы для оформления договора об обучении.</span></div>
+            </label>
+          </div>
+          <span class="err-msg" id="consentErr" style="display:none;color:var(--error);font-size:13px;margin-top:14px;font-weight:500">Подтвердите согласие, чтобы продолжить</span>
+        </div>
+
+        <!-- SUCCESS -->
+        <div class="step" data-step="9">
+          <div class="success-state">
+            <div class="check"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <h3>Вы зарегистрированы</h3>
+            <p>Вы зарегистрированы на Программу повышения квалификации от Банка России и НГУ.</p>
+            <p style="font-size:14px;color:var(--ink-3)">В течение нескольких дней с Вами свяжется куратор Программы для оформления договора об обучении и удостоверения о повышении квалификации.</p>
+            <div class="summary-box" id="summaryBox"></div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="reg-actions" id="regActions">
+        <span class="step-counter">Шаг <span id="stepCounter">1</span> из 8</span>
+        <div class="action-group">
+          <button type="button" class="btn btn-ghost" id="backBtn" style="display:none">← Назад</button>
+          <button type="button" class="btn btn-primary" id="nextBtn">Далее →</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <h5>Организаторы</h5>
+        <p>Сибирское главное управление Центрального банка Российской Федерации (Сибирское ГУ Банка России)</p>
+        <p>Новосибирский национальный исследовательский государственный университет — Экономический факультет, Институт повышения профессиональной квалификации (ИППК)</p>
+      </div>
+      <div>
+        <h5>Место проведения</h5>
+        <p>630090, г. Новосибирск,<br>ул. Пирогова, 1<br>Новый корпус НГУ</p>
+        <a href="https://www.nsu.ru/n/university/maps/" target="_blank" rel="noopener">Карты корпусов НГУ →</a>
+      </div>
+      <div>
+        <h5>Полезные ссылки</h5>
+        <a href="https://www.nsu.ru/n/economics-department/" target="_blank" rel="noopener">Экономический факультет НГУ</a>
+        <a href="https://www.cbr.ru/" target="_blank" rel="noopener">Банк России</a>
+        <a href="https://www.nsu.ru/n/privacy/" target="_blank" rel="noopener">Политика обработки персональных данных</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>© 2026 СГУ Банка России × НГУ. Сайт регистрации на Программу повышения квалификации.</div>
+      <div>30 сентября — 1 октября 2026 года</div>
+    </div>
+  </div>
+</footer>
+
+<!-- TOAST -->
+<div class="toast" id="toast"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span id="toastText">Сохранено</span></div>
+
+<!-- MODAL -->
+<div class="modal-backdrop" id="modal">
+  <div class="modal" role="dialog">
+    <button class="modal-close" id="modalClose" aria-label="Закрыть"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<script>
+// ====== DATA ======
+const speakers = {
+  // BANK OF RUSSIA
+  tremasov: {
+    name: "Тремасов Кирилл Викторович",
+    org: "cbr",
+    orgLabel: "Банк России",
+    position: "Советник Председателя Банка России",
+    bio: "Кандидат экономических наук. Выпускник МИЭТ (1997). Ранее — директор Департамента денежно-кредитной политики Банка России (2020–2024). До прихода в ЦБ — директор аналитического департамента ИК «Локо-Инвест», ранее — директор Департамента макроэкономического прогнозирования Минэкономразвития. В роли советника Председателя ЦБ участвует в подготовке решений по ДКП и отвечает за усиление взаимодействия с региональными подразделениями Банка России в части регионального анализа и коммуникаций по ДКП.",
+    interests: ["Денежно-кредитная политика","Макроэкономический анализ","Региональный анализ","Коммуникации ЦБ"],
+    primaryLink: "https://www.cbr.ru/press/",
+    primaryLinkLabel: "Публикации на сайте Банка России"
+  },
+  korshunov: {
+    name: "Коршунов Дмитрий",
+    org: "cbr",
+    orgLabel: "Банк России",
+    position: "Экономический советник Банка России (Главное управление по ЦФО / Департамент денежно-кредитной политики)",
+    bio: "Образование — МГУ им. М.В. Ломоносова и California State University, East Bay. В Банке России работал с 2005 по 2013 гг., затем — руководящие позиции в Евразийском банке развития; с 2019 г. — снова в Банке России. Специализируется на макроэкономическом моделировании, в том числе на региональных DSGE-моделях экономики с бюджетным сектором; соавтор работ в журнале «Деньги и кредит».",
+    interests: ["DSGE-модели","Макроэкономическое моделирование","Региональная экономика","Прогнозирование"],
+    primaryLink: "https://www.cbr.ru/dkp/system_p/",
+    primaryLinkLabel: "Прогнозирование и модельный аппарат Банка России"
+  },
+  ponomarenko: {
+    name: "Пономаренко Алексей Алексеевич",
+    org: "cbr",
+    orgLabel: "Банк России",
+    position: "Начальник отдела (Head of Economic Research Division), Департамент исследований и прогнозирования Банка России",
+    bio: "Магистратура НИУ ВШЭ (2007), PhD Страсбургского университета (2016). Работал в Росстате (2004–2006), в Банке России — с 2006 года; стажировался в Банке Финляндии и ЕЦБ. Научные интересы: монетарный анализ, макро-финансовые связи и банковский сектор в развивающихся экономиках, прогнозирование ВВП с использованием динамических факторных моделей.",
+    interests: ["Монетарный анализ","Макро-финансовые связи","Прогнозирование ВВП","Факторные модели"],
+    primaryLink: "https://www.cbr.ru/about_br/bankstructute/dip/",
+    primaryLinkLabel: "Департамент исследований и прогнозирования ЦБ"
+  },
+  evstigneeva: {
+    name: "Евстигнеева Алина",
+    org: "cbr",
+    orgLabel: "Банк России",
+    position: "Руководитель направления Департамента денежно-кредитной политики Банка России",
+    bio: "Специализируется на коммуникационной политике центральных банков, текстовом и AI-анализе коммуникации ДКП, исследовании информационного преимущества центрального банка и того, как коммуникация влияет на ожидания и доверие участников рынка. Регулярный автор аналитического портала Econs.online.",
+    interests: ["Коммуникации ЦБ","Текстовый анализ","Инфляционные ожидания","Доверие к ДКП"],
+    primaryLink: "https://econs.online/authors/alina-evstigneeva/",
+    primaryLinkLabel: "Авторская страница на Econs.online"
+  },
+  zvereva: {
+    name: "Зверева Валерия Андреевна",
+    org: "cbr",
+    orgLabel: "Банк России",
+    position: "Экономический советник Департамента денежно-кредитной политики / экономист регионального анализа",
+    bio: "Аспирант кафедры прикладной экономики факультета экономических наук НИУ ВШЭ. Соавтор статьи «Влияние внутрирегионального неравенства доходов на трансмиссионный механизм денежно-кредитной политики Банка России» (с О. Демидовой, Д. Коршуновым, А. Мясниковым, журнал «Деньги и кредит», № 1, 2024). Лауреат первой премии Института Гайдара за выпускную работу по влиянию регионального неравенства на трансмиссионный механизм ДКП.",
+    interests: ["Трансмиссионный механизм ДКП","Региональное неравенство","Региональная инфляция"],
+    primaryLink: "https://www.hse.ru/staff/Zvereva_Valeriia/",
+    primaryLinkLabel: "Профиль на сайте НИУ ВШЭ"
+  },
+  yatsyk: {
+    name: "Яцык Ольга",
+    org: "cbr",
+    orgLabel: "Банк России",
+    position: "Сотрудник Департамента операций на финансовых рынках Банка России",
+    bio: "Специалист по управлению ликвидностью банковского сектора и операционной процедуре денежно-кредитной политики Банка России. Подробная актуальная должность будет уточнена непосредственно перед мероприятием.",
+    interests: ["Операционная процедура ДКП","Ликвидность банковского сектора","Процентные ставки"],
+    primaryLink: "https://www.cbr.ru/about_br/bankstructute/dofr/",
+    primaryLinkLabel: "Департамент операций на финансовых рынках ЦБ"
+  },
+  // NSU EF
+  bogomolova: {
+    name: "Богомолова Татьяна Юрьевна",
+    org: "nsu",
+    orgLabel: "ЭФ НГУ",
+    position: "Декан Экономического факультета НГУ. Кандидат социологических наук, доцент кафедры общей социологии. Заведующая отделом социальных проблем ИЭОПП СО РАН (до 2023 г.)",
+    bio: "Окончила в 1985 году НГУ по специальности «экономическая кибернетика». Специалист в области экономической стратификации. Индивидуально и в соавторстве опубликовано свыше 80 научных работ, среди них более десяти коллективных монографий. Руководитель ряда программ и проектов плана НИР Института, исследовательских проектов, поддержанных отечественными и зарубежными научными фондами.",
+    interests: ["Социальная стратификация","Экономическая мобильность","Социальная политика","Бедность","Финансовое поведение"],
+    primaryLink: "https://www.nsu.ru/n/economics-department/governance/",
+    primaryLinkLabel: "Профиль на сайте ЭФ НГУ"
+  },
+  ibragimov: {
+    name: "Ибрагимов Наимджон Мулабоевич",
+    org: "nsu",
+    orgLabel: "ЭФ НГУ",
+    position: "Заместитель декана ЭФ НГУ. Доктор экономических наук, доцент кафедры применения математических методов в экономике и планировании. Ведущий научный сотрудник ИЭОПП СО РАН",
+    bio: "Окончил в 1990 г. экономический факультет НГУ по специальности «экономическая кибернетика». С 1990 г. по настоящее время работает на кафедре применения математических методов в экономике и планировании ЭФ НГУ, с 1995 г. — заместитель декана. Член Учёного совета и Методической комиссии ЭФ НГУ, член Государственной экзаменационной комиссии НГУ.",
+    interests: ["Эконометрика","Моделирование","Прогнозирование","Пространственные системы","Межрегиональные взаимодействия","Стратегии развития регионов"],
+    primaryLink: "https://www.nsu.ru/n/economics-department/prepodavateli/3528480/",
+    primaryLinkLabel: "Профиль на сайте ЭФ НГУ"
+  },
+  kolyuzhnov: {
+    name: "Колюжнов Дмитрий Васильевич",
+    org: "nsu",
+    orgLabel: "ЭФ НГУ",
+    position: "Заместитель декана по магистратуре направления «Экономика». PhD CERGE-EI, доцент НГУ (кафедра применения математических методов и кафедра экономической теории)",
+    bio: "Работал в качестве краткосрочного консультанта в Институте Всемирного Банка (отдел социальной защиты, Вашингтон, 2005 г.), где разрабатывал модели пенсионных реформ; работал над диссертацией в Кембриджском университете (2005–2006 гг.). Публикации в Macroeconomic Dynamics (2016) и Journal of Economic Dynamics and Control (2014), доклады на EEA-ESEM Congress, SED и других ведущих международных конференциях.",
+    interests: ["Макроэкономическая теория","Монетарная экономика","DSGE-модели","Адаптивное обучение","Модели общего равновесия"],
+    primaryLink: "https://www.nsu.ru/n/economics-department/governance/",
+    primaryLinkLabel: "Профиль на сайте ЭФ НГУ"
+  },
+  cherkashina: {
+    name: "Черкашина Татьяна Юрьевна",
+    org: "nsu",
+    orgLabel: "ЭФ НГУ",
+    position: "Кандидат социологических наук, преподаватель кафедры общей социологии ЭФ НГУ. Научный сотрудник отдела социальных проблем ИЭОПП СО РАН",
+    bio: "Эксперт в исследованиях социально-экономического неравенства и пространственной мобильности населения. Специализируется на работе с микроданными выборочных обследований домохозяйств. Исследования экономической стратификации и неравенства проводит на основе открытых микроданных всероссийских социально-экономических обследований, дополняя их инициативными проектами по сбору количественных и качественных данных.",
+    interests: ["Социально-экономическое неравенство","Пространственная мобильность","Микроданные обследований","Социология экономики"],
+    primaryLink: "https://www.ieie.su/persons/cherkashina-ty.html",
+    primaryLinkLabel: "Профиль на портале ИЭОПП СО РАН"
+  },
+  bekareva: {
+    name: "Бекарева Светлана Викторовна",
+    org: "nsu",
+    orgLabel: "ЭФ НГУ",
+    position: "Кандидат экономических наук, доцент кафедры финансов и кредита Экономического факультета НГУ",
+    bio: "Работает на ЭФ НГУ с 2000 года: ассистент → старший преподаватель → доцент. Окончила экономический факультет и аспирантуру НГУ. Кандидат экономических наук (2005), доцент (2010). В 2013 году получила диплом о втором высшем образовании по специальности «Теория и практика межкультурной коммуникации» (ФИЯ НГУ). Имеет опыт работы в коммерческом банке. Читает курсы: «Кредитно-денежная система», «Кризисы и антикризисное управление», «Формирование рынков электроэнергии», «Корпоративные финансы», «Международные валютно-кредитные отношения», «Финансовые рынки и финансовые институты».",
+    interests: ["Денежно-кредитная политика","Финансовые рынки","Корпоративные финансы","Международные валютно-кредитные отношения","ЦФА"],
+    primaryLink: "https://nsu.ru/ef/kafedra_ef_finansy_i_kredit/bekareva_svetlana_viktorovna",
+    primaryLinkLabel: "Профиль на сайте ЭФ НГУ"
+  },
+  gilmundinov: {
+    name: "Гильмундинов Вадим Манавирович",
+    org: "nsu",
+    orgLabel: "ЭФ НГУ",
+    position: "Доктор экономических наук, доцент. Профессор РАН. Заведующий кафедрой экономической теории ЭФ НГУ. Главный научный сотрудник ИЭОПП СО РАН",
+    bio: "В 2000 г. с отличием закончил магистратуру ЭФ НГУ. С 1999 г. работает в ИЭОПП СО РАН. Кандидат экономических наук (2005, экономика и управление народным хозяйством), доктор экономических наук (2020, экономическая теория). Читает курсы «Макроэкономика», «Теория отраслевых рынков II», «Разработка и использование в прогнозировании динамических межотраслевых моделей».",
+    interests: ["Макроэкономическая политика","Моделирование инвестиционной активности","Межотраслевая динамика","Структурные эффекты"],
+    primaryLink: "https://nsu.ru/ef/kafedra_ef_ekonomicheskoi_teorii/gilmundinov_vadim_manavirovich",
+    primaryLinkLabel: "Профиль на сайте ЭФ НГУ"
+  },
+  baranov: {
+    name: "Баранов Александр Олегович",
+    org: "nsu",
+    orgLabel: "ЭФ НГУ",
+    position: "Доктор экономических наук, профессор кафедры экономической теории ЭФ НГУ",
+    bio: "Окончил ЭФ НГУ в 1977 году по специальности «экономист-математик». Работал в ИЭОПП СО РАН (1977–1992), затем в консалтинге и финансах с преподаванием на ЭФ НГУ (1992–2002). С сентября 2002 г. работает в НГУ; с июля 2006 г. — профессор. С 2005 г. — заведующий кафедрой экономической теории ЭФ НГУ (до Гильмундинова В.М.). Кандидатская диссертация — 1986 г., докторская — 2004 г.",
+    interests: ["Макроэкономика","Прогнозирование","Структурный анализ","Экономическая динамика"],
+    primaryLink: "https://research.nsu.ru/ru/persons/alexbaranov",
+    primaryLinkLabel: "Профиль на исследовательском портале НГУ"
+  },
+  tsyplakov: {
+    name: "Цыплаков Александр Анатольевич",
+    org: "nsu",
+    orgLabel: "ЭФ НГУ",
+    position: "Кандидат экономических наук, доцент кафедры применения математических методов в экономике и планировании ЭФ НГУ",
+    bio: "Научные интересы: моделирование инфляции, прогнозирование инфляции, модели с изменяющимися во времени параметрами, оценка качества прогнозов, агентно-ориентированные модели. Автор учебных пособий «Эконометрика: регрессионный анализ» и «Анализ временных рядов» (НГУ, 2006).",
+    interests: ["Эконометрика","Моделирование инфляции","Временные ряды","Прогнозирование","Агентные модели"],
+    primaryLink: "https://nsu.ru/ef/kafedra_ef_primeneniya_matematicheskih_metodov_v_ekonomike/cyplakov_aleksandr_anatolevich",
+    primaryLinkLabel: "Профиль на сайте ЭФ НГУ"
+  },
+  ivanova: {
+    name: "Иванова Анастасия Игоревна",
+    org: "nsu",
+    orgLabel: "ЭФ НГУ",
+    position: "Старший преподаватель кафедры финансов и кредита и кафедры экономической теории ЭФ НГУ",
+    bio: "Преподаёт дисциплины финансового профиля на Экономическом факультете НГУ. Подробная биография — на персональной странице на сайте НГУ.",
+    interests: ["Финансовые рынки","Инновации в финансах","ЦФА","Финансовая грамотность"],
+    primaryLink: "https://www.nsu.ru/n/economics-department/prepodavateli/",
+    primaryLinkLabel: "Список преподавателей ЭФ НГУ"
+  },
+  isupova: {
+    name: "Исупова Елена Николаевна",
+    org: "nsu",
+    orgLabel: "ЭФ НГУ",
+    position: "Преподаватель кафедры финансов и кредита и кафедры экономической теории ЭФ НГУ",
+    bio: "Преподаватель финансовых дисциплин на ЭФ НГУ. Соавтор исследований по современной ДКП центральных банков стран мира и финансовой грамотности населения. Подробная биография — на персональной странице на сайте НГУ.",
+    interests: ["ДКП центральных банков","Финансовая грамотность","Финансовые рынки"],
+    primaryLink: "https://www.nsu.ru/n/economics-department/prepodavateli/",
+    primaryLinkLabel: "Список преподавателей ЭФ НГУ"
+  },
+  afonin: {
+    name: "Афонин Андрей",
+    org: "nsu",
+    orgLabel: "ЭФ НГУ",
+    position: "Преподаватель Экономического факультета НГУ",
+    bio: "Участник панельной дискуссии по подготовке специалистов социально-экономического профиля. Точные данные о должности и кафедре будут уточнены непосредственно перед мероприятием. С полным списком преподавателей ЭФ можно ознакомиться на сайте НГУ.",
+    interests: ["Образовательные практики","Подготовка специалистов"],
+    primaryLink: "https://www.nsu.ru/n/economics-department/prepodavateli/",
+    primaryLinkLabel: "Список преподавателей ЭФ НГУ"
+  },
+  khatskevich: {
+    name: "Хацкевич Евгений",
+    org: "nsu",
+    orgLabel: "ЭФ НГУ",
+    position: "Участник панельной дискуссии",
+    bio: "Участник панельной дискуссии по подготовке специалистов социально-экономического профиля. Точные данные о должности и кафедре будут уточнены непосредственно перед мероприятием. С полным списком преподавателей ЭФ можно ознакомиться на сайте НГУ.",
+    interests: ["Образовательные практики"],
+    primaryLink: "https://www.nsu.ru/n/economics-department/prepodavateli/",
+    primaryLinkLabel: "Список преподавателей ЭФ НГУ"
+  },
+  devaikina: {
+    name: "Девайкина А.С.",
+    org: "nsu",
+    orgLabel: "ЭФ НГУ",
+    position: "Соавтор исследования по моделированию доли потерь при дефолте (LGD)",
+    bio: "Соавтор исследования «Моделирование доли потерь при дефолте (LGD): интерпретируемые подходы в свете требований Банка России к оценке кредитного риска» (совместно с Н.М. Ибрагимовым). Подробные данные о должности — на сайте ЭФ НГУ.",
+    interests: ["Кредитный риск","LGD","Интерпретируемые модели"],
+    primaryLink: "https://www.nsu.ru/n/economics-department/prepodavateli/",
+    primaryLinkLabel: "Список преподавателей ЭФ НГУ"
+  },
+  khoroshilov: {
+    name: "Хорошилов М.",
+    org: "nsu",
+    orgLabel: "ЭФ НГУ",
+    position: "Соавтор исследования по трансмиссии ДКП и риск-премии",
+    bio: "Соавтор исследования «Трансмиссия ДКП через рыночные ожидания: роль риск-премии в прогнозировании ставки овернайт» (совместно с Н.М. Ибрагимовым, А.А. Цыплаковым). Подробные данные о должности — на сайте ЭФ НГУ.",
+    interests: ["Трансмиссия ДКП","Риск-премии","Ставка овернайт"],
+    primaryLink: "https://www.nsu.ru/n/economics-department/prepodavateli/",
+    primaryLinkLabel: "Список преподавателей ЭФ НГУ"
+  }
+};
+
+// Lectures of Bank of Russia
+const lectures = [
+  {day:"30.09",title:"Экономика в цифрах: почему важно управлять инфляцией",speaker:"tremasov",kind:"Открытая лекция"},
+  {day:"30.09",title:"Решения на основе макроэкономических прогнозов: модельный аппарат Банка России",speaker:"korshunov",kind:"Лекция"},
+  {day:"30.09",title:"Актуальные направления исследований в области денежно-кредитной политики (ДКП)",speaker:"ponomarenko",kind:"Лекция"},
+  {day:"30.09",title:"Коммуникация по денежно-кредитной политике",speaker:"evstigneeva",kind:"Лекция"},
+  {day:"01.10",title:"Работа трансмиссионного механизма ДКП Банка России и анализ инфляции в условиях региональной неоднородности",speaker:"zvereva",kind:"Лекция"},
+  {day:"01.10",title:"Откуда берутся деньги",speaker:"ponomarenko",kind:"Лекция"},
+  {day:"01.10",title:"Как центральные банки управляют процентными ставками. Ликвидность банковского сектора и операционная процедура Банка России",speaker:"yatsyk",kind:"Лекция"}
+];
+
+// Sections
+const sections = [
+  {id:1,title:"Особенности современной ДКП центральных банков стран мира",mods:["bekareva","isupova"]},
+  {id:2,title:"Влияние центрального банка на развитие финансовых рынков в России. Инновации на финансовых рынках. Становление и развитие рынка ЦФА",mods:["ivanova","bekareva"]},
+  {id:3,title:"Повышение финансовой и инвестиционной грамотности населения как аспект деятельности ЦБ РФ",mods:["isupova","ivanova","bekareva"]},
+  {id:4,title:"Социологические исследования экономического неравенства и экономического поведения населения России как потенциально значимый инструмент для разработки ДКП Банка России",mods:["bogomolova","cherkashina"]},
+  {id:5,title:"Структурные эффекты ДКП",mods:["baranov","kolyuzhnov"]},
+  {id:6,title:"Трансмиссия ДКП через рыночные ожидания: роль риск-премии в прогнозировании ставки овернайт",mods:["ibragimov","tsyplakov","khoroshilov"]},
+  {id:7,title:"Моделирование доли потерь при дефолте (LGD): интерпретируемые подходы в свете требований Банка России к оценке кредитного риска",mods:["ibragimov","devaikina"]}
+];
+
+// ====== RENDER ======
+function speakerCardHTML(key, s){
+  return `<div class="speaker-card" data-speaker="${key}">
+    <span class="org-mark org-${s.org}">${s.orgLabel}</span>
+    <div class="name">${s.name}</div>
+    <div class="position">${s.position}</div>
+    <div class="more">Подробнее <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+  </div>`;
+}
+
+const cbrSpeakers = ["tremasov","korshunov","ponomarenko","evstigneeva","zvereva","yatsyk"];
+const nsuSpeakers = ["bogomolova","ibragimov","gilmundinov","baranov","kolyuzhnov","cherkashina","bekareva","tsyplakov","ivanova","isupova","afonin","khatskevich","devaikina","khoroshilov"];
+
+document.getElementById("speakers-cbr").innerHTML = cbrSpeakers.map(k=>speakerCardHTML(k,speakers[k])).join("");
+document.getElementById("speakers-nsu").innerHTML = nsuSpeakers.map(k=>speakerCardHTML(k,speakers[k])).join("");
+
+// Sections
+document.getElementById("sections-grid").innerHTML = sections.map(sec=>{
+  const mods = sec.mods.map(m=>`<button class="speaker-chip" data-speaker="${m}">${speakers[m].name}</button>`).join("");
+  return `<div class="section-card">
+    <span class="sec-num">Секция ${sec.id}</span>
+    <div class="sec-title">${sec.title}</div>
+    <div class="moderators"><span class="mod-label">Модераторы — авторы исследований</span>${mods}</div>
+    <div class="pick-info">Выбрать секцию можно при регистрации (доступен выбор основной и резервной)</div>
+  </div>`;
+}).join("");
+
+// Lectures list in form
+document.getElementById("lecturesList").innerHTML = lectures.map((l,i)=>{
+  const sp = speakers[l.speaker];
+  return `<div class="lec-row">
+    <div class="lec-info">
+      <div class="day">${l.day} · ${l.kind}</div>
+      <div class="ttl">${l.title}</div>
+      <span class="who" data-speaker="${l.speaker}">${sp.name} →</span>
+    </div>
+    <div class="choice-group">
+      <input type="radio" name="lec_${i}" id="lec_${i}_y" value="yes"><label for="lec_${i}_y">Планирую</label>
+      <input type="radio" name="lec_${i}" id="lec_${i}_m" value="maybe"><label for="lec_${i}_m">Не решил(а)</label>
+      <input type="radio" name="lec_${i}" id="lec_${i}_n" value="no"><label for="lec_${i}_n">Не планирую</label>
+    </div>
+  </div>`;
+}).join("");
+
+// Section pick list in form
+function renderSectionPicks(state){
+  document.getElementById("sectionPickList").innerHTML = sections.map(sec=>{
+    const mods = sec.mods.map(m=>speakers[m].name).join(", ");
+    let cls = "sec-pick";
+    if(state.primary===sec.id) cls+=" selected-primary";
+    if(state.secondary===sec.id) cls+=" selected-secondary";
+    const primaryOn = state.primary===sec.id ? "primary-on" : "";
+    const secondaryOn = state.secondary===sec.id ? "secondary-on" : "";
+    return `<div class="${cls}" data-sec="${sec.id}">
+      <div style="min-width:0">
+        <span class="num">Секция ${sec.id}</span>
+        <div class="ttl">${sec.title}</div>
+        <div class="mods">Модераторы: ${mods}</div>
+      </div>
+      <div class="pick-actions">
+        <button type="button" class="pill-btn ${primaryOn}" data-pick="primary" data-sec="${sec.id}">Основная</button>
+        <button type="button" class="pill-btn ${secondaryOn}" data-pick="secondary" data-sec="${sec.id}">Резервная</button>
+      </div>
+    </div>`;
+  }).join("");
+}
+
+const pickState = {primary:null, secondary:null};
+renderSectionPicks(pickState);
+
+// ====== MODAL ======
+const modal = document.getElementById("modal");
+const modalContent = document.getElementById("modalContent");
+
+function openSpeaker(key){
+  const s = speakers[key];
+  if(!s) return;
+  modalContent.innerHTML = `
+    <div class="modal-header">
+      <span class="org-mark org-${s.org}">${s.orgLabel}</span>
+      <h3>${s.name}</h3>
+      <div class="pos">${s.position}</div>
+    </div>
+    <div class="modal-body">
+      <div class="bio">${s.bio}</div>
+      <h4>Научные интересы</h4>
+      <div class="interests">${s.interests.map(i=>`<span class="interest">${i}</span>`).join("")}</div>
+      <div class="modal-actions">
+        <a href="${s.primaryLink}" class="btn btn-primary" target="_blank" rel="noopener">${s.primaryLinkLabel} →</a>
+        <button type="button" class="btn btn-ghost" onclick="closeModal()">Закрыть</button>
+      </div>
+    </div>`;
+  modal.classList.add("open");
+  document.body.style.overflow="hidden";
+}
+function closeModal(){modal.classList.remove("open");document.body.style.overflow=""}
+window.closeModal = closeModal;
+document.getElementById("modalClose").addEventListener("click",closeModal);
+modal.addEventListener("click",e=>{if(e.target===modal)closeModal()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal()});
+
+document.addEventListener("click",e=>{
+  const t = e.target.closest("[data-speaker]");
+  if(t){
+    const key = t.dataset.speaker;
+    openSpeaker(key);
+  }
+});
+
+// ====== DAY TABS ======
+document.querySelectorAll(".day-tab").forEach(tab=>{
+  tab.addEventListener("click",()=>{
+    document.querySelectorAll(".day-tab").forEach(t=>t.classList.remove("active"));
+    tab.classList.add("active");
+    const day = tab.dataset.day;
+    document.getElementById("day-1").style.display = day==="1"?"flex":"none";
+    document.getElementById("day-2").style.display = day==="2"?"flex":"none";
+  });
+});
+
+// ====== SECTION PICKS ======
+document.getElementById("sectionPickList").addEventListener("click", e=>{
+  const btn = e.target.closest("[data-pick]");
+  if(!btn) return;
+  const id = parseInt(btn.dataset.sec,10);
+  const type = btn.dataset.pick;
+  if(type==="primary"){
+    if(pickState.primary===id){ pickState.primary=null; }
+    else { pickState.primary=id; if(pickState.secondary===id) pickState.secondary=null; }
+  } else {
+    if(pickState.secondary===id){ pickState.secondary=null; }
+    else { pickState.secondary=id; if(pickState.primary===id) pickState.primary=null; }
+  }
+  renderSectionPicks(pickState);
+});
+
+// ====== STEPPER ======
+const stepNames = ["Введение","Сведения","Лекции ЦБ","Секция","Формат участия","Тезисы","Культурная программа","Согласие"];
+let currentStep = 1;
+const totalSteps = 8;
+
+function goStep(n){
+  if(n<1||n>9) return;
+  currentStep = n;
+  document.querySelectorAll(".step").forEach(s=>s.classList.remove("active"));
+  document.querySelector(`.step[data-step="${n}"]`).classList.add("active");
+  const pct = n>totalSteps ? 100 : ((n-1)/(totalSteps-1))*100;
+  document.getElementById("progFill").style.width = pct + "%";
+  document.getElementById("stepIdx").textContent = Math.min(n,totalSteps);
+  document.getElementById("stepCounter").textContent = Math.min(n,totalSteps);
+  document.getElementById("stepName").textContent = n<=totalSteps ? `Шаг ${n} · ${stepNames[n-1]}` : "Готово";
+  document.getElementById("backBtn").style.display = (n>1 && n<=totalSteps) ? "inline-flex" : "none";
+  if(n===totalSteps){
+    document.getElementById("nextBtn").textContent = "Отправить заявку";
+  } else if(n>totalSteps){
+    document.getElementById("regActions").style.display = "none";
+  } else {
+    document.getElementById("nextBtn").textContent = "Далее →";
+    document.getElementById("regActions").style.display = "flex";
+  }
+  document.querySelector(".reg-shell").scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+function validateStep(n){
+  if(n===2){
+    let ok = true;
+    const required = ["fio","vuz","city","dept","position","phone","email"];
+    required.forEach(name=>{
+      const input = document.querySelector(`[name="${name}"]`);
+      const field = input.closest(".field");
+      let v = input.value.trim();
+      let valid = !!v;
+      if(name==="email"){ valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+      if(name==="phone"){ valid = v.replace(/\D/g,"").length >= 10; }
+      if(name==="fio"){ valid = v.split(/\s+/).length >= 2; }
+      field.classList.toggle("error", !valid);
+      if(!valid) ok = false;
+    });
+    return ok;
+  }
+  if(n===4){
+    const ok = pickState.primary !== null;
+    document.getElementById("sectionErr").style.display = ok ? "none" : "block";
+    return ok;
+  }
+  if(n===5){
+    const ok = !!document.querySelector('input[name="part"]:checked');
+    document.getElementById("partErr").style.display = ok ? "none" : "block";
+    return ok;
+  }
+  if(n===8){
+    const c = document.getElementById("consent").checked;
+    const a = document.getElementById("agree").checked;
+    const ok = c && a;
+    document.getElementById("consentErr").style.display = ok ? "none" : "block";
+    return ok;
+  }
+  return true;
+}
+
+document.getElementById("nextBtn").addEventListener("click",()=>{
+  if(!validateStep(currentStep)){ showToast("Заполните обязательные поля","err"); return; }
+  if(currentStep===totalSteps){
+    submitForm();
+    goStep(9);
+    return;
+  }
+  goStep(currentStep+1);
+});
+document.getElementById("backBtn").addEventListener("click",()=>goStep(currentStep-1));
+
+// Phone mask
+const phone = document.querySelector('[name="phone"]');
+phone.addEventListener("input",e=>{
+  let v = e.target.value.replace(/\D/g,"");
+  if(v.startsWith("8")) v="7"+v.slice(1);
+  if(!v.startsWith("7") && v.length>0) v="7"+v;
+  v = v.slice(0,11);
+  let out = "+7";
+  if(v.length>1) out += " ("+v.slice(1,4);
+  if(v.length>=5) out += ") "+v.slice(4,7);
+  if(v.length>=8) out += "-"+v.slice(7,9);
+  if(v.length>=10) out += "-"+v.slice(9,11);
+  e.target.value = out;
+});
+
+// Word count
+document.querySelector('[name="abstract"]').addEventListener("input",e=>{
+  const w = e.target.value.trim().split(/\s+/).filter(Boolean).length;
+  const el = document.getElementById("wordCount");
+  el.textContent = `${w} / 200 слов`;
+  el.style.color = w>200 ? "var(--error)" : "var(--ink-3)";
+});
+
+// Upload
+document.getElementById("abstractFile").addEventListener("change",e=>{
+  const f = e.target.files[0];
+  const u = document.getElementById("abstractUpload");
+  const t = document.getElementById("uploadText");
+  if(f){
+    u.classList.add("has-file");
+    t.textContent = "✓ " + f.name + " · " + (f.size/1024).toFixed(0) + " КБ";
+  } else {
+    u.classList.remove("has-file");
+    t.textContent = "Прикрепить файл с тезисами";
+  }
+});
+
+// Toast
+function showToast(text, kind){
+  const t = document.getElementById("toast");
+  document.getElementById("toastText").textContent = text;
+  t.style.background = kind==="err" ? "var(--error)" : "var(--ink)";
+  t.classList.add("show");
+  setTimeout(()=>t.classList.remove("show"),2600);
+}
+
+// Submit (front-end only — would POST to backend in production)
+function submitForm(){
+  const data = new FormData(document.getElementById("regForm"));
+  const obj = {};
+  data.forEach((v,k)=>obj[k]=v);
+  // Section picks
+  obj.section_primary = pickState.primary;
+  obj.section_secondary = pickState.secondary;
+  // Build summary
+  const partMap = {listener:"Слушатель",discussant:"Дискуссант",brief:"Короткое сообщение",report:"Доклад (до 10 мин)"};
+  const cultureMap = {evolution:"«Эволюция Земли»",museum:"Музей истории НГУ",books:"Архив древних книг",dome:"Купол ректорского корпуса",none:"Не участвую"};
+  const sumPrimary = pickState.primary ? sections.find(s=>s.id===pickState.primary).title : "—";
+  const sumSecondary = pickState.secondary ? sections.find(s=>s.id===pickState.secondary).title : "—";
+  document.getElementById("summaryBox").innerHTML = `
+    <h4>Сводка регистрации</h4>
+    <div class="sm-row"><span class="k">Участник</span><span class="v">${obj.fio||"—"}</span></div>
+    <div class="sm-row"><span class="k">Вуз</span><span class="v">${obj.vuz||"—"}</span></div>
+    <div class="sm-row"><span class="k">E-mail</span><span class="v">${obj.email||"—"}</span></div>
+    <div class="sm-row"><span class="k">Основная секция</span><span class="v">${sumPrimary}</span></div>
+    <div class="sm-row"><span class="k">Резервная секция</span><span class="v">${sumSecondary}</span></div>
+    <div class="sm-row"><span class="k">Форма участия</span><span class="v">${partMap[obj.part]||"—"}</span></div>
+    <div class="sm-row"><span class="k">Культурная программа</span><span class="v">${cultureMap[obj.culture]||"—"}</span></div>
+  `;
+  // In production: send `obj` to a secured backend endpoint (HTTPS, TLS 1.3)
+  console.log("Registration payload (encrypted in production):", obj);
+  showToast("Регистрация отправлена");
+}
+
+// Initial scroll behavior
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener("click",e=>{
+    const id = a.getAttribute("href").slice(1);
+    if(!id) return;
+    const t = document.getElementById(id);
+    if(t){ e.preventDefault(); t.scrollIntoView({behavior:"smooth",block:"start"}); }
+  });
+});
+</script>
+</body>
+</html>
