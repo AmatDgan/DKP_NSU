@@ -1,0 +1,51 @@
+// Prisma schema — Next.js + SQLite
+// Документация: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+// Учётная запись — данные для авторизации и роль
+model User {
+  id            String   @id @default(cuid())
+  email         String   @unique
+  passwordHash  String
+  role          Role     @default(USER)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  // Поле явного согласия на обработку персональных данных (152-ФЗ)
+  consentGiven  Boolean  @default(false)
+  consentAt     DateTime?
+
+  profile       Profile?
+}
+
+// Персональные данные участника (по ТЗ).
+// Эти поля заполняются и редактируются в личном кабинете.
+model Profile {
+  id            String   @id @default(cuid())
+  userId        String   @unique
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  fullName      String   // ФИО полностью
+  university    String   // Наименование вуза
+  city          String   // Город
+  department    String   // Подразделение (институт/факультет)
+  position      String   // Должность
+  phone         String   // Контактный телефон
+  contactEmail  String   // Контактный e-mail (может отличаться от логина)
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
