@@ -46,3 +46,6 @@ next-env.d.ts
 # legacy helper folders from sandbox
 .node_modules_old/
 .package-lock.json.old
+
+# stale git from initial sandbox setup (можно безопасно удалить вручную)
+.git.broken_*
