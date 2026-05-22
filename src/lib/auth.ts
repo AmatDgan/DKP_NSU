@@ -43,10 +43,14 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         const ok = await bcrypt.compare(password, user.passwordHash);
         if (!ok) return null;
 
+        // user.role в SQLite хранится как String — кастуем к нашему union
+        const role = (user.role === "ADMIN" ? "ADMIN" : "USER") as
+          | "ADMIN"
+          | "USER";
         return {
           id: user.id,
           email: user.email,
-          role: user.role,
+          role,
         };
       },
     }),

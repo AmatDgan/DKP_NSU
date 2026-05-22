@@ -5,10 +5,13 @@
  * Значения логина/пароля задаются через env:
  *   SEED_ADMIN_EMAIL, SEED_ADMIN_PASSWORD, SEED_ADMIN_NAME
  */
-import { PrismaClient, Role } from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcryptjs";
 
 const prisma = new PrismaClient();
+
+// SQLite не поддерживает enum, поэтому роли — обычные строки.
+const ROLE_ADMIN = "ADMIN";
 
 async function main() {
   const email = process.env.SEED_ADMIN_EMAIL ?? "admin@example.com";
@@ -17,10 +20,10 @@ async function main() {
 
   const existing = await prisma.user.findUnique({ where: { email } });
   if (existing) {
-    if (existing.role !== Role.ADMIN) {
+    if (existing.role !== ROLE_ADMIN) {
       await prisma.user.update({
         where: { id: existing.id },
-        data: { role: Role.ADMIN },
+        data: { role: ROLE_ADMIN },
       });
       console.log(`[seed] Пользователю ${email} выдана роль ADMIN`);
     } else {
@@ -34,7 +37,7 @@ async function main() {
     data: {
       email,
       passwordHash,
-      role: Role.ADMIN,
+      role: ROLE_ADMIN,
       consentGiven: true,
       consentAt: new Date(),
       profile: {

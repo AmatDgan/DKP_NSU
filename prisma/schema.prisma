@@ -10,17 +10,15 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum Role {
-  USER
-  ADMIN
-}
+// Роли пользователей хранятся строкой ("USER" или "ADMIN"):
+// SQLite не поддерживает enum, поэтому валидация значения — на уровне приложения.
 
 // Учётная запись — данные для авторизации и роль
 model User {
   id            String   @id @default(cuid())
   email         String   @unique
   passwordHash  String
-  role          Role     @default(USER)
+  role          String   @default("USER")
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 
