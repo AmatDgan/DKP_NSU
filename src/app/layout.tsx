@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { auth, signOut } from "@/lib/auth";
+import CookieConsent from "./cookie-consent";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -65,6 +66,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Link href="/consent" className="hover:text-brand">Политика обработки персональных данных</Link>
           </div>
         </footer>
+        <CookieConsent />
       </body>
     </html>
   );

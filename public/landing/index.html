@@ -2034,5 +2034,59 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
   });
 });
 </script>
+
+<!-- COOKIE CONSENT -->
+<style>
+  #cookieBar{position:fixed;left:16px;right:16px;bottom:16px;z-index:1000;
+    max-width:760px;margin:0 auto;background:var(--bg-card);color:var(--ink);
+    border:1px solid var(--line-2);border-radius:var(--radius);box-shadow:var(--shadow-lg);
+    padding:18px 20px;display:none;
+    transform:translateY(8px);opacity:0;transition:opacity .25s ease,transform .25s ease}
+  #cookieBar.show{display:block;transform:translateY(0);opacity:1}
+  #cookieBar .cc-row{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  #cookieBar .cc-text{flex:1;min-width:240px;font-size:14px;line-height:1.5;color:var(--ink-2)}
+  #cookieBar .cc-text a{color:var(--nsu);text-decoration:underline}
+  #cookieBar .cc-text a:hover{color:var(--accent)}
+  #cookieBar .cc-actions{display:flex;gap:10px;flex-wrap:wrap}
+  #cookieBar .cc-btn{font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;
+    border-radius:var(--radius-sm);padding:10px 18px;border:1px solid var(--line-2);transition:all .15s ease}
+  #cookieBar .cc-accept{background:var(--accent);border-color:var(--accent);color:#fff}
+  #cookieBar .cc-accept:hover{background:var(--accent-dark);border-color:var(--accent-dark)}
+  #cookieBar .cc-decline{background:#fff;color:var(--ink-2)}
+  #cookieBar .cc-decline:hover{border-color:var(--ink-3);color:var(--ink)}
+  @media(max-width:520px){#cookieBar .cc-actions{width:100%}#cookieBar .cc-btn{flex:1}}
+</style>
+<div id="cookieBar" role="dialog" aria-live="polite" aria-label="Согласие на использование cookie">
+  <div class="cc-row">
+    <div class="cc-text">
+      Мы используем файлы cookie, необходимые для работы сайта (вход в личный кабинет,
+      безопасность сеанса). Продолжая пользоваться сайтом, вы соглашаетесь с этим.
+      Подробнее — в <a href="/consent">политике обработки персональных данных</a>.
+    </div>
+    <div class="cc-actions">
+      <button type="button" class="cc-btn cc-decline" id="ccDecline">Только необходимые</button>
+      <button type="button" class="cc-btn cc-accept" id="ccAccept">Принять</button>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY = "cookieConsent";
+  var bar = document.getElementById("cookieBar");
+  if(!bar) return;
+  var saved;
+  try { saved = localStorage.getItem(KEY); } catch(_) { saved = null; }
+  function hide(){ bar.classList.remove("show"); setTimeout(function(){ bar.style.display="none"; }, 250); }
+  function store(v){ try{ localStorage.setItem(KEY, v); }catch(_){} hide(); }
+  if(saved !== "accepted" && saved !== "essential"){
+    bar.style.display = "block";
+    requestAnimationFrame(function(){ bar.classList.add("show"); });
+    var a = document.getElementById("ccAccept");
+    var d = document.getElementById("ccDecline");
+    if(a) a.addEventListener("click", function(){ store("accepted"); });
+    if(d) d.addEventListener("click", function(){ store("essential"); });
+  }
+})();
+</script>
 </body>
 </html>
