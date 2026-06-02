@@ -45,13 +45,20 @@ button{font-family:inherit;cursor:pointer;border:0;background:transparent}
 /* Top bar */
 .topbar{background:#FFFFFF;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50;backdrop-filter:blur(8px)}
 .topbar-inner{display:flex;align-items:center;justify-content:space-between;height:72px}
-.brand{display:flex;align-items:center;gap:18px}
-.brand-mark{display:flex;align-items:center;gap:14px}
-.brand-mark .logo{display:flex;align-items:center;gap:10px;font-weight:600;color:var(--ink);font-size:14px;letter-spacing:.02em}
-.brand-mark .logo .badge{width:34px;height:34px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'PT Serif',serif;font-weight:700;font-size:16px;color:#fff}
+.brand{display:flex;align-items:center;gap:13px}
+.brand-mark{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand-logo{position:relative;width:42px;height:42px;flex:none;border-radius:9px;overflow:hidden;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid var(--line)}
+.brand-logo img{width:100%;height:100%;object-fit:contain;padding:3px;display:block}
+.brand-badge{position:absolute;inset:0;display:none;align-items:center;justify-content:center;font-family:'PT Serif',serif;font-weight:700;font-size:18px;color:#fff}
+.brand-logo.noimg img{display:none}
+.brand-logo.noimg .brand-badge{display:flex}
 .badge-cbr{background:var(--accent)}
 .badge-nsu{background:var(--nsu)}
-.brand-sep{width:1px;height:24px;background:var(--line)}
+.badge-ef{background:#0f766e}
+.brand-cap{font-weight:600;color:var(--ink);font-size:12.5px;line-height:1.22;letter-spacing:.01em}
+.brand-sep{width:1px;height:30px;background:var(--line)}
+@media(max-width:1200px){.brand-cap{display:none}.brand-sep{height:22px}}
+@media(max-width:520px){.brand{gap:9px}.brand-logo{width:36px;height:36px}}
 .nav{display:flex;align-items:center;gap:26px}
 .nav a{color:var(--ink-2);font-size:14px;font-weight:500}
 .nav a:hover{color:var(--accent)}
@@ -69,6 +76,21 @@ button{font-family:inherit;cursor:pointer;border:0;background:transparent}
   radial-gradient(900px 320px at 10% 110%, rgba(162,29,51,.05), transparent 60%),
   linear-gradient(180deg,#FFFFFF 0%,#FAFAF7 100%);
   border-bottom:1px solid var(--line)}
+.hero-bg{position:absolute;inset:0;z-index:0;background-image:url('/landing/hero/nsu.jpg');background-size:cover;background-position:center 62%;opacity:.16}
+.hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.62) 0%,rgba(250,250,247,.86) 68%,#FAFAF7 100%)}
+.hero>.container{position:relative;z-index:1}
+/* Organizers logo strip */
+.orgs{background:#fff;border-bottom:1px solid var(--line)}
+.orgs-inner{display:flex;align-items:center;justify-content:center;gap:30px 56px;flex-wrap:wrap;padding:26px 0}
+.orgs-cap{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);font-weight:700}
+.orgs-logos{display:flex;align-items:center;gap:46px;flex-wrap:wrap;justify-content:center}
+.org-logo{display:flex;flex-direction:column;align-items:center;gap:9px;text-decoration:none;color:var(--ink-2);font-size:12.5px;font-weight:600;max-width:180px;text-align:center;line-height:1.3}
+.org-logo img{height:56px;width:auto;max-width:160px;object-fit:contain;transition:transform .2s ease}
+.org-logo:hover img{transform:translateY(-3px)}
+.org-logo.noimg img{display:none}
+.org-fallback{display:none;flex-direction:column;align-items:center;gap:9px}
+.org-logo.noimg .org-fallback{display:flex}
+.org-badge{width:52px;height:52px;border-radius:11px;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'PT Serif',serif;font-weight:700;font-size:24px}
 .hero-eyebrow{display:inline-flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);color:var(--ink-2);padding:8px 14px;border-radius:99px;font-size:13px;font-weight:500;margin-bottom:24px}
 .hero-eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--accent)}
 .hero h1{font-size:clamp(32px,5vw,52px);font-weight:700;letter-spacing:-.02em;max-width:920px;margin-bottom:18px}
@@ -82,6 +104,117 @@ button{font-family:inherit;cursor:pointer;border:0;background:transparent}
 .hero-actions{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
 .hero-trust{display:flex;align-items:center;gap:10px;color:var(--ink-3);font-size:13px;margin-left:8px}
 .hero-trust svg{flex-shrink:0}
+
+/* Auth nav */
+.auth-nav{display:inline-flex;align-items:center;gap:26px}
+.auth-nav .btn{padding:10px 18px}
+
+/* Countdown timers */
+.countdowns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;max-width:920px;margin:0 0 36px}
+.cd-card{border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px;background:#fff;box-shadow:var(--shadow)}
+.cd-reg{background:linear-gradient(180deg,#fff 0%,var(--accent-soft) 140%);border-color:#f0d8de}
+.cd-event{background:linear-gradient(180deg,#fff 0%,var(--nsu-soft) 140%);border-color:#d8e3f2}
+.cd-head{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.cd-ico{font-size:26px;line-height:1}
+.cd-title{font-family:'PT Serif',serif;font-weight:700;font-size:17px;color:var(--ink)}
+.cd-sub{font-size:12.5px;color:var(--ink-3);margin-top:2px}
+.cd-clock{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.cd-unit{display:flex;flex-direction:column;align-items:center;gap:4px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 4px}
+.cd-reg .cd-unit{border-color:#f0d8de}
+.cd-event .cd-unit{border-color:#d8e3f2}
+.cd-unit .num{font-family:'PT Serif',serif;font-weight:700;font-size:26px;line-height:1;color:var(--ink);font-variant-numeric:tabular-nums}
+.cd-reg .cd-unit .num{color:var(--accent)}
+.cd-event .cd-unit .num{color:var(--nsu)}
+.cd-unit .lbl{font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-3)}
+.cd-done{font-family:'PT Serif',serif;font-weight:700;font-size:18px;text-align:center;padding:14px 0}
+.cd-reg .cd-done{color:var(--accent)}
+.cd-event .cd-done{color:var(--nsu)}
+
+/* Publications in modal */
+.modal-pubs{margin-top:10px;display:flex;flex-direction:column;gap:12px}
+.modal-pub{font-size:13.5px;color:var(--ink-2);line-height:1.5;padding-left:14px;border-left:2px solid var(--line-2)}
+.modal-pub a{color:var(--nsu);font-weight:500;word-break:break-word}
+
+/* Sections tools + annotations modal */
+.sections-tools{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:18px}
+.sections-tools .btn-book{border:none;cursor:pointer}
+.materials-link{font-size:14px;font-weight:600;color:var(--nsu);text-decoration:none}
+.materials-link:hover{text-decoration:underline}
+.annot-overlay{position:fixed;inset:0;background:rgba(20,20,28,.55);backdrop-filter:blur(3px);display:none;align-items:center;justify-content:center;z-index:1000;padding:20px}
+.annot-overlay.open{display:flex}
+.annot-modal{background:#fff;border-radius:var(--radius);max-width:760px;width:100%;max-height:86vh;display:flex;flex-direction:column;box-shadow:0 24px 60px rgba(0,0,0,.3)}
+.annot-head{display:flex;justify-content:space-between;align-items:center;padding:20px 24px;border-bottom:1px solid var(--line)}
+.annot-head h3{margin:0;font-size:20px;color:var(--ink)}
+.annot-close{background:none;border:none;font-size:18px;cursor:pointer;color:var(--ink-3);line-height:1;padding:4px}
+.annot-body{padding:8px 24px 4px;overflow-y:auto}
+.annot-item{padding:16px 0;border-bottom:1px solid var(--line)}
+.annot-item:last-child{border-bottom:none}
+.annot-item .num{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--accent)}
+.annot-item h4{margin:4px 0 6px;font-size:15.5px;color:var(--ink);line-height:1.4}
+.annot-item p{margin:0;font-size:13.5px;color:var(--ink-2);line-height:1.6}
+.annot-foot{padding:16px 24px;border-top:1px solid var(--line);background:#f6f8f7;border-radius:0 0 var(--radius) var(--radius)}
+.annot-mats-ttl{margin-top:14px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-3)}
+.annot-mats{margin:8px 0 0;padding-left:18px}
+.annot-mats li{font-size:13.5px;color:var(--ink-2);line-height:1.6;margin-bottom:4px}
+.annot-mats a{color:var(--nsu)}
+.annot-empty{margin-top:8px;font-size:13.5px;color:var(--ink-3);background:#f6f8f7;border-radius:8px;padding:10px 12px}
+.sec-annot-btn{margin-top:12px;display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--nsu);background:#fff;border:1px solid var(--line-2);border-radius:8px;padding:8px 14px;cursor:pointer;transition:background .15s,border-color .15s}
+.sec-annot-btn:hover{background:#f6f8f7;border-color:var(--nsu)}
+/* IPPK card */
+.ippk-card{display:flex;gap:14px;margin-top:16px;padding:16px 18px;border:1px solid var(--accent);background:#fff7f8;border-radius:var(--radius)}
+.ippk-ico{font-size:26px;line-height:1}
+.ippk-ttl{font-weight:700;color:var(--ink);margin-bottom:4px}
+.ippk-txt p{font-size:13.5px;color:var(--ink-2);margin:0 0 12px}
+.ippk-check{display:flex;align-items:center;gap:9px;margin-top:13px;font-size:13.5px;color:var(--ink);cursor:pointer;font-weight:600}
+.ippk-check input{width:17px;height:17px;accent-color:var(--accent);cursor:pointer}
+/* Hotels */
+.hotels-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.hotel{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;transition:box-shadow .2s,transform .2s}
+.hotel:hover{box-shadow:var(--shadow);transform:translateY(-2px)}
+.hotel.featured{grid-column:1/-1;flex-direction:row;border-color:var(--accent)}
+.hotel-photo{position:relative;height:170px;display:flex;align-items:flex-end;padding:14px;color:#fff}
+.hotel.featured .hotel-photo{height:auto;width:38%;min-height:240px;flex-shrink:0}
+.hotel-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 35%,rgba(0,0,0,.45) 100%)}
+.hotel-photo>*{position:relative;z-index:1}
+/* Галерея реальных фото: 3 снимка на отель */
+.hotel-photos{position:relative;display:grid;grid-template-columns:1fr 1fr 1fr;gap:3px;height:178px;background:#e9edec}
+.hotel.featured .hotel-photos{height:auto;width:38%;min-height:260px;flex-shrink:0;grid-template-columns:1fr;grid-auto-rows:1fr}
+.ht{position:relative;overflow:hidden;background:#eef1f0}
+.ht img{width:100%;height:100%;object-fit:cover;display:block}
+.ht.miss img{display:none}
+.ht-ph{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#9aa6a1;font-size:10.5px;text-align:center;padding:6px;line-height:1.3}
+.ht.miss .ht-ph{display:flex}
+.ht-ph svg{opacity:.5}
+.hotel-photos .ph-stars,.hotel-photos .ph-badge{position:absolute;left:12px;bottom:10px;z-index:3}
+.hotel-photos::after{content:"";position:absolute;left:0;right:0;bottom:0;height:46px;background:linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,.4));pointer-events:none;z-index:2}
+.ph-nsu{background:linear-gradient(135deg,#1f6f54,#2f8f6e)}
+.ph-g1{background:linear-gradient(135deg,#b07a2c,#e0b463)}
+.ph-g2{background:linear-gradient(135deg,#355b8c,#6f9bd1)}
+.ph-g3{background:linear-gradient(135deg,#6a5a8c,#a48fc4)}
+.ph-g4{background:linear-gradient(135deg,#2f7d6b,#67b59f)}
+.ph-badge{font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;background:rgba(255,255,255,.22);backdrop-filter:blur(2px);border:1px solid rgba(255,255,255,.35);border-radius:20px;padding:4px 11px}
+.ph-stars{font-size:18px;letter-spacing:2px;color:#ffd56b;text-shadow:0 1px 3px rgba(0,0,0,.4)}
+.hotel-body{padding:18px 20px;display:flex;flex-direction:column;gap:8px;flex:1}
+.hotel-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.hotel-top h3{font-size:18px;margin:0;color:var(--ink)}
+.hotel-price{font-size:18px;font-weight:700;color:var(--accent);white-space:nowrap}
+.hotel-price span{font-size:12px;font-weight:500;color:var(--ink-3)}
+.hotel-addr{font-size:13px;color:var(--ink-3)}
+.hotel-addr a{color:var(--nsu)}
+.hotel-rooms{font-size:13px;color:var(--ink-2);line-height:1.7;margin:2px 0}
+.hotel-rooms b{color:var(--ink)}
+.hotel-note{font-size:12.5px;color:var(--ink-3);background:#f6f8f7;border-radius:8px;padding:9px 11px}
+.hotel-note a{color:var(--nsu)}
+.hotel-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:auto;padding-top:6px}
+.btn-book{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:#fff;background:var(--accent);border-radius:8px;padding:8px 16px;text-decoration:none}
+.btn-book:hover{filter:brightness(.94)}
+.hotel-tel{font-size:13px;font-weight:600;color:var(--ink);text-decoration:none;border-bottom:1px dashed var(--line-2)}
+.hotel-site{font-size:13px;color:var(--nsu);text-decoration:none}
+@media(max-width:720px){.hotels-grid{grid-template-columns:1fr}.hotel.featured{flex-direction:column}.hotel.featured .hotel-photo{width:100%;min-height:160px}}
+
+@media(max-width:720px){
+  .countdowns{grid-template-columns:1fr}
+}
 
 /* Sections */
 section{padding:84px 0;border-bottom:1px solid var(--line)}
@@ -152,10 +285,23 @@ section{padding:84px 0;border-bottom:1px solid var(--line)}
 .section-card .pick-info{font-size:13px;color:var(--ink-3);background:#FAFAF7;padding:10px 14px;border-radius:8px;border:1px dashed var(--line-2);margin-top:auto}
 
 /* Cultural */
-.cultural-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
-.cultural-item{background:#fff;border:1px solid var(--line);border-radius:var(--radius-sm);padding:20px;font-size:14px}
-.cultural-item .ico{font-size:24px;margin-bottom:10px;display:block}
-.cultural-item .ttl{font-weight:600;color:var(--ink);margin-bottom:4px;font-family:'PT Serif',serif;font-size:16px}
+.cultural-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:22px}
+.cultural-item{position:relative;background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;font-size:13.5px;display:flex;flex-direction:column;box-shadow:0 1px 3px rgba(16,22,30,.05);transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+.cultural-item:hover{transform:translateY(-6px);box-shadow:0 20px 42px -20px rgba(16,22,30,.30);border-color:var(--line-2)}
+.cult-photo{position:relative;aspect-ratio:16/10;background:linear-gradient(135deg,#e7eef5,#cdd9e6);overflow:hidden}
+.cult-photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .55s ease}
+.cultural-item:hover .cult-photo img{transform:scale(1.06)}
+.cult-photo.miss img{display:none}
+.cult-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(16,22,30,.66) 0%,rgba(16,22,30,.10) 42%,transparent 66%);pointer-events:none}
+.cult-photo.miss::after{display:none}
+.cult-ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:44px;color:#90a6bc;z-index:1}
+.cult-photo:not(.miss) .cult-ph{display:none}
+.cult-photo .ttl{position:absolute;left:17px;right:17px;bottom:14px;z-index:2;color:#fff;font-weight:700;font-family:'PT Serif',serif;font-size:18px;line-height:1.25;text-shadow:0 1px 14px rgba(0,0,0,.5)}
+.cult-photo.miss .ttl{position:static;color:var(--ink);text-shadow:none;padding:15px 18px 0}
+.cult-body{padding:14px 18px 0;display:flex;flex-direction:column;gap:9px;flex:1}
+.cult-desc{color:var(--ink-2);line-height:1.55}
+.cult-meta{font-size:12.5px;color:var(--ink-3);margin-top:auto;padding:11px 0;display:flex;align-items:center;gap:8px;border-top:1px solid var(--line)}
+.cult-meta svg{flex:none;color:var(--accent)}
 
 /* Registration */
 #register{background:linear-gradient(180deg,#FAFAF7 0%,#F1EDE3 100%)}
@@ -305,31 +451,75 @@ footer{padding:48px 0;background:#FFFFFF;border-top:1px solid var(--line)}
 <header class="topbar">
   <div class="container topbar-inner">
     <div class="brand">
-      <div class="brand-mark">
-        <div class="logo"><span class="badge badge-cbr">Б</span> Сибирское ГУ Банка России</div>
-      </div>
-      <div class="brand-sep"></div>
-      <div class="brand-mark">
-        <div class="logo"><span class="badge badge-nsu">Н</span> НГУ · Экономический факультет</div>
-      </div>
+      <a class="brand-mark" href="https://www.cbr.ru/" target="_blank" rel="noopener" title="Банк России">
+        <span class="brand-logo"><img src="/landing/logos/cbr.png" alt="Банк России" onerror="this.parentElement.classList.add('noimg')"><span class="brand-badge badge-cbr">Б</span></span>
+        <span class="brand-cap">Сибирское ГУ<br>Банка России</span>
+      </a>
+      <span class="brand-sep"></span>
+      <a class="brand-mark" href="https://www.nsu.ru/" target="_blank" rel="noopener" title="Новосибирский государственный университет">
+        <span class="brand-logo"><img src="/landing/logos/nsu.png" alt="НГУ" onerror="this.parentElement.classList.add('noimg')"><span class="brand-badge badge-nsu">Н</span></span>
+        <span class="brand-cap">Новосибирский<br>госуниверситет</span>
+      </a>
+      <span class="brand-sep"></span>
+      <a class="brand-mark" href="https://www.nsu.ru/n/economics-department/" target="_blank" rel="noopener" title="Экономический факультет НГУ">
+        <span class="brand-logo"><img src="/landing/logos/ef-nsu.png" alt="Экономический факультет НГУ" onerror="this.parentElement.classList.add('noimg')"><span class="brand-badge badge-ef">Э</span></span>
+        <span class="brand-cap">Экономический<br>факультет НГУ</span>
+      </a>
     </div>
     <nav class="nav">
       <a href="#about">О программе</a>
       <a href="#program">Программа</a>
       <a href="#speakers">Спикеры</a>
       <a href="#sections">Секции</a>
-      <a href="/auth/login">Войти</a>
-      <a href="/auth/register" class="btn btn-primary">Регистрация</a>
+      <span id="authNav" class="auth-nav">
+        <a href="/auth/login">Войти</a>
+        <a href="#register" class="btn btn-primary">Регистрация</a>
+      </span>
     </nav>
   </div>
 </header>
 
 <!-- HERO -->
 <section class="hero" style="border-bottom:none">
+  <div class="hero-bg" aria-hidden="true"></div>
   <div class="container">
     <div class="hero-eyebrow"><span class="dot"></span> Программа повышения квалификации · 2026</div>
     <h1>Денежно-кредитная политика: <em>базовые знания</em> и образовательные практики в подготовке специалистов социально-экономического профиля</h1>
     <p class="hero-lead">Двухдневная очная программа Сибирского главного управления Банка России и Новосибирского национального исследовательского государственного университета для преподавателей вузов России.</p>
+
+    <!-- COUNTDOWN TIMERS -->
+    <div class="countdowns" id="countdowns">
+      <div class="cd-card cd-reg">
+        <div class="cd-head">
+          <span class="cd-ico">⏳</span>
+          <div>
+            <div class="cd-title">До конца регистрации</div>
+            <div class="cd-sub">до 00:00 10 июля по Новосибирску</div>
+          </div>
+        </div>
+        <div class="cd-clock" id="cdReg">
+          <div class="cd-unit"><span class="num" data-u="d">—</span><span class="lbl">дней</span></div>
+          <div class="cd-unit"><span class="num" data-u="h">—</span><span class="lbl">часов</span></div>
+          <div class="cd-unit"><span class="num" data-u="m">—</span><span class="lbl">минут</span></div>
+          <div class="cd-unit"><span class="num" data-u="s">—</span><span class="lbl">секунд</span></div>
+        </div>
+      </div>
+      <div class="cd-card cd-event">
+        <div class="cd-head">
+          <span class="cd-ico">🎓</span>
+          <div>
+            <div class="cd-title">До начала мероприятия</div>
+            <div class="cd-sub">30 сентября, 10:00 по Новосибирску</div>
+          </div>
+        </div>
+        <div class="cd-clock" id="cdEvent">
+          <div class="cd-unit"><span class="num" data-u="d">—</span><span class="lbl">дней</span></div>
+          <div class="cd-unit"><span class="num" data-u="h">—</span><span class="lbl">часов</span></div>
+          <div class="cd-unit"><span class="num" data-u="m">—</span><span class="lbl">минут</span></div>
+          <div class="cd-unit"><span class="num" data-u="s">—</span><span class="lbl">секунд</span></div>
+        </div>
+      </div>
+    </div>
 
     <div class="hero-meta">
       <div class="hero-meta-item">
@@ -355,7 +545,7 @@ footer{padding:48px 0;background:#FFFFFF;border-top:1px solid var(--line)}
     </div>
 
     <div class="hero-actions">
-      <a href="/auth/register" class="btn btn-primary">Зарегистрироваться
+      <a href="#register" id="heroCta" class="btn btn-primary">Зарегистрироваться
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
       <a href="#program" class="btn btn-ghost">Программа двух дней</a>
@@ -363,6 +553,30 @@ footer{padding:48px 0;background:#FFFFFF;border-top:1px solid var(--line)}
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         Защищённая обработка персональных данных
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ORGANIZERS -->
+<section class="orgs">
+  <div class="container orgs-inner">
+    <span class="orgs-cap">Организаторы программы</span>
+    <div class="orgs-logos">
+      <a class="org-logo" href="https://www.cbr.ru/" target="_blank" rel="noopener">
+        <img src="/landing/logos/cbr.png" alt="Банк России" onerror="this.closest('.org-logo').classList.add('noimg')">
+        <span class="org-fallback"><span class="org-badge badge-cbr">Б</span></span>
+        Сибирское ГУ Банка России
+      </a>
+      <a class="org-logo" href="https://www.nsu.ru/" target="_blank" rel="noopener">
+        <img src="/landing/logos/nsu.png" alt="НГУ" onerror="this.closest('.org-logo').classList.add('noimg')">
+        <span class="org-fallback"><span class="org-badge badge-nsu">Н</span></span>
+        Новосибирский государственный университет
+      </a>
+      <a class="org-logo" href="https://www.nsu.ru/n/economics-department/" target="_blank" rel="noopener">
+        <img src="/landing/logos/ef-nsu.png" alt="Экономический факультет НГУ" onerror="this.closest('.org-logo').classList.add('noimg')">
+        <span class="org-fallback"><span class="org-badge badge-ef">Э</span></span>
+        Экономический факультет НГУ
+      </a>
     </div>
   </div>
 </section>
@@ -463,8 +677,6 @@ footer{padding:48px 0;background:#FFFFFF;border-top:1px solid var(--line)}
           <span class="tl-kind">Панельная дискуссия</span>
           <div class="tl-title">Подготовка специалистов социально-экономического профиля: образовательный процесс, включённость в исследования, практикоориентированность</div>
           <div class="tl-speakers">
-            <button class="speaker-chip" data-speaker="afonin">Афонин Андрей</button>
-            <button class="speaker-chip" data-speaker="khatskevich">Хацкевич Евгений</button>
             <button class="speaker-chip" data-speaker="ibragimov">Ибрагимов Наимджон Мулабоевич</button>
             <button class="speaker-chip" data-speaker="gilmundinov">Гильмундинов Вадим Манавирович</button>
             <button class="speaker-chip" data-speaker="cherkashina">Черкашина Татьяна Юрьевна</button>
@@ -596,21 +808,184 @@ footer{padding:48px 0;background:#FFFFFF;border-top:1px solid var(--line)}
       <h2>Секции второго дня</h2>
       <p>Общая тема дискуссии — «Опыт преподавания финансовых и связанных со сферой финансов дисциплин: форматы задействования научных исследований при подготовке специалистов социально-экономического профиля».</p>
       <p style="margin-top:8px;font-size:14px;color:var(--ink-3)">При регистрации Вы выбираете основную секцию и резервную — резервная будет предложена при малом интересе к первой выбранной.</p>
+      <p style="margin-top:8px;font-size:14px;color:var(--ink-3)">У каждой секции — кнопка «Аннотация и материалы»: краткое описание секции и сопроводительные материалы.</p>
     </div>
     <div class="sections-grid" id="sections-grid"></div>
   </div>
 </section>
 
+<!-- ANNOTATIONS MODAL -->
+<div class="annot-overlay" id="annotOverlay" aria-hidden="true">
+  <div class="annot-modal" role="dialog" aria-modal="true" aria-labelledby="annotTitle">
+    <div class="annot-head">
+      <h3 id="annotTitle">Краткие аннотации секций</h3>
+      <button type="button" class="annot-close" id="closeAnnotations" aria-label="Закрыть">✕</button>
+    </div>
+    <div class="annot-body" id="annotBody"></div>
+    <div class="annot-foot">
+      <a class="materials-link" href="https://drive.google.com/drive/folders/1mlLFirZCoWCzk2kfozz2S5dagfTWy0s5?usp=sharing" target="_blank" rel="noopener">📂 Открыть папку с материалами секций →</a>
+    </div>
+  </div>
+</div>
+
 <!-- CULTURAL -->
 <section style="background:#fff">
   <div class="container">
     <div class="section-eyebrow"><span class="line"></span> Культурная программа</div>
-    <div class="section-head"><h2>1 октября, 13:00 — 15:00</h2><p>На выбор слушателя — по одному из четырёх направлений (или участие не обязательно).</p></div>
+    <div class="section-head"><h2>1 октября, 13:00 — 15:00</h2><p>На выбор слушателя — по одному из четырёх направлений (или участие не обязательно). Все площадки находятся на территории НГУ.</p></div>
     <div class="cultural-grid">
-      <div class="cultural-item"><span class="ico">🌍</span><div class="ttl">«Эволюция Земли»</div>Научно-образовательный центр НГУ</div>
-      <div class="cultural-item"><span class="ico">🏛</span><div class="ttl">Музей истории НГУ</div>Постоянная экспозиция</div>
-      <div class="cultural-item"><span class="ico">📜</span><div class="ttl">Архив древних книг НГУ</div>Уникальные издания</div>
-      <div class="cultural-item"><span class="ico">🔭</span><div class="ttl">Купол ректорского корпуса</div>Обзорная экскурсия</div>
+      <div class="cultural-item">
+        <div class="cult-photo"><img src="/landing/culture/evolution.jpg" alt="НОЦ «Эволюция Земли»" loading="lazy" onerror="this.parentElement.classList.add('miss')"><span class="cult-ph">🌍</span><div class="ttl">«Эволюция Земли»</div></div>
+        <div class="cult-body">
+          <div class="cult-desc">Научно-образовательный центр НГУ — комплекс залов с интерактивными системами и более чем 1000 экспонатов: метеориты, кристаллы и породы из глубин Земли, древние окаменелости, образцы нефти. Есть интерактивный глобус, макет действующего вулкана, проекция северного сияния и модель подводного аппарата «Мир-2».</div>
+          <div class="cult-meta"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Экскурсия с научным сотрудником ≈ 1 час + 30 минут на самостоятельный осмотр</div>
+        </div>
+      </div>
+      <div class="cultural-item">
+        <div class="cult-photo"><img src="/landing/culture/museum.jpg" alt="Музей истории НГУ" loading="lazy" onerror="this.parentElement.classList.add('miss')"><span class="cult-ph">🏛</span><div class="ttl">Музей истории НГУ</div></div>
+        <div class="cult-body">
+          <div class="cult-desc">Около 5000 предметов об истории университета. Экскурсия начинается у глобуса в Ректорском корпусе, на котором флажками отмечены места, где живут и работают выпускники НГУ. В экспозиции — макет нынешнего и будущего университета и материалы о его выдающихся сотрудниках.</div>
+          <div class="cult-meta"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4"/></svg>Постоянная экспозиция · экскурсия по предварительной записи</div>
+        </div>
+      </div>
+      <div class="cultural-item">
+        <div class="cult-photo"><img src="/landing/culture/books.jpg" alt="Старопечатные и рукописные книги" loading="lazy" onerror="this.parentElement.classList.add('miss')"><span class="cult-ph">📜</span><div class="ttl">Архив древних книг НГУ</div></div>
+        <div class="cult-body">
+          <div class="cult-desc">Собрание старопечатных и рукописных книг, собранных в ходе археографических экспедиций по Сибири. Знакомство с тем, как создавалась, переписывалась и хранилась книга, и как историки работают с письменными памятниками.</div>
+          <div class="cult-meta"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 19.5V5a2 2 0 0 1 2-2h14v14M6.5 17H20"/></svg>Показ редких изданий с комментарием специалиста</div>
+        </div>
+      </div>
+      <div class="cultural-item">
+        <div class="cult-photo"><img src="/landing/culture/dome.jpg" alt="Купол ректорского корпуса НГУ" loading="lazy" onerror="this.parentElement.classList.add('miss')"><span class="cult-ph">🔭</span><div class="ttl">Купол ректорского корпуса</div></div>
+        <div class="cult-body">
+          <div class="cult-desc">Подъём на лифте на 13-й этаж главного корпуса в стеклянный купол на высоте около 63 метров. Панорама Академгородка и окружающего леса, рассказ об истории района. Группа от 9 человек, обязателен инструктаж по технике безопасности (16+).</div>
+          <div class="cult-meta"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Обзорная экскурсия ≈ 40 минут</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACCOMMODATION -->
+<section id="accommodation" style="background:#fff">
+  <div class="container">
+    <div class="section-eyebrow"><span class="line"></span> Проживание</div>
+    <div class="section-head">
+      <h2>Варианты проживания для иногородних</h2>
+      <p>Ниже — отели в Академгородке. В начале списка — варианты рядом с местом проведения. Гостиницу НГУ можно забронировать прямо в анкете регистрации; остальные отели бронируются самостоятельно.</p>
+    </div>
+    <div class="hotels-grid">
+
+      <article class="hotel featured">
+        <div class="hotel-photos">
+          <div class="ht"><img src="/landing/hotels/nsu-1.jpg" alt="Гостиница НГУ — фасад" loading="lazy" onerror="this.parentElement.classList.add('miss')"><span class="ht-ph"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="13" rx="2"/><circle cx="12" cy="12.5" r="3.5"/></svg>Фасад</span></div>
+          <div class="ht"><img src="/landing/hotels/nsu-2.jpg" alt="Гостиница НГУ — номер" loading="lazy" onerror="this.parentElement.classList.add('miss')"><span class="ht-ph"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="13" rx="2"/><circle cx="12" cy="12.5" r="3.5"/></svg>Номер</span></div>
+          <div class="ht"><img src="/landing/hotels/nsu-3.jpg" alt="Гостиница НГУ — интерьер" loading="lazy" onerror="this.parentElement.classList.add('miss')"><span class="ht-ph"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="13" rx="2"/><circle cx="12" cy="12.5" r="3.5"/></svg>Интерьер</span></div>
+          <span class="ph-badge">★ Рядом с площадкой</span>
+        </div>
+        <div class="hotel-body">
+          <div class="hotel-top">
+            <h3>Гостиница НГУ</h3>
+            <div class="hotel-price">от 2300 ₽<span>/сутки</span></div>
+          </div>
+          <div class="hotel-addr">ул. Пирогова, 1 · в пешей доступности от места проведения</div>
+          <div class="hotel-rooms">
+            <b>Категории номеров:</b> стандарт одноместный — 3000 ₽ · стандарт с широкой кроватью — 3800 ₽ · полулюкс — 4700 ₽ · люкс 2-местный — 5500 ₽ · двухкомнатный на 2 чел. — 2300 ₽/чел. · двухкомнатный на 3 чел. — 2500 ₽/чел.
+          </div>
+          <div class="hotel-note">
+            Бронирование — прямо в <a href="#register">форме регистрации</a>. По вопросам размещения: Анастасия Иванова, <a href="mailto:a.ivanova2@g.nsu.ru">a.ivanova2@g.nsu.ru</a>
+          </div>
+          <div class="hotel-actions">
+            <a class="btn-book" href="#register">Забронировать в анкете →</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="hotel">
+        <div class="hotel-photos">
+          <div class="ht"><img src="/landing/hotels/gold-1.jpg" alt="Золотая долина — фасад" loading="lazy" onerror="this.parentElement.classList.add('miss')"><span class="ht-ph"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="13" rx="2"/><circle cx="12" cy="12.5" r="3.5"/></svg>Фасад</span></div>
+          <div class="ht"><img src="/landing/hotels/gold-2.jpg" alt="Золотая долина — номер" loading="lazy" onerror="this.parentElement.classList.add('miss')"><span class="ht-ph"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="13" rx="2"/><circle cx="12" cy="12.5" r="3.5"/></svg>Номер</span></div>
+          <div class="ht"><img src="/landing/hotels/gold-3.jpg" alt="Золотая долина — интерьер" loading="lazy" onerror="this.parentElement.classList.add('miss')"><span class="ht-ph"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="13" rx="2"/><circle cx="12" cy="12.5" r="3.5"/></svg>Интерьер</span></div>
+          <span class="ph-stars">★★★</span>
+        </div>
+        <div class="hotel-body">
+          <div class="hotel-top">
+            <h3>Золотая долина</h3>
+            <div class="hotel-price">от 2800 ₽<span>/сутки</span></div>
+          </div>
+          <div class="hotel-addr">ул. Ильича, 10 · Академгородок</div>
+          <div class="hotel-note">Бронирование самостоятельно.</div>
+          <div class="hotel-actions">
+            <a class="btn-book" href="https://gold-valley.ru/" target="_blank" rel="noopener">Сайт и бронь</a>
+            <a class="hotel-tel" href="tel:+73833301916">+7 383 330-19-16</a>
+            <a class="hotel-tel" href="tel:+79133700238">+7 913 370-02-38</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="hotel">
+        <div class="hotel-photos">
+          <div class="ht"><img src="/landing/hotels/mirodom-1.jpg" alt="Миродом — фасад" loading="lazy" onerror="this.parentElement.classList.add('miss')"><span class="ht-ph"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="13" rx="2"/><circle cx="12" cy="12.5" r="3.5"/></svg>Фасад</span></div>
+          <div class="ht"><img src="/landing/hotels/mirodom-2.jpg" alt="Миродом — номер" loading="lazy" onerror="this.parentElement.classList.add('miss')"><span class="ht-ph"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="13" rx="2"/><circle cx="12" cy="12.5" r="3.5"/></svg>Номер</span></div>
+          <div class="ht"><img src="/landing/hotels/mirodom-3.jpg" alt="Миродом — интерьер" loading="lazy" onerror="this.parentElement.classList.add('miss')"><span class="ht-ph"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="13" rx="2"/><circle cx="12" cy="12.5" r="3.5"/></svg>Интерьер</span></div>
+          <span class="ph-stars">★★★★</span>
+        </div>
+        <div class="hotel-body">
+          <div class="hotel-top">
+            <h3>Миродом</h3>
+            <div class="hotel-price">от 9000 ₽<span>/сутки</span></div>
+          </div>
+          <div class="hotel-addr">пр. Академика Лаврентьева, 21 · Академгородок</div>
+          <div class="hotel-note">Бронирование самостоятельно.</div>
+          <div class="hotel-actions">
+            <a class="btn-book" href="https://mirodom.com/" target="_blank" rel="noopener">Сайт и бронь</a>
+            <a class="hotel-tel" href="tel:+73833889839">+7 383 388-98-39</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="hotel">
+        <div class="hotel-photos">
+          <div class="ht"><img src="/landing/hotels/academ-1.jpg" alt="Академ — фасад" loading="lazy" onerror="this.parentElement.classList.add('miss')"><span class="ht-ph"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="13" rx="2"/><circle cx="12" cy="12.5" r="3.5"/></svg>Фасад</span></div>
+          <div class="ht"><img src="/landing/hotels/academ-2.jpg" alt="Академ — номер" loading="lazy" onerror="this.parentElement.classList.add('miss')"><span class="ht-ph"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="13" rx="2"/><circle cx="12" cy="12.5" r="3.5"/></svg>Номер</span></div>
+          <div class="ht"><img src="/landing/hotels/academ-3.jpg" alt="Академ — интерьер" loading="lazy" onerror="this.parentElement.classList.add('miss')"><span class="ht-ph"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="13" rx="2"/><circle cx="12" cy="12.5" r="3.5"/></svg>Интерьер</span></div>
+          <span class="ph-stars">★★</span>
+        </div>
+        <div class="hotel-body">
+          <div class="hotel-top">
+            <h3>Академ</h3>
+            <div class="hotel-price">от 3200 ₽<span>/сутки</span></div>
+          </div>
+          <div class="hotel-addr">ул. Иванова, 6 · Академгородок</div>
+          <div class="hotel-note">Бронирование самостоятельно.</div>
+          <div class="hotel-actions">
+            <a class="btn-book" href="https://academinn.ru/" target="_blank" rel="noopener">Сайт и бронь</a>
+            <a class="hotel-tel" href="tel:+79139265060">+7 913 926-50-60</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="hotel">
+        <div class="hotel-photos">
+          <div class="ht"><img src="/landing/hotels/parkwood-1.jpg" alt="Парк Вуд — фасад" loading="lazy" onerror="this.parentElement.classList.add('miss')"><span class="ht-ph"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="13" rx="2"/><circle cx="12" cy="12.5" r="3.5"/></svg>Фасад</span></div>
+          <div class="ht"><img src="/landing/hotels/parkwood-2.jpg" alt="Парк Вуд — номер" loading="lazy" onerror="this.parentElement.classList.add('miss')"><span class="ht-ph"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="13" rx="2"/><circle cx="12" cy="12.5" r="3.5"/></svg>Номер</span></div>
+          <div class="ht"><img src="/landing/hotels/parkwood-3.jpg" alt="Парк Вуд — интерьер" loading="lazy" onerror="this.parentElement.classList.add('miss')"><span class="ht-ph"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="13" rx="2"/><circle cx="12" cy="12.5" r="3.5"/></svg>Интерьер</span></div>
+          <span class="ph-stars">★★★★</span>
+        </div>
+        <div class="hotel-body">
+          <div class="hotel-top">
+            <h3>Парк Вуд</h3>
+            <div class="hotel-price">от 7200 ₽<span>/сутки</span></div>
+          </div>
+          <div class="hotel-addr">ул. Арбузова, 6/2 · Академгородок</div>
+          <div class="hotel-note">Бронирование самостоятельно.</div>
+          <div class="hotel-actions">
+            <a class="btn-book" href="https://parkwoodhotel.ru/" target="_blank" rel="noopener">Сайт и бронь</a>
+            <a class="hotel-tel" href="tel:+73832092626">+7 383 209-26-26</a>
+          </div>
+        </div>
+      </article>
+
     </div>
   </div>
 </section>
@@ -622,6 +997,17 @@ footer{padding:48px 0;background:#FFFFFF;border-top:1px solid var(--line)}
     <div class="section-head" style="text-align:center;margin:0 auto 36px">
       <h2>Регистрация на Программу</h2>
       <p>Пожалуйста, заполните анкету — это займёт около 5–7 минут. Все поля помечены, обязательные отмечены <span style="color:var(--accent)">*</span>.</p>
+    </div>
+
+    <div id="regLoggedNotice" style="display:none">
+      <div class="reg-shell" style="text-align:center;padding:48px 32px">
+        <div style="width:64px;height:64px;margin:0 auto 18px;border-radius:50%;background:rgba(34,197,94,.12);display:flex;align-items:center;justify-content:center">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+        </div>
+        <h3 style="margin:0 0 10px">Вы уже вошли в личный кабинет</h3>
+        <p class="lead" style="max-width:520px;margin:0 auto 24px">Повторная регистрация не требуется. Вашу анкету можно посмотреть и отредактировать в личном кабинете, там же доступна поддержка.</p>
+        <a href="/dashboard" class="btn btn-primary">Перейти в личный кабинет →</a>
+      </div>
     </div>
 
     <form class="reg-shell" id="regForm" autocomplete="off" novalidate>
@@ -654,10 +1040,10 @@ footer{padding:48px 0;background:#FFFFFF;border-top:1px solid var(--line)}
           </div>
         </div>
 
-        <!-- STEP 2: PERSONAL DATA -->
+        <!-- STEP 2: ACCOUNT + PERSONAL DATA -->
         <div class="step" data-step="2">
-          <h3>Сведения об участнике</h3>
-          <p class="lead">Заполните, пожалуйста, основные сведения о себе. Все поля обязательны.</p>
+          <h3>Сведения об участнике и учётная запись</h3>
+          <p class="lead">Заполните основные сведения о себе и задайте пароль — он понадобится для входа в личный кабинет. Все поля обязательны.</p>
 
           <div class="form-row single">
             <div class="field"><label>Фамилия, имя, отчество (полностью)<span class="req">*</span></label><input type="text" name="fio" required autocomplete="off" placeholder="Иванов Иван Иванович"/><span class="err-msg">Укажите ФИО полностью</span></div>
@@ -675,19 +1061,110 @@ footer{padding:48px 0;background:#FFFFFF;border-top:1px solid var(--line)}
 
           <div class="form-row">
             <div class="field"><label>Контактный телефон<span class="req">*</span></label><input type="tel" name="phone" required placeholder="+7 (___) ___-__-__"/><span class="err-msg">Укажите корректный номер</span></div>
-            <div class="field"><label>E-mail<span class="req">*</span></label><input type="email" name="email" required placeholder="name@example.ru"/><span class="err-msg">Укажите корректный e-mail</span></div>
+            <div class="field"><label>E-mail (логин)<span class="req">*</span></label><input type="email" name="email" required autocomplete="username" placeholder="name@example.ru"/><span class="err-msg">Укажите корректный e-mail</span></div>
+          </div>
+
+          <div class="form-row">
+            <div class="field"><label>Пароль<span class="req">*</span></label><input type="password" name="password" required minlength="8" autocomplete="new-password" placeholder="Не менее 8 символов"/><span class="err-msg">Пароль не короче 8 символов</span></div>
+            <div class="field"><label>Повторите пароль<span class="req">*</span></label><input type="password" name="confirm" required minlength="8" autocomplete="new-password" placeholder="Повторите пароль"/><span class="err-msg">Пароли не совпадают</span></div>
           </div>
         </div>
 
-        <!-- STEP 3: LECTURES -->
+        <!-- STEP 3: CERTIFICATE -->
         <div class="step" data-step="3">
+          <h3>Удостоверение о повышении квалификации</h3>
+          <p class="lead">Планируете ли Вы получить Удостоверение о повышении квалификации? Ответ обязателен.</p>
+          <div class="radio-cards" style="grid-template-columns:1fr 1fr">
+            <label class="radio-card"><input type="radio" name="cert" value="yes" required><div class="rc-body"><div class="ttl">Да</div><div class="desc">Хочу получить удостоверение</div></div></label>
+            <label class="radio-card"><input type="radio" name="cert" value="no"><div class="rc-body"><div class="ttl">Нет</div><div class="desc">Участие без удостоверения</div></div></label>
+          </div>
+          <div class="privacy-note" style="margin-top:16px">
+            <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <div class="txt">Для получения удостоверения потребуется заполнить заявление о зачислении и приложить скан диплома о высшем или среднем специальном образовании. С Вами свяжется специалист Института переподготовки и повышения квалификации (ИППК) НГУ.</div>
+          </div>
+          <div id="ippkBlock" class="ippk-card" style="display:none">
+            <div class="ippk-ico">📄</div>
+            <div class="ippk-txt">
+              <div class="ippk-ttl">Анкета ИППК для оформления удостоверения</div>
+              <p>Чтобы ИППК НГУ оформил удостоверение о повышении квалификации, дополнительно заполните официальную форму ИППК. Это обязательный шаг для получения документа.</p>
+              <a class="btn-book" href="https://forms.yandex.ru/cloud/6a1d443c1f1eb52a50fd4826/" target="_blank" rel="noopener">Заполнить анкету ИППК →</a>
+              <label class="ippk-check"><input type="checkbox" name="ippkFilled" value="yes"><span>Я заполнил(а) анкету ИППК</span></label>
+              <span class="err-msg" id="ippkErr" style="display:none;color:var(--error);font-size:13px;margin-top:10px;font-weight:500">Чтобы получить удостоверение, заполните анкету ИППК и поставьте эту галочку</span>
+            </div>
+          </div>
+          <span class="err-msg" id="certErr" style="display:none;color:var(--error);font-size:13px;margin-top:14px;font-weight:500">Ответьте на вопрос об удостоверении</span>
+        </div>
+
+        <!-- STEP 4: ACCOMMODATION -->
+        <div class="step" data-step="4">
+          <h3>Проживание</h3>
+          <p class="lead">Укажите, нужна ли Вам гостиница. Ответ обязателен.</p>
+          <div class="radio-cards" style="grid-template-columns:1fr 1fr">
+            <label class="radio-card"><input type="radio" name="residency" value="local" required><div class="rc-body"><div class="ttl">Я из Новосибирска</div><div class="desc">Проживание не требуется</div></div></label>
+            <label class="radio-card"><input type="radio" name="residency" value="nonresident"><div class="rc-body"><div class="ttl">Иногородний слушатель</div><div class="desc">Нужен вариант проживания</div></div></label>
+          </div>
+          <span class="err-msg" id="residencyErr" style="display:none;color:var(--error);font-size:13px;margin-top:14px;font-weight:500">Выберите вариант</span>
+
+          <div id="hotelBlock" style="display:none;margin-top:20px">
+            <div class="form-row single">
+              <div class="field">
+                <label>Выберите вариант проживания</label>
+                <select name="hotel" class="input" style="width:100%">
+                  <option value="">— не выбрано —</option>
+                  <option value="nsu">Гостиница НГУ, Пирогова 1 (бронирование через анкету)</option>
+                  <option value="gold">Золотая долина (бронирую самостоятельно)</option>
+                  <option value="mirodom">Миродом (бронирую самостоятельно)</option>
+                  <option value="academ">Академ (бронирую самостоятельно)</option>
+                  <option value="parkwood">Парк Вуд (бронирую самостоятельно)</option>
+                  <option value="other">Другой / решу позже</option>
+                </select>
+              </div>
+            </div>
+
+            <div id="nsuHotelBlock" style="display:none">
+              <div class="form-row single">
+                <div class="field">
+                  <label>Категория номера (Гостиница НГУ)<span class="req">*</span></label>
+                  <select name="roomCategory" class="input" style="width:100%">
+                    <option value="">— выберите категорию —</option>
+                    <option value="std_single">Стандарт одноместный — 3000 ₽/сутки</option>
+                    <option value="std_double_bed">Стандарт одноместный с широкой кроватью — 3800 ₽/сутки</option>
+                    <option value="semilux">Полулюкс с широкой кроватью — 4700 ₽/сутки</option>
+                    <option value="lux_double">Люкс 2-местный с широкой кроватью — 5500 ₽/сутки</option>
+                    <option value="two_room_2p">Двухкомнатный, 2 чел. — 2300 ₽/сутки с человека</option>
+                    <option value="two_room_3p">Двухкомнатный, 3 чел. — 2500 ₽/сутки с человека</option>
+                  </select>
+                  <span class="err-msg" id="roomCatErr" style="display:none;color:var(--error);font-size:13px;margin-top:8px;font-weight:500">Выберите категорию номера</span>
+                </div>
+              </div>
+              <div class="form-row single">
+                <div class="field">
+                  <label>Даты пребывания<span class="req">*</span></label>
+                  <input type="text" name="stayDates" placeholder="например, с 29 сентября по 2 октября"/>
+                  <span class="err-msg" id="stayErr" style="display:none;color:var(--error);font-size:13px;margin-top:8px;font-weight:500">Укажите даты пребывания</span>
+                </div>
+              </div>
+              <div class="form-row single">
+                <div class="field">
+                  <label>Пожелания по подселению (для 2- и 3-местных номеров)</label>
+                  <textarea name="roommatePrefs" rows="2" placeholder="Например: просьба заселить с ФИО"></textarea>
+                </div>
+              </div>
+              <div style="font-size:12.5px;color:var(--ink-3);margin-top:6px">Количество мест в каждой категории ограничено — при необходимости мы предложим альтернативу. По вопросам размещения свяжется Анастасия Иванова (a.ivanova2@g.nsu.ru).</div>
+            </div>
+            <div style="font-size:12.5px;color:var(--ink-3);margin-top:10px">Подробный список отелей с ценами и контактами — в разделе <a href="#accommodation">«Проживание»</a>.</div>
+          </div>
+        </div>
+
+        <!-- STEP 5: LECTURES -->
+        <div class="step" data-step="5">
           <h3>Лекции Банка России</h3>
           <p class="lead">Отметьте, какие лекции Вы планируете посетить. Этот раздел заполняется по желанию — выбор поможет организаторам подготовить аудитории.</p>
           <div class="lecture-list" id="lecturesList"></div>
         </div>
 
-        <!-- STEP 4: SECTION -->
-        <div class="step" data-step="4">
+        <!-- STEP 6: SECTION -->
+        <div class="step" data-step="6">
           <h3>Выбор тематической секции</h3>
           <p class="lead">Все слушатели участвуют в работе одной из секций второго дня. Выберите <strong>основную</strong> секцию и при желании — <strong>резервную</strong>. Резервная будет предложена в случае малого интереса к первой выбранной.</p>
           <div style="display:flex;gap:8px;margin-bottom:18px;font-size:12px;color:var(--ink-3);flex-wrap:wrap">
@@ -698,49 +1175,18 @@ footer{padding:48px 0;background:#FFFFFF;border-top:1px solid var(--line)}
           <span class="err-msg" id="sectionErr" style="display:none;color:var(--error);font-size:13px;margin-top:10px;font-weight:500">Выберите основную секцию</span>
         </div>
 
-        <!-- STEP 5: PARTICIPATION FORMAT -->
-        <div class="step" data-step="5">
-          <h3>Форма участия в секции</h3>
-          <p class="lead">Выберите, в каком формате Вы планируете участвовать в работе выбранной секции.</p>
-          <div class="radio-cards">
-            <label class="radio-card"><input type="radio" name="part" value="listener" required><div class="rc-body"><div class="ttl">Слушатель</div><div class="desc">Присутствие, без выступления</div></div></label>
-            <label class="radio-card"><input type="radio" name="part" value="discussant"><div class="rc-body"><div class="ttl">Дискуссант</div><div class="desc">Активное участие в обсуждении</div></div></label>
-            <label class="radio-card"><input type="radio" name="part" value="brief"><div class="rc-body"><div class="ttl">Короткое сообщение</div><div class="desc">Выступление до 5 минут</div></div></label>
-            <label class="radio-card"><input type="radio" name="part" value="report"><div class="rc-body"><div class="ttl">Доклад</div><div class="desc">До 10 минут с тезисами</div></div></label>
-          </div>
-          <span class="err-msg" id="partErr" style="display:none;color:var(--error);font-size:13px;margin-top:14px;font-weight:500">Выберите форму участия</span>
-        </div>
-
-        <!-- STEP 6: ABSTRACT -->
-        <div class="step" data-step="6">
-          <h3>Тезисы доклада <span style="font-weight:400;color:var(--ink-3);font-size:16px">(если применимо)</span></h3>
-          <p class="lead">Если Вы выбрали участие с докладом или коротким сообщением, можете загрузить или ввести тезисы (до 200 слов).</p>
-          <div class="form-row single">
-            <div class="field">
-              <label>Тезисы выступления</label>
-              <textarea name="abstract" maxlength="2000" rows="6" placeholder="Тема, цель, основные результаты — до 200 слов"></textarea>
-              <span class="hint" id="wordCount">0 / 200 слов</span>
-            </div>
-          </div>
-          <label class="upload" id="abstractUpload">
-            <input type="file" id="abstractFile" accept=".doc,.docx,.pdf,.txt">
-            <div class="ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg></div>
-            <div class="txt" id="uploadText">Прикрепить файл с тезисами</div>
-            <div class="sub">PDF, DOCX, TXT · до 5 МБ</div>
-          </label>
-        </div>
-
         <!-- STEP 7: CULTURAL -->
         <div class="step" data-step="7">
           <h3>Культурная программа</h3>
-          <p class="lead">1 октября 2026 г., 13:00 — 15:00. Вы можете посетить одно из историко-просветительских подразделений НГУ. Раздел опционален.</p>
+          <p class="lead">1 октября 2026 г., 14:00 — 15:00. Выберите одно из историко-просветительских подразделений НГУ либо отметьте, что не планируете участвовать. Ответ обязателен.</p>
           <div class="radio-cards" style="grid-template-columns:1fr 1fr">
-            <label class="radio-card"><input type="radio" name="culture" value="evolution"><div class="rc-body"><div class="ttl">🌍 «Эволюция Земли»</div><div class="desc">Научно-образовательный центр НГУ</div></div></label>
-            <label class="radio-card"><input type="radio" name="culture" value="museum"><div class="rc-body"><div class="ttl">🏛 Музей истории НГУ</div><div class="desc">Постоянная экспозиция</div></div></label>
-            <label class="radio-card"><input type="radio" name="culture" value="books"><div class="rc-body"><div class="ttl">📜 Архив древних книг НГУ</div><div class="desc">Уникальные издания</div></div></label>
-            <label class="radio-card"><input type="radio" name="culture" value="dome"><div class="rc-body"><div class="ttl">🔭 Купол ректорского корпуса</div><div class="desc">Обзорная экскурсия</div></div></label>
+            <label class="radio-card"><input type="radio" name="culture" value="evolution" required><div class="rc-body"><div class="ttl">🌍 «Эволюция Земли»</div><div class="desc">НОЦ НГУ: 1000+ экспонатов, метеориты, окаменелости, интерактивный глобус. ≈1 час</div></div></label>
+            <label class="radio-card"><input type="radio" name="culture" value="museum"><div class="rc-body"><div class="ttl">🏛 Музей истории НГУ</div><div class="desc">≈5000 предметов, глобус выпускников, макет университета</div></div></label>
+            <label class="radio-card"><input type="radio" name="culture" value="books"><div class="rc-body"><div class="ttl">📜 Архив древних книг НГУ</div><div class="desc">Старопечатные и рукописные книги из сибирских экспедиций</div></div></label>
+            <label class="radio-card"><input type="radio" name="culture" value="dome"><div class="rc-body"><div class="ttl">🔭 Купол ректорского корпуса</div><div class="desc">Панорама Академгородка с высоты ≈63 м. ≈40 минут, 16+</div></div></label>
             <label class="radio-card" style="grid-column:1/-1"><input type="radio" name="culture" value="none"><div class="rc-body"><div class="ttl">Не планирую участвовать</div><div class="desc">Пропустить культурную программу</div></div></label>
           </div>
+          <span class="err-msg" id="cultureErr" style="display:none;color:var(--error);font-size:13px;margin-top:14px;font-weight:500">Выберите вариант культурной программы</span>
         </div>
 
         <!-- STEP 8: FINAL -->
@@ -808,6 +1254,11 @@ footer{padding:48px 0;background:#FFFFFF;border-top:1px solid var(--line)}
         <a href="https://www.nsu.ru/n/economics-department/" target="_blank" rel="noopener">Экономический факультет НГУ</a>
         <a href="https://www.cbr.ru/" target="_blank" rel="noopener">Банк России</a>
         <a href="https://www.nsu.ru/n/privacy/" target="_blank" rel="noopener">Политика обработки персональных данных</a>
+      </div>
+      <div>
+        <h5>Поддержка</h5>
+        <p>Уже зарегистрированы? Напишите нам в чат поддержки в <a href="/dashboard">личном кабинете</a>.</p>
+        <p>Ещё нет кабинета? Пишите на почту:<br><a href="mailto:a.tolkochokov@g.nsu.ru">a.tolkochokov@g.nsu.ru</a></p>
       </div>
     </div>
     <div class="foot-bottom">
@@ -900,8 +1351,8 @@ const speakers = {
     position: "Декан Экономического факультета НГУ. Кандидат социологических наук, доцент кафедры общей социологии. Заведующая отделом социальных проблем ИЭОПП СО РАН (до 2023 г.)",
     bio: "Окончила в 1985 году НГУ по специальности «экономическая кибернетика». Специалист в области экономической стратификации. Индивидуально и в соавторстве опубликовано свыше 80 научных работ, среди них более десяти коллективных монографий. Руководитель ряда программ и проектов плана НИР Института, исследовательских проектов, поддержанных отечественными и зарубежными научными фондами.",
     interests: ["Социальная стратификация","Экономическая мобильность","Социальная политика","Бедность","Финансовое поведение"],
-    primaryLink: "https://www.nsu.ru/n/economics-department/governance/",
-    primaryLinkLabel: "Профиль на сайте ЭФ НГУ"
+    primaryLink: "https://www.ieie.su/persons/bogomolova-tu.html",
+    primaryLinkLabel: "Профиль на портале ИЭОПП СО РАН"
   },
   ibragimov: {
     name: "Ибрагимов Наимджон Мулабоевич",
@@ -920,8 +1371,8 @@ const speakers = {
     position: "Заместитель декана по магистратуре направления «Экономика». PhD CERGE-EI, доцент НГУ (кафедра применения математических методов и кафедра экономической теории)",
     bio: "Работал в качестве краткосрочного консультанта в Институте Всемирного Банка (отдел социальной защиты, Вашингтон, 2005 г.), где разрабатывал модели пенсионных реформ; работал над диссертацией в Кембриджском университете (2005–2006 гг.). Публикации в Macroeconomic Dynamics (2016) и Journal of Economic Dynamics and Control (2014), доклады на EEA-ESEM Congress, SED и других ведущих международных конференциях.",
     interests: ["Макроэкономическая теория","Монетарная экономика","DSGE-модели","Адаптивное обучение","Модели общего равновесия"],
-    primaryLink: "https://www.nsu.ru/n/economics-department/governance/",
-    primaryLinkLabel: "Профиль на сайте ЭФ НГУ"
+    primaryLink: "https://www.ieie.su/persons/kolyuzhnov-dv.html",
+    primaryLinkLabel: "Профиль на портале ИЭОПП СО РАН"
   },
   cherkashina: {
     name: "Черкашина Татьяна Юрьевна",
@@ -931,7 +1382,13 @@ const speakers = {
     bio: "Эксперт в исследованиях социально-экономического неравенства и пространственной мобильности населения. Специализируется на работе с микроданными выборочных обследований домохозяйств. Исследования экономической стратификации и неравенства проводит на основе открытых микроданных всероссийских социально-экономических обследований, дополняя их инициативными проектами по сбору количественных и качественных данных.",
     interests: ["Социально-экономическое неравенство","Пространственная мобильность","Микроданные обследований","Социология экономики"],
     primaryLink: "https://www.ieie.su/persons/cherkashina-ty.html",
-    primaryLinkLabel: "Профиль на портале ИЭОПП СО РАН"
+    primaryLinkLabel: "Профиль на портале ИЭОПП СО РАН",
+    pubNote: "Все три статьи написаны с использованием данных Всероссийского обследования домохозяйств по потребительским финансам, которое проводится по заказу Банка России.",
+    publications: [
+      {t:"Черкашина Т.Ю., Богомолова Т.Ю. Трансферты экономических ресурсов внутри семьи как источник формирования нефинансового богатства населения в России // Экономическая социология. 2025. Т. 26, № 4. С. 32–68.", u:"https://ecsoc.hse.ru/2025-26-4.html"},
+      {t:"Черкашина Т.Ю. Опросные данные о стоимости жилья: качество и перспективы использования в оценке жилищного богатства россиян // Экономическая социология. 2025. Т. 26, № 3. С. 44–75.", u:"https://ecsoc.hse.ru/2025-26-3.html"},
+      {t:"Черкашина Т.Ю. Неравенство российских домохозяйств по жилищному богатству: уровень и динамика // Социологический журнал. 2025. Т. 31, № 2. С. 51–78.", u:"https://www.journal-socjournal.ru/index.php/socjour/article/view/9509"}
+    ]
   },
   bekareva: {
     name: "Бекарева Светлана Викторовна",
@@ -940,8 +1397,14 @@ const speakers = {
     position: "Кандидат экономических наук, доцент кафедры финансов и кредита Экономического факультета НГУ",
     bio: "Работает на ЭФ НГУ с 2000 года: ассистент → старший преподаватель → доцент. Окончила экономический факультет и аспирантуру НГУ. Кандидат экономических наук (2005), доцент (2010). В 2013 году получила диплом о втором высшем образовании по специальности «Теория и практика межкультурной коммуникации» (ФИЯ НГУ). Имеет опыт работы в коммерческом банке. Читает курсы: «Кредитно-денежная система», «Кризисы и антикризисное управление», «Формирование рынков электроэнергии», «Корпоративные финансы», «Международные валютно-кредитные отношения», «Финансовые рынки и финансовые институты».",
     interests: ["Денежно-кредитная политика","Финансовые рынки","Корпоративные финансы","Международные валютно-кредитные отношения","ЦФА"],
-    primaryLink: "https://nsu.ru/ef/kafedra_ef_finansy_i_kredit/bekareva_svetlana_viktorovna",
-    primaryLinkLabel: "Профиль на сайте ЭФ НГУ"
+    primaryLink: "https://www.nsu.ru/n/economics-department/prepodavateli/4211167/",
+    primaryLinkLabel: "Профиль на сайте ЭФ НГУ",
+    publications: [
+      {t:"Бекарева С.В., Жэнь Цзе. Влияние современной монетарной политики Народного банка Китая на динамику национального финансового рынка // Вестник Томского государственного университета. Экономика. 2025. № 71. DOI: 10.17223/19988648/71/17", u:"https://journals.tsu.ru/economy/&journal_page=archive&id=2660&article_id=54090"},
+      {t:"Бекарева С.В., Исупова Е.Н., Федосеева А.С. Факторы, влияющие на базовые ставки центральных банков в контексте неопределённости экономической политики // Вестник Томского государственного университета. Экономика. 2024. № 65. С. 19–31. DOI: 10.17223/19988648/65/2", u:"https://journals.tsu.ru/economy/&journal_page=archive&id=2462"},
+      {t:"Бекарева С.В., Мельтенисова Е.Н., Шиховцова Е.А., Сун Юйин (2019). Влияние монетарной политики Народного банка Китая на экономическое развитие страны // Вестник СПбГУ. Экономика. Т. 35. Вып. 2. С. 223–250.", u:"https://economicsjournal.spbu.ru/article/view/5461"},
+      {t:"Бекарева С.В., Исупова Е.Н., Иванова А.И., Гетманова А.В. (2025). Финансовая грамотность и доходность портфеля начинающего инвестора: есть ли связь? // Вопросы образования. № 2. С. 8–31.", u:"https://vo.hse.ru/article/view/22138/22594"}
+    ]
   },
   gilmundinov: {
     name: "Гильмундинов Вадим Манавирович",
@@ -950,7 +1413,7 @@ const speakers = {
     position: "Доктор экономических наук, доцент. Профессор РАН. Заведующий кафедрой экономической теории ЭФ НГУ. Главный научный сотрудник ИЭОПП СО РАН",
     bio: "В 2000 г. с отличием закончил магистратуру ЭФ НГУ. С 1999 г. работает в ИЭОПП СО РАН. Кандидат экономических наук (2005, экономика и управление народным хозяйством), доктор экономических наук (2020, экономическая теория). Читает курсы «Макроэкономика», «Теория отраслевых рынков II», «Разработка и использование в прогнозировании динамических межотраслевых моделей».",
     interests: ["Макроэкономическая политика","Моделирование инвестиционной активности","Межотраслевая динамика","Структурные эффекты"],
-    primaryLink: "https://nsu.ru/ef/kafedra_ef_ekonomicheskoi_teorii/gilmundinov_vadim_manavirovich",
+    primaryLink: "https://www.nsu.ru/n/economics-department/prepodavateli/3530597/",
     primaryLinkLabel: "Профиль на сайте ЭФ НГУ"
   },
   baranov: {
@@ -960,8 +1423,8 @@ const speakers = {
     position: "Доктор экономических наук, профессор кафедры экономической теории ЭФ НГУ",
     bio: "Окончил ЭФ НГУ в 1977 году по специальности «экономист-математик». Работал в ИЭОПП СО РАН (1977–1992), затем в консалтинге и финансах с преподаванием на ЭФ НГУ (1992–2002). С сентября 2002 г. работает в НГУ; с июля 2006 г. — профессор. С 2005 г. — заведующий кафедрой экономической теории ЭФ НГУ (до Гильмундинова В.М.). Кандидатская диссертация — 1986 г., докторская — 2004 г.",
     interests: ["Макроэкономика","Прогнозирование","Структурный анализ","Экономическая динамика"],
-    primaryLink: "https://research.nsu.ru/ru/persons/alexbaranov",
-    primaryLinkLabel: "Профиль на исследовательском портале НГУ"
+    primaryLink: "https://www.nsu.ru/n/economics-department/prepodavateli/3551968/",
+    primaryLinkLabel: "Профиль на сайте ЭФ НГУ"
   },
   tsyplakov: {
     name: "Цыплаков Александр Анатольевич",
@@ -970,7 +1433,7 @@ const speakers = {
     position: "Кандидат экономических наук, доцент кафедры применения математических методов в экономике и планировании ЭФ НГУ",
     bio: "Научные интересы: моделирование инфляции, прогнозирование инфляции, модели с изменяющимися во времени параметрами, оценка качества прогнозов, агентно-ориентированные модели. Автор учебных пособий «Эконометрика: регрессионный анализ» и «Анализ временных рядов» (НГУ, 2006).",
     interests: ["Эконометрика","Моделирование инфляции","Временные ряды","Прогнозирование","Агентные модели"],
-    primaryLink: "https://nsu.ru/ef/kafedra_ef_primeneniya_matematicheskih_metodov_v_ekonomike/cyplakov_aleksandr_anatolevich",
+    primaryLink: "https://www.nsu.ru/n/economics-department/prepodavateli/4304972/",
     primaryLinkLabel: "Профиль на сайте ЭФ НГУ"
   },
   ivanova: {
@@ -980,58 +1443,45 @@ const speakers = {
     position: "Старший преподаватель кафедры финансов и кредита и кафедры экономической теории ЭФ НГУ",
     bio: "Преподаёт дисциплины финансового профиля на Экономическом факультете НГУ. Подробная биография — на персональной странице на сайте НГУ.",
     interests: ["Финансовые рынки","Инновации в финансах","ЦФА","Финансовая грамотность"],
-    primaryLink: "https://www.nsu.ru/n/economics-department/prepodavateli/",
-    primaryLinkLabel: "Список преподавателей ЭФ НГУ"
+    primaryLink: "https://www.nsu.ru/n/economics-department/prepodavateli/3530623/",
+    primaryLinkLabel: "Профиль на сайте ЭФ НГУ",
+    publications: [
+      {t:"Бекарева С.В., Исупова Е.Н., Иванова А.И., Гетманова А.В. (2025). Финансовая грамотность и доходность портфеля начинающего инвестора: есть ли связь? // Вопросы образования. № 2. С. 8–31.", u:"https://vo.hse.ru/article/view/22138/22594"}
+    ]
   },
   isupova: {
-    name: "Исупова Елена Николаевна",
+    name: "Исупова Екатерина Николаевна",
     org: "nsu",
     orgLabel: "ЭФ НГУ",
     position: "Преподаватель кафедры финансов и кредита и кафедры экономической теории ЭФ НГУ",
     bio: "Преподаватель финансовых дисциплин на ЭФ НГУ. Соавтор исследований по современной ДКП центральных банков стран мира и финансовой грамотности населения. Подробная биография — на персональной странице на сайте НГУ.",
     interests: ["ДКП центральных банков","Финансовая грамотность","Финансовые рынки"],
-    primaryLink: "https://www.nsu.ru/n/economics-department/prepodavateli/",
-    primaryLinkLabel: "Список преподавателей ЭФ НГУ"
-  },
-  afonin: {
-    name: "Афонин Андрей",
-    org: "nsu",
-    orgLabel: "ЭФ НГУ",
-    position: "Преподаватель Экономического факультета НГУ",
-    bio: "Участник панельной дискуссии по подготовке специалистов социально-экономического профиля. Точные данные о должности и кафедре будут уточнены непосредственно перед мероприятием. С полным списком преподавателей ЭФ можно ознакомиться на сайте НГУ.",
-    interests: ["Образовательные практики","Подготовка специалистов"],
-    primaryLink: "https://www.nsu.ru/n/economics-department/prepodavateli/",
-    primaryLinkLabel: "Список преподавателей ЭФ НГУ"
-  },
-  khatskevich: {
-    name: "Хацкевич Евгений",
-    org: "nsu",
-    orgLabel: "ЭФ НГУ",
-    position: "Участник панельной дискуссии",
-    bio: "Участник панельной дискуссии по подготовке специалистов социально-экономического профиля. Точные данные о должности и кафедре будут уточнены непосредственно перед мероприятием. С полным списком преподавателей ЭФ можно ознакомиться на сайте НГУ.",
-    interests: ["Образовательные практики"],
-    primaryLink: "https://www.nsu.ru/n/economics-department/prepodavateli/",
-    primaryLinkLabel: "Список преподавателей ЭФ НГУ"
+    primaryLink: "https://www.nsu.ru/n/economics-department/prepodavateli/3528510/",
+    primaryLinkLabel: "Профиль на сайте ЭФ НГУ",
+    publications: [
+      {t:"Бекарева С.В., Исупова Е.Н., Федосеева А.С. Факторы, влияющие на базовые ставки центральных банков в контексте неопределённости экономической политики // Вестник Томского государственного университета. Экономика. 2024. № 65. С. 19–31. DOI: 10.17223/19988648/65/2", u:"https://journals.tsu.ru/economy/&journal_page=archive&id=2462"},
+      {t:"Бекарева С.В., Исупова Е.Н., Иванова А.И., Гетманова А.В. (2025). Финансовая грамотность и доходность портфеля начинающего инвестора: есть ли связь? // Вопросы образования. № 2. С. 8–31.", u:"https://vo.hse.ru/article/view/22138/22594"}
+    ]
   },
   devaikina: {
     name: "Девайкина А.С.",
-    org: "nsu",
-    orgLabel: "ЭФ НГУ",
-    position: "Соавтор исследования по моделированию доли потерь при дефолте (LGD)",
-    bio: "Соавтор исследования «Моделирование доли потерь при дефолте (LGD): интерпретируемые подходы в свете требований Банка России к оценке кредитного риска» (совместно с Н.М. Ибрагимовым). Подробные данные о должности — на сайте ЭФ НГУ.",
+    org: "cbr",
+    orgLabel: "Банк России",
+    position: "Представитель Банка России. Соавтор исследования по моделированию доли потерь при дефолте (LGD)",
+    bio: "Представитель Банка России. Соавтор исследования «Моделирование доли потерь при дефолте (LGD): интерпретируемые подходы в свете требований Банка России к оценке кредитного риска» (совместно с Н.М. Ибрагимовым).",
     interests: ["Кредитный риск","LGD","Интерпретируемые модели"],
-    primaryLink: "https://www.nsu.ru/n/economics-department/prepodavateli/",
-    primaryLinkLabel: "Список преподавателей ЭФ НГУ"
+    primaryLink: "https://www.cbr.ru/",
+    primaryLinkLabel: "Сайт Банка России"
   },
   khoroshilov: {
     name: "Хорошилов М.",
-    org: "nsu",
-    orgLabel: "ЭФ НГУ",
-    position: "Соавтор исследования по трансмиссии ДКП и риск-премии",
-    bio: "Соавтор исследования «Трансмиссия ДКП через рыночные ожидания: роль риск-премии в прогнозировании ставки овернайт» (совместно с Н.М. Ибрагимовым, А.А. Цыплаковым). Подробные данные о должности — на сайте ЭФ НГУ.",
+    org: "cbr",
+    orgLabel: "Банк России",
+    position: "Представитель Банка России. Соавтор исследования по трансмиссии ДКП и риск-премии",
+    bio: "Представитель Банка России. Соавтор исследования «Трансмиссия ДКП через рыночные ожидания: роль риск-премии в прогнозировании ставки овернайт» (совместно с Н.М. Ибрагимовым, А.А. Цыплаковым).",
     interests: ["Трансмиссия ДКП","Риск-премии","Ставка овернайт"],
-    primaryLink: "https://www.nsu.ru/n/economics-department/prepodavateli/",
-    primaryLinkLabel: "Список преподавателей ЭФ НГУ"
+    primaryLink: "https://www.cbr.ru/",
+    primaryLinkLabel: "Сайт Банка России"
   }
 };
 
@@ -1048,13 +1498,13 @@ const lectures = [
 
 // Sections
 const sections = [
-  {id:1,title:"Особенности современной ДКП центральных банков стран мира",mods:["bekareva","isupova"]},
-  {id:2,title:"Влияние центрального банка на развитие финансовых рынков в России. Инновации на финансовых рынках. Становление и развитие рынка ЦФА",mods:["ivanova","bekareva"]},
-  {id:3,title:"Повышение финансовой и инвестиционной грамотности населения как аспект деятельности ЦБ РФ",mods:["isupova","ivanova","bekareva"]},
-  {id:4,title:"Социологические исследования экономического неравенства и экономического поведения населения России как потенциально значимый инструмент для разработки ДКП Банка России",mods:["bogomolova","cherkashina"]},
-  {id:5,title:"Структурные эффекты ДКП",mods:["baranov","kolyuzhnov"]},
-  {id:6,title:"Трансмиссия ДКП через рыночные ожидания: роль риск-премии в прогнозировании ставки овернайт",mods:["ibragimov","tsyplakov","khoroshilov"]},
-  {id:7,title:"Моделирование доли потерь при дефолте (LGD): интерпретируемые подходы в свете требований Банка России к оценке кредитного риска",mods:["ibragimov","devaikina"]}
+  {id:1,title:"Особенности современной ДКП центральных банков стран мира",mods:["bekareva","isupova"],desc:"Сравнительный анализ современных режимов денежно-кредитной политики ведущих центральных банков: целевые ориентиры, инструменты и реакция на глобальные шоки. Обсуждаются уроки зарубежного опыта для России.",materials:[]},
+  {id:2,title:"Влияние центрального банка на развитие финансовых рынков в России. Инновации на финансовых рынках. Становление и развитие рынка ЦФА",mods:["ivanova","bekareva"],desc:"Роль регулятора в развитии российских финансовых рынков, финансовые инновации и формирование рынка цифровых финансовых активов (ЦФА): возможности, риски и регуляторные подходы.",materials:[]},
+  {id:3,title:"Повышение финансовой и инвестиционной грамотности населения как аспект деятельности ЦБ РФ",mods:["isupova","ivanova","bekareva"],desc:"Финансовая и инвестиционная грамотность населения как направление работы Банка России: образовательные программы, защита прав потребителей финансовых услуг и измерение результатов.",materials:[]},
+  {id:4,title:"Социологические исследования экономического неравенства и экономического поведения населения России как потенциально значимый инструмент для разработки ДКП Банка России",mods:["bogomolova","cherkashina"],desc:"Как социологические данные об экономическом неравенстве и поведении домохозяйств могут учитываться при разработке денежно-кредитной политики. Методы исследований и их прикладная ценность для регулятора.",materials:[]},
+  {id:5,title:"Структурные эффекты ДКП",mods:["baranov","kolyuzhnov"],desc:"Структурные эффекты денежно-кредитной политики: как решения по ставке распределяются между секторами экономики и влияют на долгосрочные структурные изменения. Эконометрические и модельные подходы.",materials:[]},
+  {id:6,title:"Трансмиссия ДКП через рыночные ожидания: роль риск-премии в прогнозировании ставки овернайт",mods:["ibragimov","tsyplakov","khoroshilov"],desc:"Канал ожиданий в трансмиссионном механизме ДКП: как рыночные ожидания и риск-премия формируют ставку овернайт и используются для её прогнозирования.",materials:[]},
+  {id:7,title:"Моделирование доли потерь при дефолте (LGD): интерпретируемые подходы в свете требований Банка России к оценке кредитного риска",mods:["ibragimov","devaikina"],desc:"Интерпретируемые модели оценки доли потерь при дефолте (LGD) с учётом требований Банка России к оценке кредитного риска. Баланс между точностью моделей и их прозрачностью для регулятора.",materials:[]}
 ];
 
 // ====== RENDER ======
@@ -1067,8 +1517,8 @@ function speakerCardHTML(key, s){
   </div>`;
 }
 
-const cbrSpeakers = ["tremasov","korshunov","ponomarenko","evstigneeva","zvereva","yatsyk"];
-const nsuSpeakers = ["bogomolova","ibragimov","gilmundinov","baranov","kolyuzhnov","cherkashina","bekareva","tsyplakov","ivanova","isupova","afonin","khatskevich","devaikina","khoroshilov"];
+const cbrSpeakers = ["tremasov","korshunov","ponomarenko","evstigneeva","zvereva","yatsyk","khoroshilov","devaikina"];
+const nsuSpeakers = ["bogomolova","ibragimov","gilmundinov","baranov","kolyuzhnov","cherkashina","bekareva","tsyplakov","ivanova","isupova"];
 
 document.getElementById("speakers-cbr").innerHTML = cbrSpeakers.map(k=>speakerCardHTML(k,speakers[k])).join("");
 document.getElementById("speakers-nsu").innerHTML = nsuSpeakers.map(k=>speakerCardHTML(k,speakers[k])).join("");
@@ -1080,9 +1530,43 @@ document.getElementById("sections-grid").innerHTML = sections.map(sec=>{
     <span class="sec-num">Секция ${sec.id}</span>
     <div class="sec-title">${sec.title}</div>
     <div class="moderators"><span class="mod-label">Модераторы — авторы исследований</span>${mods}</div>
+    <button type="button" class="sec-annot-btn" data-annot="${sec.id}">📑 Аннотация и материалы</button>
     <div class="pick-info">Выбрать секцию можно при регистрации (доступен выбор основной и резервной)</div>
   </div>`;
 }).join("");
+
+// Annotations modal (по каждой секции отдельно)
+(function(){
+  const overlay = document.getElementById("annotOverlay");
+  const body = document.getElementById("annotBody");
+  if(!overlay || !body) return;
+  function esc(s){ return String(s).replace(/[&<>"]/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c])); }
+  function render(sec){
+    const mats = Array.isArray(sec.materials) ? sec.materials : [];
+    const matHtml = mats.length
+      ? `<ul class="annot-mats">${mats.map(m=>`<li><a href="${esc(m.url)}" target="_blank" rel="noopener">${esc(m.title)}</a>${m.note?` — <span>${esc(m.note)}</span>`:""}</li>`).join("")}</ul>`
+      : `<div class="annot-empty">Материалы для этой секции будут добавлены позже.</div>`;
+    body.innerHTML = `<div class="annot-item">
+      <div class="num">Секция ${sec.id}</div>
+      <h4>${esc(sec.title)}</h4>
+      <p>${esc(sec.desc)}</p>
+      <div class="annot-mats-ttl">Материалы секции</div>
+      ${matHtml}
+    </div>`;
+  }
+  const open = (sec)=>{ render(sec); overlay.classList.add("open"); overlay.setAttribute("aria-hidden","false"); document.body.style.overflow="hidden"; };
+  const close = ()=>{ overlay.classList.remove("open"); overlay.setAttribute("aria-hidden","true"); document.body.style.overflow=""; };
+  document.querySelectorAll("[data-annot]").forEach(b=>{
+    b.addEventListener("click",()=>{
+      const sec = sections.find(s=>String(s.id)===b.getAttribute("data-annot"));
+      if(sec) open(sec);
+    });
+  });
+  const x = document.getElementById("closeAnnotations");
+  if(x) x.addEventListener("click",close);
+  overlay.addEventListener("click",e=>{ if(e.target===overlay) close(); });
+  document.addEventListener("keydown",e=>{ if(e.key==="Escape") close(); });
+})();
 
 // Lectures list in form
 document.getElementById("lecturesList").innerHTML = lectures.map((l,i)=>{
@@ -1144,6 +1628,11 @@ function openSpeaker(key){
       <div class="bio">${s.bio}</div>
       <h4>Научные интересы</h4>
       <div class="interests">${s.interests.map(i=>`<span class="interest">${i}</span>`).join("")}</div>
+      ${s.publications && s.publications.length ? `
+        <h4>Публикации для предварительного прочтения</h4>
+        <div class="modal-pubs">${s.publications.map(p=>`<div class="modal-pub">${p.t}${p.u?` <a href="${p.u}" target="_blank" rel="noopener">Открыть →</a>`:""}</div>`).join("")}</div>
+        ${s.pubNote ? `<p style="font-size:12.5px;color:var(--ink-3);margin-top:10px">${s.pubNote}</p>` : ""}
+      ` : ""}
       <div class="modal-actions">
         <a href="${s.primaryLink}" class="btn btn-primary" target="_blank" rel="noopener">${s.primaryLinkLabel} →</a>
         <button type="button" class="btn btn-ghost" onclick="closeModal()">Закрыть</button>
@@ -1194,7 +1683,7 @@ document.getElementById("sectionPickList").addEventListener("click", e=>{
 });
 
 // ====== STEPPER ======
-const stepNames = ["Введение","Сведения","Лекции ЦБ","Секция","Формат участия","Тезисы","Культурная программа","Согласие"];
+const stepNames = ["Введение","Сведения","Удостоверение","Проживание","Лекции ЦБ","Секция","Культурная программа","Согласие"];
 let currentStep = 1;
 const totalSteps = 8;
 
@@ -1221,9 +1710,10 @@ function goStep(n){
 }
 
 function validateStep(n){
+  // Шаг 2 — сведения об участнике + учётная запись (пароль)
   if(n===2){
     let ok = true;
-    const required = ["fio","vuz","city","dept","position","phone","email"];
+    const required = ["fio","vuz","city","dept","position","phone","email","password","confirm"];
     required.forEach(name=>{
       const input = document.querySelector(`[name="${name}"]`);
       const field = input.closest(".field");
@@ -1232,21 +1722,62 @@ function validateStep(n){
       if(name==="email"){ valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
       if(name==="phone"){ valid = v.replace(/\D/g,"").length >= 10; }
       if(name==="fio"){ valid = v.split(/\s+/).length >= 2; }
+      if(name==="password"){ valid = v.length >= 8; }
+      if(name==="confirm"){ valid = v.length >= 8 && v === document.querySelector('[name="password"]').value; }
       field.classList.toggle("error", !valid);
       if(!valid) ok = false;
     });
     return ok;
   }
+  // Шаг 3 — удостоверение (обязательно). При выборе «Да» обязательна
+  // отметка о заполнении анкеты ИППК.
+  if(n===3){
+    const certEl = document.querySelector('input[name="cert"]:checked');
+    const ok = !!certEl;
+    document.getElementById("certErr").style.display = ok ? "none" : "block";
+    if(!ok) return false;
+    const ippkErr = document.getElementById("ippkErr");
+    if(certEl.value === "yes"){
+      const ippk = document.querySelector('input[name="ippkFilled"]').checked;
+      if(ippkErr) ippkErr.style.display = ippk ? "none" : "block";
+      return ippk;
+    }
+    if(ippkErr) ippkErr.style.display = "none";
+    return true;
+  }
+  // Шаг 4 — проживание (обязательно; для иногородних + гостиница НГУ — категория и даты)
   if(n===4){
+    const sel = document.querySelector('input[name="residency"]:checked');
+    const ok = !!sel;
+    document.getElementById("residencyErr").style.display = ok ? "none" : "block";
+    if(!ok) return false;
+    if(sel.value === "nonresident"){
+      const hotel = document.querySelector('[name="hotel"]').value;
+      if(hotel === "nsu"){
+        const cat = document.querySelector('[name="roomCategory"]').value;
+        const stay = document.querySelector('[name="stayDates"]').value.trim();
+        const catOk = !!cat;
+        const stayOk = !!stay;
+        document.getElementById("roomCatErr").style.display = catOk ? "none" : "block";
+        document.getElementById("stayErr").style.display = stayOk ? "none" : "block";
+        return catOk && stayOk;
+      }
+    }
+    return true;
+  }
+  // Шаг 6 — основная секция (обязательно)
+  if(n===6){
     const ok = pickState.primary !== null;
     document.getElementById("sectionErr").style.display = ok ? "none" : "block";
     return ok;
   }
-  if(n===5){
-    const ok = !!document.querySelector('input[name="part"]:checked');
-    document.getElementById("partErr").style.display = ok ? "none" : "block";
+  // Шаг 7 — культурная программа (обязательно)
+  if(n===7){
+    const ok = !!document.querySelector('input[name="culture"]:checked');
+    document.getElementById("cultureErr").style.display = ok ? "none" : "block";
     return ok;
   }
+  // Шаг 8 — согласия (обязательно)
   if(n===8){
     const c = document.getElementById("consent").checked;
     const a = document.getElementById("agree").checked;
@@ -1261,7 +1792,6 @@ document.getElementById("nextBtn").addEventListener("click",()=>{
   if(!validateStep(currentStep)){ showToast("Заполните обязательные поля","err"); return; }
   if(currentStep===totalSteps){
     submitForm();
-    goStep(9);
     return;
   }
   goStep(currentStep+1);
@@ -1283,28 +1813,6 @@ phone.addEventListener("input",e=>{
   e.target.value = out;
 });
 
-// Word count
-document.querySelector('[name="abstract"]').addEventListener("input",e=>{
-  const w = e.target.value.trim().split(/\s+/).filter(Boolean).length;
-  const el = document.getElementById("wordCount");
-  el.textContent = `${w} / 200 слов`;
-  el.style.color = w>200 ? "var(--error)" : "var(--ink-3)";
-});
-
-// Upload
-document.getElementById("abstractFile").addEventListener("change",e=>{
-  const f = e.target.files[0];
-  const u = document.getElementById("abstractUpload");
-  const t = document.getElementById("uploadText");
-  if(f){
-    u.classList.add("has-file");
-    t.textContent = "✓ " + f.name + " · " + (f.size/1024).toFixed(0) + " КБ";
-  } else {
-    u.classList.remove("has-file");
-    t.textContent = "Прикрепить файл с тезисами";
-  }
-});
-
 // Toast
 function showToast(text, kind){
   const t = document.getElementById("toast");
@@ -1314,33 +1822,207 @@ function showToast(text, kind){
   setTimeout(()=>t.classList.remove("show"),2600);
 }
 
-// Submit (front-end only — would POST to backend in production)
-function submitForm(){
-  const data = new FormData(document.getElementById("regForm"));
-  const obj = {};
-  data.forEach((v,k)=>obj[k]=v);
-  // Section picks
-  obj.section_primary = pickState.primary;
-  obj.section_secondary = pickState.secondary;
-  // Build summary
+// Submit — отправляем заявку на сервер (/api/apply), который создаёт
+// учётную запись, сохраняет анкету и сразу ставит cookie сессии.
+async function submitForm(){
+  const form = document.getElementById("regForm");
+  const data = new FormData(form);
+
+  // Лекции собираем в объект {0:"yes", 1:"maybe", ...}
+  const lectures = {};
+  for(const [k,v] of data.entries()){
+    const m = k.match(/^lec_(\d+)$/);
+    if(m){ lectures[m[1]] = v; }
+  }
+
+  const payload = {
+    email: (data.get("email")||"").trim().toLowerCase(),
+    password: data.get("password")||"",
+    confirm: data.get("confirm")||"",
+    fio: (data.get("fio")||"").trim(),
+    vuz: (data.get("vuz")||"").trim(),
+    city: (data.get("city")||"").trim(),
+    dept: (data.get("dept")||"").trim(),
+    position: (data.get("position")||"").trim(),
+    phone: (data.get("phone")||"").trim(),
+    wantsCertificate: data.get("cert")||"",
+    ippkFilled: document.querySelector('input[name="ippkFilled"]')?.checked || false,
+    residency: data.get("residency")||"",
+    hotel: data.get("hotel")||null,
+    roomCategory: data.get("roomCategory")||null,
+    stayDates: data.get("stayDates")||null,
+    roommatePrefs: data.get("roommatePrefs")||null,
+    sectionPrimary: pickState.primary,
+    sectionSecondary: pickState.secondary,
+    participation: "listener",
+    abstract: null,
+    cultural: data.get("culture")||"",
+    lectures: Object.keys(lectures).length ? lectures : null,
+    comments: data.get("comments")||null,
+    consent: document.getElementById("consent").checked,
+    agree: document.getElementById("agree").checked,
+  };
+
+  const nextBtn = document.getElementById("nextBtn");
+  nextBtn.disabled = true;
+  nextBtn.textContent = "Отправляем…";
+
+  try{
+    const res = await fetch("/api/apply", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+    const json = await res.json().catch(()=>({}));
+
+    if(!res.ok || !json.ok){
+      nextBtn.disabled = false;
+      nextBtn.textContent = "Отправить заявку";
+      if(json.fieldErrors){
+        const first = Object.values(json.fieldErrors)[0];
+        showToast(Array.isArray(first)? first[0] : "Проверьте поля формы","err");
+      } else {
+        showToast(json.error || "Не удалось отправить заявку","err");
+      }
+      return;
+    }
+
+    // Успех — заполняем сводку и показываем финальный шаг
+    fillSummary(payload);
+    goStep(11);
+
+    // Через мгновение переходим в личный кабинет (cookie сессии уже стоит)
+    setTimeout(()=>{ window.location.href = json.redirect || "/dashboard"; }, 1400);
+  } catch(e){
+    nextBtn.disabled = false;
+    nextBtn.textContent = "Отправить заявку";
+    showToast("Ошибка сети. Попробуйте ещё раз","err");
+  }
+}
+
+function fillSummary(p){
+  const box = document.getElementById("summaryBox");
+  if(!box) return;
   const partMap = {listener:"Слушатель",discussant:"Дискуссант",brief:"Короткое сообщение",report:"Доклад (до 10 мин)"};
   const cultureMap = {evolution:"«Эволюция Земли»",museum:"Музей истории НГУ",books:"Архив древних книг",dome:"Купол ректорского корпуса",none:"Не участвую"};
-  const sumPrimary = pickState.primary ? sections.find(s=>s.id===pickState.primary).title : "—";
-  const sumSecondary = pickState.secondary ? sections.find(s=>s.id===pickState.secondary).title : "—";
-  document.getElementById("summaryBox").innerHTML = `
+  const sumPrimary = p.sectionPrimary ? sections.find(s=>s.id===p.sectionPrimary).title : "—";
+  const sumSecondary = p.sectionSecondary ? sections.find(s=>s.id===p.sectionSecondary).title : "—";
+  box.innerHTML = `
     <h4>Сводка регистрации</h4>
-    <div class="sm-row"><span class="k">Участник</span><span class="v">${obj.fio||"—"}</span></div>
-    <div class="sm-row"><span class="k">Вуз</span><span class="v">${obj.vuz||"—"}</span></div>
-    <div class="sm-row"><span class="k">E-mail</span><span class="v">${obj.email||"—"}</span></div>
+    <div class="sm-row"><span class="k">Участник</span><span class="v">${p.fio||"—"}</span></div>
+    <div class="sm-row"><span class="k">Вуз</span><span class="v">${p.vuz||"—"}</span></div>
+    <div class="sm-row"><span class="k">E-mail</span><span class="v">${p.email||"—"}</span></div>
     <div class="sm-row"><span class="k">Основная секция</span><span class="v">${sumPrimary}</span></div>
     <div class="sm-row"><span class="k">Резервная секция</span><span class="v">${sumSecondary}</span></div>
-    <div class="sm-row"><span class="k">Форма участия</span><span class="v">${partMap[obj.part]||"—"}</span></div>
-    <div class="sm-row"><span class="k">Культурная программа</span><span class="v">${cultureMap[obj.culture]||"—"}</span></div>
+    <div class="sm-row"><span class="k">Форма участия</span><span class="v">${partMap[p.participation]||"—"}</span></div>
+    <div class="sm-row"><span class="k">Культурная программа</span><span class="v">${cultureMap[p.cultural]||"—"}</span></div>
   `;
-  // In production: send `obj` to a secured backend endpoint (HTTPS, TLS 1.3)
-  console.log("Registration payload (encrypted in production):", obj);
-  showToast("Регистрация отправлена");
 }
+
+// ====== ПРОЖИВАНИЕ: показ/скрытие блоков ======
+(function(){
+  const hotelBlock = document.getElementById("hotelBlock");
+  const nsuBlock = document.getElementById("nsuHotelBlock");
+  function syncResidency(){
+    const sel = document.querySelector('input[name="residency"]:checked');
+    const nonres = sel && sel.value === "nonresident";
+    if(hotelBlock) hotelBlock.style.display = nonres ? "block" : "none";
+    if(!nonres && nsuBlock) nsuBlock.style.display = "none";
+    syncHotel();
+  }
+  function syncHotel(){
+    const sel = document.querySelector('input[name="residency"]:checked');
+    const nonres = sel && sel.value === "nonresident";
+    const hotel = document.querySelector('[name="hotel"]');
+    const isNsu = nonres && hotel && hotel.value === "nsu";
+    if(nsuBlock) nsuBlock.style.display = isNsu ? "block" : "none";
+  }
+  document.querySelectorAll('input[name="residency"]').forEach(r=>r.addEventListener("change",syncResidency));
+  const hotelSel = document.querySelector('[name="hotel"]');
+  if(hotelSel) hotelSel.addEventListener("change",syncHotel);
+
+  // Показываем блок анкеты ИППК, когда участник хочет удостоверение.
+  function syncIppk(){
+    const sel = document.querySelector('input[name="cert"]:checked');
+    const block = document.getElementById("ippkBlock");
+    if(block) block.style.display = (sel && sel.value === "yes") ? "flex" : "none";
+  }
+  document.querySelectorAll('input[name="cert"]').forEach(r=>r.addEventListener("change",syncIppk));
+})();
+
+// ====== ТАЙМЕРЫ ОБРАТНОГО ОТСЧЁТА ======
+(function(){
+  // Новосибирск = UTC+7.
+  // Окончание регистрации: 10.07.2026 включительно, до 00:00 (начало 11.07) по НСК.
+  const REG_END = Date.UTC(2026, 6, 10, 17, 0, 0);   // 11.07 00:00 НСК
+  // Начало мероприятия: 30.09.2026, 10:00 по НСК.
+  const EVENT = Date.UTC(2026, 8, 30, 3, 0, 0);       // 30.09 10:00 НСК
+
+  function setCard(id, target){
+    const clock = document.getElementById(id);
+    if(!clock) return;
+    const card = clock.closest(".cd-card") || clock;
+    const now = Date.now();
+    let diff = Math.floor((target - now) / 1000);
+    if(diff <= 0){
+      card.classList.add("cd-done");
+      clock.innerHTML = '<div class="cd-done-msg">' + (id==="cdReg" ? "Регистрация завершена" : "Мероприятие началось") + '</div>';
+      return;
+    }
+    const d = Math.floor(diff / 86400); diff -= d*86400;
+    const h = Math.floor(diff / 3600);  diff -= h*3600;
+    const m = Math.floor(diff / 60);    diff -= m*60;
+    const s = diff;
+    const set = (u,val)=>{
+      const el = clock.querySelector('.num[data-u="'+u+'"]');
+      if(el) el.textContent = String(val).padStart(2,"0");
+    };
+    set("d", d); set("h", h); set("m", m); set("s", s);
+  }
+  function tick(){ setCard("cdReg", REG_END); setCard("cdEvent", EVENT); }
+  tick();
+  setInterval(tick, 1000);
+})();
+
+// ====== СЕССИЯ В ШАПКЕ ======
+(function(){
+  const nav = document.getElementById("authNav");
+  if(!nav) return;
+  fetch("/api/auth/session", { headers: { "accept":"application/json" } })
+    .then(r=>r.ok ? r.json() : null)
+    .then(session=>{
+      if(session && session.user){
+        nav.innerHTML =
+          '<a href="/dashboard">Личный кабинет</a>' +
+          '<a href="#" id="logoutLink" class="btn btn-ghost">Выйти</a>';
+        const heroCta = document.getElementById("heroCta");
+        if(heroCta){ heroCta.textContent = "Личный кабинет →"; heroCta.setAttribute("href","/dashboard"); }
+        // Залогиненный пользователь не может зарегистрироваться повторно:
+        // скрываем форму-анкету и показываем уведомление со ссылкой в кабинет.
+        const regForm = document.getElementById("regForm");
+        if(regForm) regForm.style.display = "none";
+        const regNotice = document.getElementById("regLoggedNotice");
+        if(regNotice) regNotice.style.display = "block";
+        document.querySelectorAll('a[href="#register"]').forEach(a=>{
+          a.setAttribute("href","/dashboard");
+        });
+        const lo = document.getElementById("logoutLink");
+        if(lo) lo.addEventListener("click", async (e)=>{
+          e.preventDefault();
+          try{
+            const csrf = await fetch("/api/auth/csrf").then(r=>r.json()).catch(()=>({}));
+            await fetch("/api/auth/signout", {
+              method:"POST",
+              headers:{ "Content-Type":"application/x-www-form-urlencoded" },
+              body: new URLSearchParams({ csrfToken: csrf.csrfToken || "", callbackUrl: "/" }),
+            });
+          } catch(_){}
+          window.location.href = "/";
+        });
+      }
+    })
+    .catch(()=>{});
+})();
 
 // Initial scroll behavior
 document.querySelectorAll('a[href^="#"]').forEach(a=>{

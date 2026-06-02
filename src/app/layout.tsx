@@ -25,7 +25,10 @@ async function HeaderNav() {
             <>
               <Link href="/dashboard" className="text-brand-ink2 hover:text-brand">Кабинет</Link>
               {user.role === "ADMIN" && (
-                <Link href="/admin" className="text-brand hover:underline font-medium">Админ-панель</Link>
+                <>
+                  <Link href="/admin" className="text-brand hover:underline font-medium">Админ-панель</Link>
+                  <Link href="/admin/support" className="text-brand hover:underline font-medium">Поддержка</Link>
+                </>
               )}
               <form
                 action={async () => {

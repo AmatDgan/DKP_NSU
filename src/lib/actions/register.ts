@@ -2,7 +2,6 @@
 
 import { z } from "zod";
 import bcrypt from "bcryptjs";
-import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { signIn } from "@/lib/auth";
 
@@ -50,12 +49,16 @@ export async function registerAction(
     data: { email, passwordHash },
   });
 
-  // Сразу логиним
+  // Сразу логиним. ВАЖНО: используем redirectTo, чтобы NextAuth сам
+  // выставил cookie сессии и выполнил переход одним ответом. Прежняя связка
+  // `redirect:false` + ручной `redirect()` теряла cookie — пользователь
+  // оказывался разлогинен при следующем переходе (баг «авто-выхода»).
   await signIn("credentials", {
     email,
     password,
-    redirect: false,
+    redirectTo: "/consent",
   });
 
-  redirect("/consent");
+  // до сюда исполнение не доходит: signIn выбрасывает redirect.
+  return {};
 }

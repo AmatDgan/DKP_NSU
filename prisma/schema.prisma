@@ -26,7 +26,74 @@ model User {
   consentGiven  Boolean  @default(false)
   consentAt     DateTime?
 
-  profile       Profile?
+  profile        Profile?
+  application    Application?
+  supportMessages SupportMessage[]
+}
+
+// Сообщение чата поддержки между участником и администратором.
+model SupportMessage {
+  id          String   @id @default(cuid())
+  userId      String   // тред принадлежит этому участнику
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  fromAdmin   Boolean  @default(false) // true — ответ администратора
+  body        String
+  readByAdmin Boolean  @default(false)
+  readByUser  Boolean  @default(false)
+  createdAt   DateTime @default(now())
+
+  @@index([userId])
+}
+
+// Заявка на участие в Программе (подробная анкета с лендинга).
+// Одна заявка на пользователя. Поля соответствуют форме регистрации.
+model Application {
+  id            String   @id @default(cuid())
+  userId        String   @unique
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Сведения об участнике
+  fio           String   // ФИО полностью
+  vuz           String   // Высшее учебное заведение
+  city          String   // Город
+  department    String   // Подразделение (институт/факультет)
+  position      String   // Должность
+  phone         String   // Контактный телефон
+  email         String   // Контактный e-mail
+
+  // Удостоверение о повышении квалификации (обязательный вопрос)
+  wantsCertificate Boolean
+
+  // Участник отметил, что заполнил анкету ИППК
+  ippkFilled    Boolean  @default(false)
+
+  // Проживание (обязательный вопрос)
+  residency     String   // "local" | "nonresident"
+  hotel         String?  // выбранный отель (для иногородних)
+  roomCategory  String?  // категория номера (только гостиница НГУ)
+  stayDates     String?  // даты пребывания
+  roommatePrefs String?  // пожелания по подселению
+
+  // Секция (основная обязательна)
+  sectionPrimary   Int
+  sectionSecondary Int?
+
+  // Формат участия
+  participation String   // listener|discussant|brief|report
+  abstract      String?  // тезисы
+
+  // Культурная программа (обязательный выбор)
+  cultural      String   // evolution|museum|books|dome|none
+
+  // Лекции (опционально) — JSON-строка с выбором по лекциям
+  lectures      String?
+  comments      String?
+
+  consent       Boolean  @default(false)
+  agree         Boolean  @default(false)
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 }
 
 // Персональные данные участника (по ТЗ).

@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { ProfileForm } from "./profile-form";
+import { SupportChat } from "./support-chat";
 
 export const metadata = { title: "Личный кабинет" };
 
@@ -63,6 +64,8 @@ export default async function DashboardPage() {
           </section>
         </>
       )}
+
+      <SupportChat />
     </div>
   );
 }
