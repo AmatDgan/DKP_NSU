@@ -3,6 +3,7 @@ import Credentials from "next-auth/providers/credentials";
 import { z } from "zod";
 import bcrypt from "bcryptjs";
 import { prisma } from "@/lib/prisma";
+import { isUserArchived } from "@/lib/archive";
 
 declare module "next-auth" {
   interface Session {
@@ -42,6 +43,13 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 
         const ok = await bcrypt.compare(password, user.passwordHash);
         if (!ok) return null;
+
+        // Архивный (мягко удалённый) пользователь не может войти.
+        try {
+          if (await isUserArchived(user.id)) return null;
+        } catch {
+          // Колонки архива ещё нет — считаем пользователя активным.
+        }
 
         // user.role в SQLite хранится как String — кастуем к нашему union
         const role = (user.role === "ADMIN" ? "ADMIN" : "USER") as

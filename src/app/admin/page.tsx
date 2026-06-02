@@ -3,9 +3,17 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { setUserRoleAction, deleteUserAction, updateUserAction } from "@/lib/actions/admin";
-import { getAllApplications, countApplications, type ApplicationRow } from "@/lib/application";
+import {
+  setUserRoleAction,
+  deleteUserAction,
+  updateUserAction,
+  restoreUserAction,
+  purgeUserAction,
+} from "@/lib/actions/admin";
+import { getAllApplications, type ApplicationRow } from "@/lib/application";
+import { getArchivedUserIds, getArchivedUsers } from "@/lib/archive";
 import { countUnreadForAdmin } from "@/lib/support";
+import PurgeButton from "./purge-button";
 
 export const metadata = { title: "Админ-панель" };
 
@@ -136,22 +144,33 @@ export default async function AdminPage({
   const fCultural = pick(sp, "cultural");
   const fCity = pick(sp, "city");
 
-  const [baseUsers, totalUsers, totalWithApp, totalConsented, apps, unreadSupport] =
+  const [allDbUsers, apps, archivedIds, archivedUsers, unreadSupport] =
     await Promise.all([
       prisma.user.findMany({
         include: { profile: true },
         orderBy: { createdAt: "desc" },
       }),
-      prisma.user.count(),
-      countApplications(),
-      prisma.user.count({ where: { consentGiven: true } }),
       getAllApplications(),
+      getArchivedUserIds(),
+      getArchivedUsers(),
       countUnreadForAdmin(),
     ]);
+
+  // Архивных пользователей исключаем из основного списка и из статистики.
+  const baseUsers = allDbUsers.filter((u) => !archivedIds.has(u.id));
 
   // Сопоставляем заявки с пользователями по userId.
   const appByUser = new Map<string, ApplicationRow>();
   for (const a of apps) appByUser.set(a.userId, a);
+
+  // Статистика считается только по активным (не архивным) пользователям.
+  // «Подали заявку» — активные пользователи, у которых есть анкета, поэтому
+  // это число никогда не превышает общее число пользователей (осиротевшие
+  // заявки без владельца не учитываются).
+  const totalUsers = baseUsers.length;
+  const totalWithApp = baseUsers.filter((u) => appByUser.has(u.id)).length;
+  const totalConsented = baseUsers.filter((u) => u.consentGiven).length;
+
   const allUsers = baseUsers.map((u) => ({
     ...u,
     application: appByUser.get(u.id) ?? null,
@@ -413,8 +432,12 @@ export default async function AdminPage({
                       {!isSelf && (
                         <form action={deleteUserAction}>
                           <input type="hidden" name="userId" value={u.id} />
-                          <button type="submit" className="text-xs text-brand underline">
-                            Удалить
+                          <button
+                            type="submit"
+                            className="text-xs text-brand underline"
+                            title="Перенести в архив. Данные сохранятся, вход будет заблокирован. Полное удаление — отдельным действием из архива."
+                          >
+                            Удалить → в архив
                           </button>
                         </form>
                       )}
@@ -682,6 +705,67 @@ export default async function AdminPage({
                     {hasFilters
                       ? "По заданным условиям никого не найдено."
                       : "Пока никто не зарегистрирован."}
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h2 className="font-serif text-xl font-bold mb-1">
+          Архив удалённых{archivedUsers.length > 0 && ` · ${archivedUsers.length}`}
+        </h2>
+        <p className="text-sm text-brand-ink3 mb-3">
+          Удалённые пользователи сначала попадают сюда. Их данные сохраняются, но
+          вход на сайт заблокирован, и в статистике они не учитываются. Можно
+          восстановить или удалить навсегда.
+        </p>
+        <div className="card overflow-x-auto">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="text-left text-brand-ink3 border-b border-brand-line">
+                <th className="py-2 pr-3">E-mail / Роль</th>
+                <th className="py-2 pr-3">ФИО</th>
+                <th className="py-2 pr-3">ВУЗ / Город</th>
+                <th className="py-2 pr-3">В архиве с</th>
+                <th className="py-2 pr-3">Действия</th>
+              </tr>
+            </thead>
+            <tbody>
+              {archivedUsers.map((u) => (
+                <tr key={u.id} className="border-t border-brand-line/60 align-top">
+                  <td className="py-3 pr-3">
+                    <div className="font-medium text-brand-ink">{u.email}</div>
+                    <div className="text-xs text-brand-ink3">{u.role}</div>
+                  </td>
+                  <td className="py-3 pr-3">{u.fio ?? "—"}</td>
+                  <td className="py-3 pr-3">
+                    <div>{u.vuz ?? "—"}</div>
+                    <div className="text-brand-ink3">{u.city ?? ""}</div>
+                  </td>
+                  <td className="py-3 pr-3">
+                    <div>{fmtDate(u.archivedAt)}</div>
+                    {u.archivedBy && (
+                      <div className="text-xs text-brand-ink3">кем: {u.archivedBy}</div>
+                    )}
+                  </td>
+                  <td className="py-3 pr-3 space-y-2">
+                    <form action={restoreUserAction}>
+                      <input type="hidden" name="userId" value={u.id} />
+                      <button type="submit" className="btn-secondary text-xs !py-1 !px-2">
+                        Восстановить
+                      </button>
+                    </form>
+                    <PurgeButton action={purgeUserAction} userId={u.id} email={u.email} />
+                  </td>
+                </tr>
+              ))}
+              {archivedUsers.length === 0 && (
+                <tr>
+                  <td colSpan={5} className="py-6 text-center text-brand-ink3">
+                    Архив пуст.
                   </td>
                 </tr>
               )}

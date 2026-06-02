@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { adminUpdateApplication } from "@/lib/application";
+import { archiveUser, restoreUser, purgeUser } from "@/lib/archive";
 
 async function requireAdmin() {
   const session = await auth();
@@ -97,10 +98,33 @@ export async function updateUserAction(formData: FormData): Promise<void> {
   revalidatePath("/admin");
 }
 
+// «Удалить» в таблице участников = мягкое удаление: переводим в архив.
+// Данные сохраняются, пользователь скрывается из списка и не может войти.
 export async function deleteUserAction(formData: FormData): Promise<void> {
   const session = await requireAdmin();
   const userId = String(formData.get("userId") ?? "");
   if (!userId || userId === session.user.id) return; // нельзя удалить самого себя
-  await prisma.user.delete({ where: { id: userId } });
+  await archiveUser(userId, session.user.email ?? "admin");
+  revalidatePath("/admin");
+}
+
+// Восстановление пользователя из архива.
+export async function restoreUserAction(formData: FormData): Promise<void> {
+  await requireAdmin();
+  const userId = String(formData.get("userId") ?? "");
+  if (!userId) return;
+  await restoreUser(userId);
+  revalidatePath("/admin");
+}
+
+// Необратимое удаление из архива — вторым действием.
+// Требуется явное подтверждение (поле confirm="ПОЛНОСТЬЮ") во избежание случайностей.
+export async function purgeUserAction(formData: FormData): Promise<void> {
+  const session = await requireAdmin();
+  const userId = String(formData.get("userId") ?? "");
+  const confirm = String(formData.get("confirm") ?? "");
+  if (!userId || userId === session.user.id) return; // себя удалить нельзя
+  if (confirm !== "ПОЛНОСТЬЮ") return; // защита от случайного нажатия
+  await purgeUser(userId);
   revalidatePath("/admin");
 }

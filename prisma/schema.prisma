@@ -26,6 +26,12 @@ model User {
   consentGiven  Boolean  @default(false)
   consentAt     DateTime?
 
+  // «Мягкое удаление» (архив). Если archivedAt задан — учётка в архиве:
+  // скрыта из списка/статистики и не может войти. Полное удаление —
+  // отдельным действием из архива. См. src/lib/archive.ts.
+  archivedAt    DateTime?
+  archivedBy    String?
+
   profile        Profile?
   application    Application?
   supportMessages SupportMessage[]
