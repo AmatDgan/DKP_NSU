@@ -23,6 +23,10 @@ const credentialsSchema = z.object({
 });
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
+  // На проде сайт работает за обратным прокси (nginx в ISPmanager / reg.ru),
+  // поэтому доверяем заголовкам X-Forwarded-* — иначе NextAuth не сможет
+  // правильно определить адрес сайта и вход/коллбэки сломаются.
+  trustHost: true,
   session: { strategy: "jwt" },
   pages: {
     signIn: "/auth/login",
