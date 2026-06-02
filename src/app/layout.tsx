@@ -63,7 +63,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <footer className="mt-16 border-t border-brand-line bg-white">
           <div className="mx-auto max-w-6xl px-6 py-6 text-sm text-brand-ink3 flex flex-wrap gap-3 justify-between">
             <span>© 2026 СГУ Банка России × НГУ. Программа повышения квалификации.</span>
-            <Link href="/consent" className="hover:text-brand">Политика обработки персональных данных</Link>
+            <span className="flex gap-3">
+            <Link href="/privacy" className="hover:text-brand">Политика обработки персональных данных</Link>
+            <Link href="/consent" className="hover:text-brand">Согласие на ОПД</Link>
+          </span>
           </div>
         </footer>
         <CookieConsent />

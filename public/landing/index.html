@@ -171,32 +171,13 @@ button{font-family:inherit;cursor:pointer;border:0;background:transparent}
 .hotels-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
 .hotel{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;transition:box-shadow .2s,transform .2s}
 .hotel:hover{box-shadow:var(--shadow);transform:translateY(-2px)}
-.hotel.featured{grid-column:1/-1;flex-direction:row;border-color:var(--accent)}
-.hotel-photo{position:relative;height:170px;display:flex;align-items:flex-end;padding:14px;color:#fff}
-.hotel.featured .hotel-photo{height:auto;width:38%;min-height:240px;flex-shrink:0}
-.hotel-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 35%,rgba(0,0,0,.45) 100%)}
-.hotel-photo>*{position:relative;z-index:1}
-/* Галерея реальных фото: 3 снимка на отель */
-.hotel-photos{position:relative;display:grid;grid-template-columns:1fr 1fr 1fr;gap:3px;height:178px;background:#e9edec}
-.hotel.featured .hotel-photos{height:auto;width:38%;min-height:260px;flex-shrink:0;grid-template-columns:1fr;grid-auto-rows:1fr}
-.ht{position:relative;overflow:hidden;background:#eef1f0}
-.ht img{width:100%;height:100%;object-fit:cover;display:block}
-.ht.miss img{display:none}
-.ht-ph{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#9aa6a1;font-size:10.5px;text-align:center;padding:6px;line-height:1.3}
-.ht.miss .ht-ph{display:flex}
-.ht-ph svg{opacity:.5}
-.hotel-photos .ph-stars,.hotel-photos .ph-badge{position:absolute;left:12px;bottom:10px;z-index:3}
-.hotel-photos::after{content:"";position:absolute;left:0;right:0;bottom:0;height:46px;background:linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,.4));pointer-events:none;z-index:2}
-.ph-nsu{background:linear-gradient(135deg,#1f6f54,#2f8f6e)}
-.ph-g1{background:linear-gradient(135deg,#b07a2c,#e0b463)}
-.ph-g2{background:linear-gradient(135deg,#355b8c,#6f9bd1)}
-.ph-g3{background:linear-gradient(135deg,#6a5a8c,#a48fc4)}
-.ph-g4{background:linear-gradient(135deg,#2f7d6b,#67b59f)}
-.ph-badge{font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;background:rgba(255,255,255,.22);backdrop-filter:blur(2px);border:1px solid rgba(255,255,255,.35);border-radius:20px;padding:4px 11px}
-.ph-stars{font-size:18px;letter-spacing:2px;color:#ffd56b;text-shadow:0 1px 3px rgba(0,0,0,.4)}
+.hotel.featured{grid-column:1/-1;border-color:var(--accent)}
+.hotel-stars{font-size:15px;letter-spacing:1px;color:#d9a531}
+.hotel-badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);background:rgba(31,111,84,.08);border:1px solid rgba(31,111,84,.25);border-radius:20px;padding:3px 11px}
 .hotel-body{padding:18px 20px;display:flex;flex-direction:column;gap:8px;flex:1}
 .hotel-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
 .hotel-top h3{font-size:18px;margin:0;color:var(--ink)}
+.hotel-titlewrap{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
 .hotel-price{font-size:18px;font-weight:700;color:var(--accent);white-space:nowrap}
 .hotel-price span{font-size:12px;font-weight:500;color:var(--ink-3)}
 .hotel-addr{font-size:13px;color:var(--ink-3)}
@@ -210,7 +191,7 @@ button{font-family:inherit;cursor:pointer;border:0;background:transparent}
 .btn-book:hover{filter:brightness(.94)}
 .hotel-tel{font-size:13px;font-weight:600;color:var(--ink);text-decoration:none;border-bottom:1px dashed var(--line-2)}
 .hotel-site{font-size:13px;color:var(--nsu);text-decoration:none}
-@media(max-width:720px){.hotels-grid{grid-template-columns:1fr}.hotel.featured{flex-direction:column}.hotel.featured .hotel-photo{width:100%;min-height:160px}}
+@media(max-width:720px){.hotels-grid{grid-template-columns:1fr}}
 
 @media(max-width:720px){
   .countdowns{grid-template-columns:1fr}
@@ -282,25 +263,20 @@ section{padding:84px 0;border-bottom:1px solid var(--line)}
 .section-card .sec-title{font-family:'PT Serif',serif;font-size:18px;color:var(--ink);font-weight:700;line-height:1.35}
 .section-card .moderators{display:flex;flex-wrap:wrap;gap:6px}
 .section-card .mod-label{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3);font-weight:600;width:100%;margin-bottom:2px}
+.section-card .sec-moderator{font-size:14px;color:var(--ink);font-weight:600}
+.section-card .sec-moderator .mod-label{display:inline;width:auto;margin:0 6px 0 0}
+.annot-moderator{margin-top:14px;font-size:15px;color:var(--ink)}
+.annot-moderator .annot-mats-ttl{display:block;margin-bottom:4px}
 .section-card .pick-info{font-size:13px;color:var(--ink-3);background:#FAFAF7;padding:10px 14px;border-radius:8px;border:1px dashed var(--line-2);margin-top:auto}
 
 /* Cultural */
 .cultural-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:22px}
-.cultural-item{position:relative;background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;font-size:13.5px;display:flex;flex-direction:column;box-shadow:0 1px 3px rgba(16,22,30,.05);transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+.cultural-item{position:relative;background:#fff;border:1px solid var(--line);border-radius:16px;font-size:13.5px;display:flex;flex-direction:column;box-shadow:0 1px 3px rgba(16,22,30,.05);transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;padding:20px 20px 0}
 .cultural-item:hover{transform:translateY(-6px);box-shadow:0 20px 42px -20px rgba(16,22,30,.30);border-color:var(--line-2)}
-.cult-photo{position:relative;aspect-ratio:16/10;background:linear-gradient(135deg,#e7eef5,#cdd9e6);overflow:hidden}
-.cult-photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .55s ease}
-.cultural-item:hover .cult-photo img{transform:scale(1.06)}
-.cult-photo.miss img{display:none}
-.cult-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(16,22,30,.66) 0%,rgba(16,22,30,.10) 42%,transparent 66%);pointer-events:none}
-.cult-photo.miss::after{display:none}
-.cult-ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:44px;color:#90a6bc;z-index:1}
-.cult-photo:not(.miss) .cult-ph{display:none}
-.cult-photo .ttl{position:absolute;left:17px;right:17px;bottom:14px;z-index:2;color:#fff;font-weight:700;font-family:'PT Serif',serif;font-size:18px;line-height:1.25;text-shadow:0 1px 14px rgba(0,0,0,.5)}
-.cult-photo.miss .ttl{position:static;color:var(--ink);text-shadow:none;padding:15px 18px 0}
-.cult-body{padding:14px 18px 0;display:flex;flex-direction:column;gap:9px;flex:1}
+.cult-title{font-family:'PT Serif',serif;font-size:18px;font-weight:700;color:var(--ink);line-height:1.25;margin-bottom:10px}
+.cult-body{display:flex;flex-direction:column;gap:9px;flex:1}
 .cult-desc{color:var(--ink-2);line-height:1.55}
-.cult-meta{font-size:12.5px;color:var(--ink-3);margin-top:auto;padding:11px 0;display:flex;align-items:center;gap:8px;border-top:1px solid var(--line)}
+.cult-meta{font-size:12.5px;color:var(--ink-3);margin-top:auto;padding:12px 0;display:flex;align-items:center;gap:8px;border-top:1px solid var(--line)}
 .cult-meta svg{flex:none;color:var(--accent)}
 
 /* Registration */
@@ -808,7 +784,7 @@ footer{padding:48px 0;background:#FFFFFF;border-top:1px solid var(--line)}
       <h2>Секции второго дня</h2>
       <p>Общая тема дискуссии — «Опыт преподавания финансовых и связанных со сферой финансов дисциплин: форматы задействования научных исследований при подготовке специалистов социально-экономического профиля».</p>
       <p style="margin-top:8px;font-size:14px;color:var(--ink-3)">При регистрации Вы выбираете основную секцию и резервную — резервная будет предложена при малом интересе к первой выбранной.</p>
-      <p style="margin-top:8px;font-size:14px;color:var(--ink-3)">У каждой секции — кнопка «Аннотация и материалы»: краткое описание секции и сопроводительные материалы.</p>
+      <p style="margin-top:8px;font-size:14px;color:var(--ink-3)">У каждой секции — кнопка «Аннотация»: краткое описание темы секции.</p>
     </div>
     <div class="sections-grid" id="sections-grid"></div>
   </div>
@@ -835,30 +811,30 @@ footer{padding:48px 0;background:#FFFFFF;border-top:1px solid var(--line)}
     <div class="section-head"><h2>1 октября, 13:00 — 15:00</h2><p>На выбор слушателя — по одному из четырёх направлений (или участие не обязательно). Все площадки находятся на территории НГУ.</p></div>
     <div class="cultural-grid">
       <div class="cultural-item">
-        <div class="cult-photo"><img src="/landing/culture/evolution.jpg" alt="НОЦ «Эволюция Земли»" loading="lazy" onerror="this.parentElement.classList.add('miss')"><span class="cult-ph">🌍</span><div class="ttl">«Эволюция Земли»</div></div>
+        <h3 class="cult-title">«Эволюция Земли»</h3>
         <div class="cult-body">
-          <div class="cult-desc">Научно-образовательный центр НГУ — комплекс залов с интерактивными системами и более чем 1000 экспонатов: метеориты, кристаллы и породы из глубин Земли, древние окаменелости, образцы нефти. Есть интерактивный глобус, макет действующего вулкана, проекция северного сияния и модель подводного аппарата «Мир-2».</div>
-          <div class="cult-meta"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Экскурсия с научным сотрудником ≈ 1 час + 30 минут на самостоятельный осмотр</div>
+          <div class="cult-desc">Научно-образовательный центр НГУ: свыше 1000 экспонатов — метеориты, минералы, древние окаменелости, интерактивный глобус и макет вулкана.</div>
+          <div class="cult-meta"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Экскурсия с научным сотрудником ≈ 1 час</div>
         </div>
       </div>
       <div class="cultural-item">
-        <div class="cult-photo"><img src="/landing/culture/museum.jpg" alt="Музей истории НГУ" loading="lazy" onerror="this.parentElement.classList.add('miss')"><span class="cult-ph">🏛</span><div class="ttl">Музей истории НГУ</div></div>
+        <h3 class="cult-title">Музей истории НГУ</h3>
         <div class="cult-body">
-          <div class="cult-desc">Около 5000 предметов об истории университета. Экскурсия начинается у глобуса в Ректорском корпусе, на котором флажками отмечены места, где живут и работают выпускники НГУ. В экспозиции — макет нынешнего и будущего университета и материалы о его выдающихся сотрудниках.</div>
-          <div class="cult-meta"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4"/></svg>Постоянная экспозиция · экскурсия по предварительной записи</div>
+          <div class="cult-desc">Около 5000 предметов об истории университета: макет кампуса и материалы о выдающихся выпускниках и сотрудниках.</div>
+          <div class="cult-meta"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4"/></svg>Экскурсия по предварительной записи</div>
         </div>
       </div>
       <div class="cultural-item">
-        <div class="cult-photo"><img src="/landing/culture/books.jpg" alt="Старопечатные и рукописные книги" loading="lazy" onerror="this.parentElement.classList.add('miss')"><span class="cult-ph">📜</span><div class="ttl">Архив древних книг НГУ</div></div>
+        <h3 class="cult-title">Архив древних книг НГУ</h3>
         <div class="cult-body">
-          <div class="cult-desc">Собрание старопечатных и рукописных книг, собранных в ходе археографических экспедиций по Сибири. Знакомство с тем, как создавалась, переписывалась и хранилась книга, и как историки работают с письменными памятниками.</div>
+          <div class="cult-desc">Старопечатные и рукописные книги из археографических экспедиций по Сибири: как создавалась, переписывалась и хранилась книга.</div>
           <div class="cult-meta"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 19.5V5a2 2 0 0 1 2-2h14v14M6.5 17H20"/></svg>Показ редких изданий с комментарием специалиста</div>
         </div>
       </div>
       <div class="cultural-item">
-        <div class="cult-photo"><img src="/landing/culture/dome.jpg" alt="Купол ректорского корпуса НГУ" loading="lazy" onerror="this.parentElement.classList.add('miss')"><span class="cult-ph">🔭</span><div class="ttl">Купол ректорского корпуса</div></div>
+        <h3 class="cult-title">Купол ректорского корпуса</h3>
         <div class="cult-body">
-          <div class="cult-desc">Подъём на лифте на 13-й этаж главного корпуса в стеклянный купол на высоте около 63 метров. Панорама Академгородка и окружающего леса, рассказ об истории района. Группа от 9 человек, обязателен инструктаж по технике безопасности (16+).</div>
+          <div class="cult-desc">Подъём в стеклянный купол на высоте ≈63 м: панорама Академгородка и рассказ об истории района (16+).</div>
           <div class="cult-meta"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Обзорная экскурсия ≈ 40 минут</div>
         </div>
       </div>
@@ -877,15 +853,9 @@ footer{padding:48px 0;background:#FFFFFF;border-top:1px solid var(--line)}
     <div class="hotels-grid">
 
       <article class="hotel featured">
-        <div class="hotel-photos">
-          <div class="ht"><img src="/landing/hotels/nsu-1.jpg" alt="Гостиница НГУ — фасад" loading="lazy" onerror="this.parentElement.classList.add('miss')"><span class="ht-ph"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="13" rx="2"/><circle cx="12" cy="12.5" r="3.5"/></svg>Фасад</span></div>
-          <div class="ht"><img src="/landing/hotels/nsu-2.jpg" alt="Гостиница НГУ — номер" loading="lazy" onerror="this.parentElement.classList.add('miss')"><span class="ht-ph"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="13" rx="2"/><circle cx="12" cy="12.5" r="3.5"/></svg>Номер</span></div>
-          <div class="ht"><img src="/landing/hotels/nsu-3.jpg" alt="Гостиница НГУ — интерьер" loading="lazy" onerror="this.parentElement.classList.add('miss')"><span class="ht-ph"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="13" rx="2"/><circle cx="12" cy="12.5" r="3.5"/></svg>Интерьер</span></div>
-          <span class="ph-badge">★ Рядом с площадкой</span>
-        </div>
         <div class="hotel-body">
           <div class="hotel-top">
-            <h3>Гостиница НГУ</h3>
+            <div class="hotel-titlewrap"><h3>Гостиница НГУ</h3><span class="hotel-badge">★ Рядом с площадкой</span></div>
             <div class="hotel-price">от 2300 ₽<span>/сутки</span></div>
           </div>
           <div class="hotel-addr">ул. Пирогова, 1 · в пешей доступности от места проведения</div>
@@ -902,15 +872,9 @@ footer{padding:48px 0;background:#FFFFFF;border-top:1px solid var(--line)}
       </article>
 
       <article class="hotel">
-        <div class="hotel-photos">
-          <div class="ht"><img src="/landing/hotels/gold-1.jpg" alt="Золотая долина — фасад" loading="lazy" onerror="this.parentElement.classList.add('miss')"><span class="ht-ph"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="13" rx="2"/><circle cx="12" cy="12.5" r="3.5"/></svg>Фасад</span></div>
-          <div class="ht"><img src="/landing/hotels/gold-2.jpg" alt="Золотая долина — номер" loading="lazy" onerror="this.parentElement.classList.add('miss')"><span class="ht-ph"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="13" rx="2"/><circle cx="12" cy="12.5" r="3.5"/></svg>Номер</span></div>
-          <div class="ht"><img src="/landing/hotels/gold-3.jpg" alt="Золотая долина — интерьер" loading="lazy" onerror="this.parentElement.classList.add('miss')"><span class="ht-ph"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="13" rx="2"/><circle cx="12" cy="12.5" r="3.5"/></svg>Интерьер</span></div>
-          <span class="ph-stars">★★★</span>
-        </div>
         <div class="hotel-body">
           <div class="hotel-top">
-            <h3>Золотая долина</h3>
+            <div class="hotel-titlewrap"><h3>Золотая долина</h3><span class="hotel-stars">★★★</span></div>
             <div class="hotel-price">от 2800 ₽<span>/сутки</span></div>
           </div>
           <div class="hotel-addr">ул. Ильича, 10 · Академгородок</div>
@@ -924,15 +888,9 @@ footer{padding:48px 0;background:#FFFFFF;border-top:1px solid var(--line)}
       </article>
 
       <article class="hotel">
-        <div class="hotel-photos">
-          <div class="ht"><img src="/landing/hotels/mirodom-1.jpg" alt="Миродом — фасад" loading="lazy" onerror="this.parentElement.classList.add('miss')"><span class="ht-ph"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="13" rx="2"/><circle cx="12" cy="12.5" r="3.5"/></svg>Фасад</span></div>
-          <div class="ht"><img src="/landing/hotels/mirodom-2.jpg" alt="Миродом — номер" loading="lazy" onerror="this.parentElement.classList.add('miss')"><span class="ht-ph"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="13" rx="2"/><circle cx="12" cy="12.5" r="3.5"/></svg>Номер</span></div>
-          <div class="ht"><img src="/landing/hotels/mirodom-3.jpg" alt="Миродом — интерьер" loading="lazy" onerror="this.parentElement.classList.add('miss')"><span class="ht-ph"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="13" rx="2"/><circle cx="12" cy="12.5" r="3.5"/></svg>Интерьер</span></div>
-          <span class="ph-stars">★★★★</span>
-        </div>
         <div class="hotel-body">
           <div class="hotel-top">
-            <h3>Миродом</h3>
+            <div class="hotel-titlewrap"><h3>Миродом</h3><span class="hotel-stars">★★★★</span></div>
             <div class="hotel-price">от 9000 ₽<span>/сутки</span></div>
           </div>
           <div class="hotel-addr">пр. Академика Лаврентьева, 21 · Академгородок</div>
@@ -945,15 +903,9 @@ footer{padding:48px 0;background:#FFFFFF;border-top:1px solid var(--line)}
       </article>
 
       <article class="hotel">
-        <div class="hotel-photos">
-          <div class="ht"><img src="/landing/hotels/academ-1.jpg" alt="Академ — фасад" loading="lazy" onerror="this.parentElement.classList.add('miss')"><span class="ht-ph"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="13" rx="2"/><circle cx="12" cy="12.5" r="3.5"/></svg>Фасад</span></div>
-          <div class="ht"><img src="/landing/hotels/academ-2.jpg" alt="Академ — номер" loading="lazy" onerror="this.parentElement.classList.add('miss')"><span class="ht-ph"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="13" rx="2"/><circle cx="12" cy="12.5" r="3.5"/></svg>Номер</span></div>
-          <div class="ht"><img src="/landing/hotels/academ-3.jpg" alt="Академ — интерьер" loading="lazy" onerror="this.parentElement.classList.add('miss')"><span class="ht-ph"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="13" rx="2"/><circle cx="12" cy="12.5" r="3.5"/></svg>Интерьер</span></div>
-          <span class="ph-stars">★★</span>
-        </div>
         <div class="hotel-body">
           <div class="hotel-top">
-            <h3>Академ</h3>
+            <div class="hotel-titlewrap"><h3>Академ</h3><span class="hotel-stars">★★</span></div>
             <div class="hotel-price">от 3200 ₽<span>/сутки</span></div>
           </div>
           <div class="hotel-addr">ул. Иванова, 6 · Академгородок</div>
@@ -966,15 +918,9 @@ footer{padding:48px 0;background:#FFFFFF;border-top:1px solid var(--line)}
       </article>
 
       <article class="hotel">
-        <div class="hotel-photos">
-          <div class="ht"><img src="/landing/hotels/parkwood-1.jpg" alt="Парк Вуд — фасад" loading="lazy" onerror="this.parentElement.classList.add('miss')"><span class="ht-ph"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="13" rx="2"/><circle cx="12" cy="12.5" r="3.5"/></svg>Фасад</span></div>
-          <div class="ht"><img src="/landing/hotels/parkwood-2.jpg" alt="Парк Вуд — номер" loading="lazy" onerror="this.parentElement.classList.add('miss')"><span class="ht-ph"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="13" rx="2"/><circle cx="12" cy="12.5" r="3.5"/></svg>Номер</span></div>
-          <div class="ht"><img src="/landing/hotels/parkwood-3.jpg" alt="Парк Вуд — интерьер" loading="lazy" onerror="this.parentElement.classList.add('miss')"><span class="ht-ph"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="13" rx="2"/><circle cx="12" cy="12.5" r="3.5"/></svg>Интерьер</span></div>
-          <span class="ph-stars">★★★★</span>
-        </div>
         <div class="hotel-body">
           <div class="hotel-top">
-            <h3>Парк Вуд</h3>
+            <div class="hotel-titlewrap"><h3>Парк Вуд</h3><span class="hotel-stars">★★★★</span></div>
             <div class="hotel-price">от 7200 ₽<span>/сутки</span></div>
           </div>
           <div class="hotel-addr">ул. Арбузова, 6/2 · Академгородок</div>
@@ -1253,7 +1199,7 @@ footer{padding:48px 0;background:#FFFFFF;border-top:1px solid var(--line)}
         <h5>Полезные ссылки</h5>
         <a href="https://www.nsu.ru/n/economics-department/" target="_blank" rel="noopener">Экономический факультет НГУ</a>
         <a href="https://www.cbr.ru/" target="_blank" rel="noopener">Банк России</a>
-        <a href="https://www.nsu.ru/n/privacy/" target="_blank" rel="noopener">Политика обработки персональных данных</a>
+        <a href="/privacy">Политика обработки персональных данных</a>
       </div>
       <div>
         <h5>Поддержка</h5>
@@ -1464,24 +1410,14 @@ const speakers = {
     ]
   },
   devaikina: {
-    name: "Девайкина А.С.",
-    org: "cbr",
-    orgLabel: "Банк России",
-    position: "Представитель Банка России. Соавтор исследования по моделированию доли потерь при дефолте (LGD)",
-    bio: "Представитель Банка России. Соавтор исследования «Моделирование доли потерь при дефолте (LGD): интерпретируемые подходы в свете требований Банка России к оценке кредитного риска» (совместно с Н.М. Ибрагимовым).",
+    name: "Девайкина Анастасия Сергеевна",
+    org: "nsu",
+    orgLabel: "ЭФ НГУ",
+    position: "Преподаватель Экономического факультета НГУ. Соавтор исследования по моделированию доли потерь при дефолте (LGD)",
+    bio: "Преподаватель Экономического факультета НГУ. Соавтор исследования «Моделирование доли потерь при дефолте (LGD): интерпретируемые подходы в свете требований Банка России к оценке кредитного риска» (совместно с Н.М. Ибрагимовым). Модератор одноимённой секции второго дня.",
     interests: ["Кредитный риск","LGD","Интерпретируемые модели"],
-    primaryLink: "https://www.cbr.ru/",
-    primaryLinkLabel: "Сайт Банка России"
-  },
-  khoroshilov: {
-    name: "Хорошилов М.",
-    org: "cbr",
-    orgLabel: "Банк России",
-    position: "Представитель Банка России. Соавтор исследования по трансмиссии ДКП и риск-премии",
-    bio: "Представитель Банка России. Соавтор исследования «Трансмиссия ДКП через рыночные ожидания: роль риск-премии в прогнозировании ставки овернайт» (совместно с Н.М. Ибрагимовым, А.А. Цыплаковым).",
-    interests: ["Трансмиссия ДКП","Риск-премии","Ставка овернайт"],
-    primaryLink: "https://www.cbr.ru/",
-    primaryLinkLabel: "Сайт Банка России"
+    primaryLink: "https://www.nsu.ru/n/economics-department/",
+    primaryLinkLabel: "Экономический факультет НГУ"
   }
 };
 
@@ -1496,15 +1432,14 @@ const lectures = [
   {day:"01.10",title:"Как центральные банки управляют процентными ставками. Ликвидность банковского сектора и операционная процедура Банка России",speaker:"yatsyk",kind:"Лекция"}
 ];
 
-// Sections
+// Sections (официальные аннотации тем секций)
 const sections = [
-  {id:1,title:"Особенности современной ДКП центральных банков стран мира",mods:["bekareva","isupova"],desc:"Сравнительный анализ современных режимов денежно-кредитной политики ведущих центральных банков: целевые ориентиры, инструменты и реакция на глобальные шоки. Обсуждаются уроки зарубежного опыта для России.",materials:[]},
-  {id:2,title:"Влияние центрального банка на развитие финансовых рынков в России. Инновации на финансовых рынках. Становление и развитие рынка ЦФА",mods:["ivanova","bekareva"],desc:"Роль регулятора в развитии российских финансовых рынков, финансовые инновации и формирование рынка цифровых финансовых активов (ЦФА): возможности, риски и регуляторные подходы.",materials:[]},
-  {id:3,title:"Повышение финансовой и инвестиционной грамотности населения как аспект деятельности ЦБ РФ",mods:["isupova","ivanova","bekareva"],desc:"Финансовая и инвестиционная грамотность населения как направление работы Банка России: образовательные программы, защита прав потребителей финансовых услуг и измерение результатов.",materials:[]},
-  {id:4,title:"Социологические исследования экономического неравенства и экономического поведения населения России как потенциально значимый инструмент для разработки ДКП Банка России",mods:["bogomolova","cherkashina"],desc:"Как социологические данные об экономическом неравенстве и поведении домохозяйств могут учитываться при разработке денежно-кредитной политики. Методы исследований и их прикладная ценность для регулятора.",materials:[]},
-  {id:5,title:"Структурные эффекты ДКП",mods:["baranov","kolyuzhnov"],desc:"Структурные эффекты денежно-кредитной политики: как решения по ставке распределяются между секторами экономики и влияют на долгосрочные структурные изменения. Эконометрические и модельные подходы.",materials:[]},
-  {id:6,title:"Трансмиссия ДКП через рыночные ожидания: роль риск-премии в прогнозировании ставки овернайт",mods:["ibragimov","tsyplakov","khoroshilov"],desc:"Канал ожиданий в трансмиссионном механизме ДКП: как рыночные ожидания и риск-премия формируют ставку овернайт и используются для её прогнозирования.",materials:[]},
-  {id:7,title:"Моделирование доли потерь при дефолте (LGD): интерпретируемые подходы в свете требований Банка России к оценке кредитного риска",mods:["ibragimov","devaikina"],desc:"Интерпретируемые модели оценки доли потерь при дефолте (LGD) с учётом требований Банка России к оценке кредитного риска. Баланс между точностью моделей и их прозрачностью для регулятора.",materials:[]}
+  {id:1,title:"Особенности современной ДКП центральных банков стран мира",mods:["bekareva","isupova"],moderator:"Бекарева Светлана Викторовна",desc:"Роль центральных банков в современной глобальной экономике, которая может быть охарактеризована как переживающая кризисные явления разного происхождения и характера, усиливается. Принципы денежно-кредитной политики, которых придерживается конкретный центральный банк, монетарные инструменты, эффективные для того или иного режима ДКП, в настоящее время затрагивают всех экономических субъектов, о чём необходимо понимать молодым специалистам социально-экономического профиля."},
+  {id:2,title:"Влияние центрального банка на развитие финансовых рынков в России. Инновации на финансовых рынках. Становление и развитие рынка ЦФА",mods:["ivanova","bekareva"],moderator:"Иванова Анастасия Игоревна",desc:"Банк России, являясь мегарегулятором российского финансового рынка, контролирует процесс инновационного развития его сегментов, в том числе сегмента рынка цифровых финансовых активов. Подходы к анализу динамики рынка, эмитентов ЦФА, операторов информационных систем и операторов обмена ЦФА являются важной частью как собственно учебного процесса, так и исследовательской составляющей образовательных программ."},
+  {id:3,title:"Повышение финансовой и инвестиционной грамотности населения как аспект деятельности ЦБ РФ",mods:["isupova","ivanova","bekareva"],moderator:"Исупова Екатерина Николаевна",desc:"Мы обсудим, что выступает характеристиками и может быть использовано как критерии уровня финансовой грамотности, что влияет на уровень финансовой грамотности и определяет ли этот уровень финансовое поведение экономического субъекта. С нашей точки зрения, преподавателю в современном мире важно понять, какие образовательные методы способны эффективно решить задачу повышения уровня финансовой и инвестиционной грамотности студентов."},
+  {id:4,title:"Социологические исследования экономического неравенства и экономического поведения населения России как потенциально значимый инструмент для разработки ДКП Банка России",mods:["bogomolova","cherkashina"],moderator:"Черкашина Татьяна Юрьевна",desc:"Дифференциация по богатству — одно из измерений социально-экономического неравенства населения наряду с доходным. В России среди активов, образующих имущество домохозяйств, жильё занимает особое место, так как доля стоимости жилищных активов в совокупном богатстве домохозяйств высока, а неравенство по жилищному богатству определяет неравенство по богатству в целом. Понимание реальной ситуации, характеризующей уровень неравенства в России, может являться значимым инструментом для разработки и реализации денежно-кредитной политики Банка России."},
+  {id:5,title:"Структурные эффекты ДКП",mods:["baranov","kolyuzhnov"],moderator:"Колюжнов Дмитрий Васильевич",desc:"Банк России использует для целей прогнозирования DSGE-модели. Авторы предлагают малую DSGE-модель российской экономики с неоднородным адаптивным обучением экономических агентов. Сравнивая через проведение различных оценок, построение ретроспективных прогнозов, расчёт показателей ошибок разные модификации модели, делается вывод, что модель с неоднородным адаптивным обучением агентов соответствует данным лучше, чем модель с рациональными ожиданиями или однородным адаптивным обучением."},
+  {id:6,title:"Моделирование доли потерь при дефолте (LGD): интерпретируемые подходы в свете требований Банка России к оценке кредитного риска",mods:["ibragimov","devaikina"],moderator:"Девайкина Анастасия Сергеевна",desc:"Банк России в качестве регулятора банковского сектора особое внимание уделяет оценке уровня кредитного риска банков, адекватному формированию резервов под ожидаемые кредитные убытки и расчёту достаточного объёма капитала для защиты финансовой устойчивости. Прогнозирование доли потерь при дефолте требует учёта ряда специфических свойств данных, таких как мультимодальность и асимметричность распределения, ограничение значений интервалом от 0% до 100%+, нелинейность влияния объясняющих факторов."}
 ];
 
 // ====== RENDER ======
@@ -1517,8 +1452,8 @@ function speakerCardHTML(key, s){
   </div>`;
 }
 
-const cbrSpeakers = ["tremasov","korshunov","ponomarenko","evstigneeva","zvereva","yatsyk","khoroshilov","devaikina"];
-const nsuSpeakers = ["bogomolova","ibragimov","gilmundinov","baranov","kolyuzhnov","cherkashina","bekareva","tsyplakov","ivanova","isupova"];
+const cbrSpeakers = ["tremasov","korshunov","ponomarenko","evstigneeva","zvereva","yatsyk"];
+const nsuSpeakers = ["bogomolova","ibragimov","gilmundinov","baranov","kolyuzhnov","cherkashina","bekareva","tsyplakov","ivanova","isupova","devaikina"];
 
 document.getElementById("speakers-cbr").innerHTML = cbrSpeakers.map(k=>speakerCardHTML(k,speakers[k])).join("");
 document.getElementById("speakers-nsu").innerHTML = nsuSpeakers.map(k=>speakerCardHTML(k,speakers[k])).join("");
@@ -1526,11 +1461,13 @@ document.getElementById("speakers-nsu").innerHTML = nsuSpeakers.map(k=>speakerCa
 // Sections
 document.getElementById("sections-grid").innerHTML = sections.map(sec=>{
   const mods = sec.mods.map(m=>`<button class="speaker-chip" data-speaker="${m}">${speakers[m].name}</button>`).join("");
+  const modLine = sec.moderator ? `<div class="sec-moderator"><span class="mod-label">Модератор</span> ${sec.moderator}</div>` : "";
   return `<div class="section-card">
     <span class="sec-num">Секция ${sec.id}</span>
     <div class="sec-title">${sec.title}</div>
-    <div class="moderators"><span class="mod-label">Модераторы — авторы исследований</span>${mods}</div>
-    <button type="button" class="sec-annot-btn" data-annot="${sec.id}">📑 Аннотация и материалы</button>
+    ${modLine}
+    <div class="moderators"><span class="mod-label">Авторы исследований</span>${mods}</div>
+    <button type="button" class="sec-annot-btn" data-annot="${sec.id}">📑 Аннотация</button>
     <div class="pick-info">Выбрать секцию можно при регистрации (доступен выбор основной и резервной)</div>
   </div>`;
 }).join("");
@@ -1542,16 +1479,14 @@ document.getElementById("sections-grid").innerHTML = sections.map(sec=>{
   if(!overlay || !body) return;
   function esc(s){ return String(s).replace(/[&<>"]/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c])); }
   function render(sec){
-    const mats = Array.isArray(sec.materials) ? sec.materials : [];
-    const matHtml = mats.length
-      ? `<ul class="annot-mats">${mats.map(m=>`<li><a href="${esc(m.url)}" target="_blank" rel="noopener">${esc(m.title)}</a>${m.note?` — <span>${esc(m.note)}</span>`:""}</li>`).join("")}</ul>`
-      : `<div class="annot-empty">Материалы для этой секции будут добавлены позже.</div>`;
+    const modHtml = sec.moderator
+      ? `<div class="annot-moderator"><span class="annot-mats-ttl">Модератор</span>${esc(sec.moderator)}</div>`
+      : "";
     body.innerHTML = `<div class="annot-item">
       <div class="num">Секция ${sec.id}</div>
       <h4>${esc(sec.title)}</h4>
       <p>${esc(sec.desc)}</p>
-      <div class="annot-mats-ttl">Материалы секции</div>
-      ${matHtml}
+      ${modHtml}
     </div>`;
   }
   const open = (sec)=>{ render(sec); overlay.classList.add("open"); overlay.setAttribute("aria-hidden","false"); document.body.style.overflow="hidden"; };
