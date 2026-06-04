@@ -1,0 +1,14 @@
+# .htaccess для запуска Next.js под Phusion Passenger на Sprinthost.
+# Кладётся в корневую папку сайта (обычно ~/domains/<ДОМЕН>/public_html).
+#
+# ВНИМАНИЕ: две строки ниже нужно отредактировать под свой аккаунт —
+# подставь свой логин Sprinthost вместо <ЛОГИН> и свой домен вместо <ДОМЕН>.
+# Узнать точный путь можно по SSH командой:  pwd  (находясь в папке проекта).
+
+PassengerStartupFile server.js
+PassengerResolveSymlinksInDocumentRoot on
+Require all granted
+PassengerAppType node
+PassengerAppRoot /home/<ЛОГИН>/domains/<ДОМЕН>/public_html
+PassengerAppEnv production
+Options -MultiViews
