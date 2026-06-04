@@ -19,6 +19,15 @@ const securityHeaders = [
 const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false, // не раскрываем, что сайт на Next.js
+  // На шаред-хостинге (Sprinthost) действует лимит на число процессов.
+  // По умолчанию Next при сборке запускает параллельные воркеры (jest-worker)
+  // для генерации страниц — и упирается в лимит с ошибкой spawn EAGAIN,
+  // из-за чего сборка не достраивается (нет .next/BUILD_ID) и Passenger
+  // отдаёт 500. Заставляем сборку идти в один процесс, без параллелизма.
+  experimental: {
+    cpus: 1,
+    workerThreads: false,
+  },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },
