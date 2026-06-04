@@ -84,7 +84,7 @@ const schema = z
     }
   });
 
-function useSecureCookie(req: NextRequest): boolean {
+function isSecureCookie(req: NextRequest): boolean {
   const proto =
     req.headers.get("x-forwarded-proto") ??
     (() => {
@@ -200,7 +200,7 @@ export async function POST(req: NextRequest) {
 
   // Выдаём cookie сессии вручную (форма на статической странице, поэтому
   // мы сами подписываем JWT тем же секретом, что использует NextAuth).
-  const secure = useSecureCookie(req);
+  const secure = isSecureCookie(req);
   const cookieName = secure ? "__Secure-authjs.session-token" : "authjs.session-token";
   const role = (user.role === "ADMIN" ? "ADMIN" : "USER") as "ADMIN" | "USER";
 
