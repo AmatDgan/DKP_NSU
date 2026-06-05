@@ -27,6 +27,14 @@ const nextConfig = {
   experimental: {
     cpus: 1,
     workerThreads: false,
+    // Prisma 6 (WASM-клиент) и JS-драйвер mariadb должны оставаться внешними
+    // пакетами на сервере, а не зашиваться в бандл — иначе Next пытается
+    // затащить node:os/node:fs в Edge-сборку и падает с UnhandledSchemeError.
+    serverComponentsExternalPackages: [
+      "@prisma/client",
+      "@prisma/adapter-mariadb",
+      "mariadb",
+    ],
   },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];

@@ -11,7 +11,8 @@
  */
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "../src/generated/prisma/client";
+import { PrismaMariaDb } from "@prisma/adapter-mariadb";
 import bcrypt from "bcryptjs";
 
 // tsx не подгружает .env автоматически, поэтому читаем файл сами.
@@ -37,7 +38,26 @@ function loadDotEnv() {
 }
 loadDotEnv();
 
-const prisma = new PrismaClient();
+// Тот же приём, что и в src/lib/prisma.ts: подключаемся к MySQL через JS-драйвер
+// mariadb (без нативного Rust-движка), иначе скрипт упал бы на OpenSSL 1.0.2.
+function poolConfig() {
+  const url = new URL(process.env.DATABASE_URL ?? "");
+  const user = decodeURIComponent(url.username);
+  const password = decodeURIComponent(url.password);
+  const database = url.pathname.replace(/^\//, "");
+  const socketPath =
+    url.searchParams.get("socket") || url.searchParams.get("socketPath");
+  const base = { user, password, database, connectionLimit: 5 };
+  return socketPath
+    ? { ...base, socketPath }
+    : {
+        ...base,
+        host: url.hostname || "127.0.0.1",
+        port: url.port ? Number(url.port) : 3306,
+      };
+}
+
+const prisma = new PrismaClient({ adapter: new PrismaMariaDb(poolConfig()) });
 
 // SQLite не поддерживает enum, поэтому роли — обычные строки.
 const ROLE_ADMIN = "ADMIN";

@@ -1,21 +1,14 @@
-import NextAuth, { type DefaultSession } from "next-auth";
+import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import { z } from "zod";
 import bcrypt from "bcryptjs";
 import { prisma } from "@/lib/prisma";
 import { isUserArchived } from "@/lib/archive";
+import { authConfig } from "@/lib/auth.config";
 
-declare module "next-auth" {
-  interface Session {
-    user: {
-      id: string;
-      role: "ADMIN" | "USER";
-    } & DefaultSession["user"];
-  }
-  interface User {
-    role: "ADMIN" | "USER";
-  }
-}
+// Этот файл выполняется только в Node-runtime (не в Edge), поэтому здесь можно
+// безопасно обращаться к базе через prisma. Конфиг и колбэки берём из
+// auth.config.ts, а сюда добавляем провайдер Credentials с проверкой пароля.
 
 const credentialsSchema = z.object({
   email: z.string().email(),
@@ -23,14 +16,7 @@ const credentialsSchema = z.object({
 });
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
-  // На проде сайт работает за обратным прокси (nginx в ISPmanager / reg.ru),
-  // поэтому доверяем заголовкам X-Forwarded-* — иначе NextAuth не сможет
-  // правильно определить адрес сайта и вход/коллбэки сломаются.
-  trustHost: true,
-  session: { strategy: "jwt" },
-  pages: {
-    signIn: "/auth/login",
-  },
+  ...authConfig,
   providers: [
     Credentials({
       credentials: {
@@ -55,7 +41,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           // Колонки архива ещё нет — считаем пользователя активным.
         }
 
-        // user.role в SQLite хранится как String — кастуем к нашему union
+        // user.role хранится как String — кастуем к нашему union.
         const role = (user.role === "ADMIN" ? "ADMIN" : "USER") as
           | "ADMIN"
           | "USER";
@@ -67,29 +53,4 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       },
     }),
   ],
-  callbacks: {
-    async jwt({ token, user }) {
-      if (user) {
-        token.id = user.id;
-        token.role = (user as { role: "ADMIN" | "USER" }).role;
-      }
-      return token;
-    },
-    async session({ session, token }) {
-      if (token && session.user) {
-        session.user.id = token.id as string;
-        session.user.role = token.role as "ADMIN" | "USER";
-      }
-      return session;
-    },
-    authorized({ auth, request }) {
-      const url = request.nextUrl;
-      const isLoggedIn = !!auth?.user;
-      const isAdmin = auth?.user?.role === "ADMIN";
-
-      if (url.pathname.startsWith("/admin")) return isAdmin;
-      if (url.pathname.startsWith("/dashboard")) return isLoggedIn;
-      return true;
-    },
-  },
 });

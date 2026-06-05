@@ -7,7 +7,17 @@
 // одновременные регистрации.
 
 generator client {
-  provider = "prisma-client-js"
+  // Клиент без нативного Rust-движка. Ключевая строка — engineType = "client":
+  // она заставляет Prisma сгенерировать клиент на WASM-компиляторе запросов
+  // (@prisma/client/runtime/client) вместо нативного движка
+  // (@prisma/client/runtime/library). Нативный движок линкуется с системным
+  // OpenSSL 1.0.2 (CentOS 7 на хостинге) и падает при коннекте к MySQL.
+  // WASM-компилятор + JS-драйвер mariadb работают через OpenSSL 3.x,
+  // встроенный в Node 22, и не падают.
+  provider   = "prisma-client"
+  output     = "../src/generated/prisma"
+  runtime    = "nodejs"
+  engineType = "client"
 }
 
 datasource db {
