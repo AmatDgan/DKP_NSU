@@ -1,42 +1,19 @@
-import { randomUUID } from "crypto";
 import { prisma } from "@/lib/prisma";
 
 // Чат поддержки между участником и администратором.
 //
-// Как и заявки (Application), сообщения храним через «сырой» SQL, чтобы сайт
-// работал без ручного `prisma db push` и не зависел от устаревшего клиента.
-// Таблица создаётся автоматически при первом обращении.
+// Таблица SupportMessage описана в schema.prisma и создаётся командой
+// `prisma db push`, поэтому работаем обычным Prisma-клиентом.
 
 export type SupportMessageRow = {
   id: string;
   userId: string;
-  fromAdmin: number | boolean;
+  fromAdmin: boolean;
   body: string;
-  readByAdmin: number | boolean;
-  readByUser: number | boolean;
-  createdAt: string;
+  readByAdmin: boolean;
+  readByUser: boolean;
+  createdAt: Date;
 };
-
-let ensured = false;
-
-export async function ensureSupportTable(): Promise<void> {
-  if (ensured) return;
-  await prisma.$executeRawUnsafe(`
-    CREATE TABLE IF NOT EXISTS "SupportMessage" (
-      "id" TEXT NOT NULL PRIMARY KEY,
-      "userId" TEXT NOT NULL,
-      "fromAdmin" BOOLEAN NOT NULL DEFAULT 0,
-      "body" TEXT NOT NULL,
-      "readByAdmin" BOOLEAN NOT NULL DEFAULT 0,
-      "readByUser" BOOLEAN NOT NULL DEFAULT 0,
-      "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
-    )
-  `);
-  await prisma.$executeRawUnsafe(
-    `CREATE INDEX IF NOT EXISTS "SupportMessage_userId_idx" ON "SupportMessage"("userId")`,
-  );
-  ensured = true;
-}
 
 // Добавляет сообщение в тред участника. fromAdmin=true — ответ администратора.
 export async function addSupportMessage(
@@ -44,30 +21,24 @@ export async function addSupportMessage(
   fromAdmin: boolean,
   body: string,
 ): Promise<void> {
-  await ensureSupportTable();
-  const now = new Date().toISOString();
-  await prisma.$executeRawUnsafe(
-    `INSERT INTO "SupportMessage"
-      ("id","userId","fromAdmin","body","readByAdmin","readByUser","createdAt")
-      VALUES (?,?,?,?,?,?,?)`,
-    randomUUID(),
-    userId,
-    fromAdmin ? 1 : 0,
-    body,
-    // сообщение прочитано тем, кто его отправил
-    fromAdmin ? 1 : 0,
-    fromAdmin ? 0 : 1,
-    now,
-  );
+  await prisma.supportMessage.create({
+    data: {
+      userId,
+      fromAdmin,
+      body,
+      // сообщение прочитано тем, кто его отправил
+      readByAdmin: fromAdmin,
+      readByUser: !fromAdmin,
+    },
+  });
 }
 
 // Возвращает все сообщения треда участника по времени.
 export async function getThread(userId: string): Promise<SupportMessageRow[]> {
-  await ensureSupportTable();
-  return prisma.$queryRawUnsafe<SupportMessageRow[]>(
-    `SELECT * FROM "SupportMessage" WHERE "userId" = ? ORDER BY "createdAt" ASC`,
-    userId,
-  );
+  return prisma.supportMessage.findMany({
+    where: { userId },
+    orderBy: { createdAt: "asc" },
+  });
 }
 
 // Помечает сообщения треда прочитанными для соответствующей стороны.
@@ -75,19 +46,17 @@ export async function markThreadRead(
   userId: string,
   by: "admin" | "user",
 ): Promise<void> {
-  await ensureSupportTable();
-  const col = by === "admin" ? "readByAdmin" : "readByUser";
-  await prisma.$executeRawUnsafe(
-    `UPDATE "SupportMessage" SET "${col}" = 1 WHERE "userId" = ?`,
-    userId,
-  );
+  await prisma.supportMessage.updateMany({
+    where: { userId },
+    data: by === "admin" ? { readByAdmin: true } : { readByUser: true },
+  });
 }
 
 export type Conversation = {
   userId: string;
   lastBody: string;
-  lastAt: string;
-  lastFromAdmin: number | boolean;
+  lastAt: Date | null;
+  lastFromAdmin: boolean;
   total: number;
   unreadForAdmin: number;
 };
@@ -95,40 +64,36 @@ export type Conversation = {
 // Список диалогов для админа: последнее сообщение и число непрочитанных
 // (от участника) по каждому пользователю.
 export async function getConversations(): Promise<Conversation[]> {
-  await ensureSupportTable();
-  const rows = await prisma.$queryRawUnsafe<
-    {
-      userId: string;
-      lastAt: string;
-      total: number | bigint;
-      unreadForAdmin: number | bigint;
-    }[]
-  >(
-    `SELECT "userId",
-            MAX("createdAt") AS "lastAt",
-            COUNT(*) AS "total",
-            SUM(CASE WHEN "fromAdmin" = 0 AND "readByAdmin" = 0 THEN 1 ELSE 0 END) AS "unreadForAdmin"
-     FROM "SupportMessage"
-     GROUP BY "userId"
-     ORDER BY "lastAt" DESC`,
+  const groups = await prisma.supportMessage.groupBy({
+    by: ["userId"],
+    _max: { createdAt: true },
+    _count: { _all: true },
+  });
+  // По времени последнего сообщения, новые сверху.
+  groups.sort(
+    (a, b) =>
+      (b._max.createdAt?.getTime() ?? 0) - (a._max.createdAt?.getTime() ?? 0),
   );
 
   const out: Conversation[] = [];
-  for (const r of rows) {
-    const last = await prisma.$queryRawUnsafe<
-      { body: string; fromAdmin: number | boolean }[]
-    >(
-      `SELECT "body","fromAdmin" FROM "SupportMessage"
-       WHERE "userId" = ? ORDER BY "createdAt" DESC LIMIT 1`,
-      r.userId,
-    );
+  for (const g of groups) {
+    const [last, unread] = await Promise.all([
+      prisma.supportMessage.findFirst({
+        where: { userId: g.userId },
+        orderBy: { createdAt: "desc" },
+        select: { body: true, fromAdmin: true },
+      }),
+      prisma.supportMessage.count({
+        where: { userId: g.userId, fromAdmin: false, readByAdmin: false },
+      }),
+    ]);
     out.push({
-      userId: r.userId,
-      lastBody: last[0]?.body ?? "",
-      lastAt: r.lastAt,
-      lastFromAdmin: last[0]?.fromAdmin ?? 0,
-      total: Number(r.total),
-      unreadForAdmin: Number(r.unreadForAdmin),
+      userId: g.userId,
+      lastBody: last?.body ?? "",
+      lastAt: g._max.createdAt,
+      lastFromAdmin: last?.fromAdmin ?? false,
+      total: g._count._all,
+      unreadForAdmin: unread,
     });
   }
   return out;
@@ -136,9 +101,7 @@ export async function getConversations(): Promise<Conversation[]> {
 
 // Общее число непрочитанных администратором сообщений (для бейджа).
 export async function countUnreadForAdmin(): Promise<number> {
-  await ensureSupportTable();
-  const rows = await prisma.$queryRawUnsafe<{ n: number | bigint }[]>(
-    `SELECT COUNT(*) AS n FROM "SupportMessage" WHERE "fromAdmin" = 0 AND "readByAdmin" = 0`,
-  );
-  return Number(rows[0]?.n ?? 0);
+  return prisma.supportMessage.count({
+    where: { fromAdmin: false, readByAdmin: false },
+  });
 }

@@ -1,17 +1,22 @@
-// Prisma schema — Next.js + SQLite
+// Prisma schema — Next.js + MySQL
 // Документация: https://pris.ly/d/prisma-schema
+//
+// База переведена с SQLite на MySQL: на шаред-хостинге домашняя папка
+// лежит на сетевой ФС, где файловые блокировки SQLite не работают и любой
+// запрос зависает. MySQL 8 на хостинге решает это и выдерживает
+// одновременные регистрации.
 
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
 // Роли пользователей хранятся строкой ("USER" или "ADMIN"):
-// SQLite не поддерживает enum, поэтому валидация значения — на уровне приложения.
+// валидация значения — на уровне приложения (исторически из-за SQLite).
 
 // Учётная запись — данные для авторизации и роль
 model User {
@@ -43,7 +48,7 @@ model SupportMessage {
   userId      String   // тред принадлежит этому участнику
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   fromAdmin   Boolean  @default(false) // true — ответ администратора
-  body        String
+  body        String   @db.Text // текст сообщения может быть длинным
   readByAdmin Boolean  @default(false)
   readByUser  Boolean  @default(false)
   createdAt   DateTime @default(now())
@@ -78,7 +83,7 @@ model Application {
   hotel         String?  // выбранный отель (для иногородних)
   roomCategory  String?  // категория номера (только гостиница НГУ)
   stayDates     String?  // даты пребывания
-  roommatePrefs String?  // пожелания по подселению
+  roommatePrefs String?  @db.Text // пожелания по подселению
 
   // Секция (основная обязательна)
   sectionPrimary   Int
@@ -86,14 +91,14 @@ model Application {
 
   // Формат участия
   participation String   // listener|discussant|brief|report
-  abstract      String?  // тезисы
+  abstract      String?  @db.Text // тезисы (могут быть длинными)
 
   // Культурная программа (обязательный выбор)
   cultural      String   // evolution|museum|books|dome|none
 
   // Лекции (опционально) — JSON-строка с выбором по лекциям
-  lectures      String?
-  comments      String?
+  lectures      String?  @db.Text
+  comments      String?  @db.Text
 
   consent       Boolean  @default(false)
   agree         Boolean  @default(false)
